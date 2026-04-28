@@ -16,5 +16,8 @@ const PORTFOLIO_CONTENU = {
     "logo-patisserie.jpg",
     "logo-salle de sport.jpg",
   ],
-
+projets: [
+    "bpgo-apercu.jpg",
+    "fondation-apercu.jpg",
+],
 };
