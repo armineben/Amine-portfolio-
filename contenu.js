@@ -11,6 +11,9 @@ const PORTFOLIO_CONTENU = {
   // 📁 images/images/affiches/
   affiches: [
     "Affiche-evenement-master2.png",
+    "Affiche-evenement-fondation.jpeg",
+    "Affiche-evenement-fondation.jpeg",
+    
   ],
 
   // 📁 images/images/cv/
