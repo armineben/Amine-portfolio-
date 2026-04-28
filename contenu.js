@@ -19,7 +19,7 @@ const PORTFOLIO_CONTENU = {
     "logo-couverture-patisserie.png",
     "logo-couverture-salle-sport.png",
     "logo-patisserie.jpg",
-    "logo-salle de sport.jpg",
+    "llogo-salle-de-sport.jpg",
   ],
 
   // 📁 images/affiches/
