@@ -6,6 +6,8 @@ const PORTFOLIO_CONTENU = {
     "logo-couverture-salle-sport.png",
     "logo-patisserie.jpg",
     "logo-salle-de-sport.jpg",
+    "Logo-santé-conectée.png",
+
   ],
 
   // 📁 images/images/affiches/
