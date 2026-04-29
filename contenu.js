@@ -12,7 +12,7 @@ const PORTFOLIO_CONTENU = {
   // 📁 images/images/affiches/
   affiches:[
     "Affiche-evenement-master2.png",
-    "https://drive.google.com/file/d/1-MFSweicmW7hFz3E6aYIg4cUmqfmWniq/preview",
+    "https://drive.google.com/file/d/1VDnWFzGi1ABleP1oqHCD9xTJhoWBLNtj/preview",
     "Affiche-evenement-fondation2.jpeg",
     "Affiche-evenement-fondation.jpeg"
   ],
