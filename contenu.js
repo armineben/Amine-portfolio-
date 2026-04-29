@@ -21,14 +21,14 @@ const PORTFOLIO_CONTENU = {
   cv: [
     // "cv-amine.pdf",
     // "cv-amine-apercu.jpg",
-  ],
 
-  // 🌐 PROJETS HTML — fichiers à la RACINE du dépôt
-  projets: [
+    
+  // 🌐 PROJETS HTML - fichiers à la RACINE du dépôt
+projets: [
     "projet-fondation.html",
     "projet-bpgo.html",
-    "projet-innovons.html,
-  ],
+    "projet-innovons.html"
+]
 
   // 📁 images/images/excel/
   excel: [
