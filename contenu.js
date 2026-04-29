@@ -7,6 +7,7 @@ const PORTFOLIO_CONTENU = {
     "logo-patisserie.jpg",
     "logo-salle-de-sport.jpg",
     "Logo-santé-conectée.png",
+    "Logo-marque-sans-gluten.png",
   ],
 
   // 📁 images/images/affiches/
