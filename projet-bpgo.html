@@ -8,7 +8,7 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --blue: #003DA5; --blue-light: #E8F0FB; --blue-mid: #1A56C4;
+  --blue: #003DA5; --blue-light: #E8F0FB; --blue-mid: #1A56C4; --blue-dark: #002B7A;
   --green: #1D9E75; --green-light: #E1F5EE;
   --text-primary: #1a1a1a; --text-secondary: #555; --text-muted: #999;
   --border: #e8e8e8; --bg: #fafaf8;
@@ -76,7 +76,6 @@ nav {
   border-radius: 0 12px 12px 0; padding: 1.5rem 1.75rem; margin-bottom: 3rem;
 }
 .context-text { font-size: 15px; line-height: 1.8; color: var(--text-secondary); font-weight: 300; }
-.context-text strong { color: var(--text-primary); font-weight: 500; }
 
 .missions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 3rem; }
 .mission-card {
@@ -88,16 +87,27 @@ nav {
 .mission-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
 .mission-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
 
-/* UPLOAD ZONE */
-.upload-zone {
-  background: white; border: 1.5px dashed #c0cfe8;
-  border-radius: 16px; padding: 2.5rem; text-align: center; margin-bottom: 3rem;
+/* VIDEO CONTAINER */
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Ratio 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #000;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
-.upload-icon { font-size: 2rem; margin-bottom: 10px; opacity: 0.4; }
-.upload-title { font-size: 14px; font-weight: 500; color: var(--text-secondary); margin-bottom: 5px; }
-.upload-hint { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
-/* COMPÉTENCES */
 .skills-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 3rem; }
 .skill-badge {
   font-size: 12px; padding: 6px 14px; border-radius: 20px;
@@ -107,23 +117,13 @@ nav {
 }
 .skill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
 
-/* APPORTS */
-.apports-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-bottom: 3rem; }
-.apport-card { background: white; border: 0.5px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center; }
-.apport-icon { font-size: 24px; margin-bottom: 8px; }
-.apport-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-.apport-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
-
 .project-footer { background: white; border-top: 0.5px solid var(--border); padding: 2rem; text-align: center; }
-.pf-text { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
 .pf-link { font-size: 13px; padding: 8px 20px; border-radius: 20px; background: var(--green); color: white; text-decoration: none; font-weight: 500; }
-.pf-link:hover { opacity: 0.85; }
 
 @media (max-width: 640px) {
   .project-title { font-size: 1.7rem; }
   .stats-inner { grid-template-columns: repeat(3, 1fr); }
   .content { padding: 2rem 1.25rem; }
-  nav { padding: 0 1rem; }
 }
 </style>
 </head>
@@ -138,42 +138,20 @@ nav {
   <div class="project-hero-inner">
     <div class="project-badge">🏦 Stage Master 1 · Transformation digitale</div>
     <h1 class="project-title">Transformation Digitale & Automatisation des Flux Bancaires</h1>
-    <p class="project-subtitle">Accompagnement de la Banque Populaire Grand Ouest dans sa transformation numérique — création de supports pédagogiques, automatisation RPA et interface métiers/techniques.</p>
+    <p class="project-subtitle">Accompagnement de la Banque Populaire Grand Ouest dans sa transformation numérique.</p>
     <div class="project-meta">
-      <div class="meta-item">
-        <div class="meta-label">Structure</div>
-        <div class="meta-value">Banque Populaire Grand Ouest (BPGO)</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Lieu</div>
-        <div class="meta-value">Nantes, France 🇫🇷</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Période</div>
-        <div class="meta-value">Juillet – Août 2024</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Niveau</div>
-        <div class="meta-value">Stage Master 1</div>
-      </div>
+      <div class="meta-item"><div class="meta-label">Structure</div><div class="meta-value">BPGO</div></div>
+      <div class="meta-item"><div class="meta-label">Lieu</div><div class="meta-value">Nantes, France 🇫🇷</div></div>
+      <div class="meta-item"><div class="meta-label">Période</div><div class="meta-value">Juillet – Août 2024</div></div>
     </div>
   </div>
 </div>
 
 <div class="stats-band">
   <div class="stats-inner">
-    <div class="stat">
-      <div class="stat-num">RPA</div>
-      <div class="stat-label">Technologie déployée</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">2</div>
-      <div class="stat-label">Mois de mission intensive</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Axes de mission</div>
-    </div>
+    <div class="stat"><div class="stat-num">RPA</div><div class="stat-label">Technologie</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Mois de mission</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Axes de mission</div></div>
   </div>
 </div>
 
@@ -182,86 +160,43 @@ nav {
   <p class="sec-label">01 — Contexte</p>
   <h2 class="sec-title">La mission</h2>
   <div class="context-block">
-    <p class="context-text">
-      Dans le cadre de mon stage Master 1 à la <strong>Banque Populaire Grand Ouest</strong> à Nantes, j'ai participé activement à des projets de <strong>transformation digitale</strong>. Ma mission couvrait trois axes complémentaires : la création de supports pédagogiques pour accompagner les équipes dans l'adoption de nouveaux outils, l'automatisation des flux de crédits via des solutions RPA, et le rôle d'interface entre les besoins métiers et les équipes techniques.
-    </p>
+    <p class="context-text">Lors de mon stage à la <strong>Banque Populaire Grand Ouest</strong>, j'ai travaillé sur l'automatisation RPA et la création de supports pour faciliter la transformation digitale des équipes.</p>
   </div>
 
   <p class="sec-label">02 — Missions</p>
-  <h2 class="sec-title">Ce que j'ai réalisé</h2>
+  <h2 class="sec-title">Réalisations</h2>
   <div class="missions-grid">
-
     <div class="mission-card">
       <div class="mission-icon" style="background:#E8F0FB;">🎨</div>
-      <p class="mission-title">Supports pédagogiques & vidéos</p>
-      <p class="mission-desc">Création de supports visuels et vidéos explicatives avec Canva pour accompagner l'adoption de nouveaux outils digitaux par les équipes internes.</p>
+      <p class="mission-title">Supports pédagogiques</p>
+      <p class="mission-desc">Utilisation de Canva pour créer des guides visuels[cite: 1].</p>
     </div>
-
     <div class="mission-card">
       <div class="mission-icon" style="background:#E1F5EE;">⚙️</div>
       <p class="mission-title">Automatisation RPA</p>
-      <p class="mission-desc">Analyse et automatisation des flux de crédits bancaires via des solutions RPA (Robotic Process Automation) pour améliorer l'efficacité opérationnelle.</p>
-    </div>
-
-    <div class="mission-card">
-      <div class="mission-icon" style="background:#FAEEDA;">🔗</div>
-      <p class="mission-title">Interface métiers / techniques</p>
-      <p class="mission-desc">Rôle d'interface entre les besoins métiers et les équipes techniques dans le cadre de projets de transformation digitale de la banque.</p>
-    </div>
-
-  </div>
-
-  <p class="sec-label">03 — Visuels du projet</p>
-  <h2 class="sec-title">Aperçu des réalisations</h2>
-  <div class="upload-zone">
-    <div class="upload-icon">🖼️</div>
-    <div class="upload-title">Tes captures et visuels arrivent ici</div>
-    <div class="upload-hint">
-      Uploade sur GitHub dans le dossier <strong>images/</strong> tes fichiers avec ces noms :<br><br>
-      <strong>bpgo-support-1.jpg</strong> · <strong>bpgo-support-2.jpg</strong> · <strong>bpgo-rpa.jpg</strong>
+      <p class="mission-desc">Optimisation des flux bancaires via l'automatisation[cite: 1].</p>
     </div>
   </div>
 
-  <p class="sec-label">04 — Compétences mobilisées</p>
-  <h2 class="sec-title">Outils & technologies</h2>
+  <p class="sec-label">03 — Démonstration Vidéo</p>
+  <h2 class="sec-title">Aperçu du projet</h2>
+  
+  <!-- LECTEUR VIDÉO INTÉGRÉ -->
+  <div class="video-container">
+    <iframe src="https://drive.google.com/file/d/1-MFSweicmW7hFz3E6aYIg4cUmqfmWniq/preview" allow="autoplay"></iframe>
+  </div>
+
+  <p class="sec-label">04 — Outils</p>
+  <h2 class="sec-title">Compétences</h2>
   <div class="skills-list">
-    <span class="skill-badge"><span class="skill-dot" style="background:#F56040;"></span>Canva</span>
-    <span class="skill-badge"><span class="skill-dot" style="background:#E74C3C;"></span>RPA — Robotic Process Automation</span>
-    <span class="skill-badge"><span class="skill-dot" style="background:#6264A7;"></span>Microsoft Teams</span>
-    <span class="skill-badge"><span class="skill-dot" style="background:#0078D4;"></span>Outils Microsoft 365</span>
+    <span class="skill-badge"><span class="skill-dot"></span>Canva</span>
+    <span class="skill-badge"><span class="skill-dot" style="background:#E74C3C;"></span>RPA</span>
     <span class="skill-badge"><span class="skill-dot" style="background:#1D9E75;"></span>Gestion de projet</span>
-    <span class="skill-badge"><span class="skill-dot" style="background:#003DA5;"></span>Communication digitale</span>
-  </div>
-
-  <p class="sec-label">05 — Apports professionnels</p>
-  <h2 class="sec-title">Ce que ce stage m'a apporté</h2>
-  <div class="apports-grid">
-    <div class="apport-card">
-      <div class="apport-icon">🏦</div>
-      <p class="apport-title">Environnement bancaire</p>
-      <p class="apport-desc">Immersion dans les processus internes d'une grande banque régionale française</p>
-    </div>
-    <div class="apport-card">
-      <div class="apport-icon">🤖</div>
-      <p class="apport-title">Compétences RPA</p>
-      <p class="apport-desc">Maîtrise des outils d'automatisation appliqués aux flux bancaires</p>
-    </div>
-    <div class="apport-card">
-      <div class="apport-icon">🎯</div>
-      <p class="apport-title">Pédagogie digitale</p>
-      <p class="apport-desc">Création de contenus de formation adaptés aux équipes non techniques</p>
-    </div>
-    <div class="apport-card">
-      <div class="apport-icon">🇫🇷</div>
-      <p class="apport-title">Expérience France</p>
-      <p class="apport-desc">Deuxième expérience professionnelle en France, renforçant mon ancrage franco-tunisien</p>
-    </div>
   </div>
 
 </div>
 
 <div class="project-footer">
-  <p class="pf-text">Tu veux en savoir plus sur ce projet ou collaborer ensemble ?</p>
   <a class="pf-link" href="mailto:aminebenali3@gmail.com">✉ Me contacter</a>
 </div>
 
