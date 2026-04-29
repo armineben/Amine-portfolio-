@@ -28,7 +28,6 @@ const PORTFOLIO_CONTENU = {
   projets: [
     "projet-fondation.html",
     "projet-bpgo.html",
-    
   ],
 
   // 📁 images/images/excel/
