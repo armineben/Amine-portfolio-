@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projet Innovons Ensemble — Amine BENALI</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --purple: #6366f1; --purple-light: #f5f3ff; --purple-mid: #4f46e5;
+  --orange: #f59e0b; --orange-light: #fffbeb;
+  --text-primary: #1a1a1a; --text-secondary: #555; --text-muted: #999;
+  --border: #e8e8e8; --bg: #fafaf8;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); }
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+  padding: 0 2rem; display: flex; align-items: center;
+  justify-content: space-between; height: 56px;
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--text-primary); text-decoration: none; }
+.nav-logo span { color: var(--purple); }
+.nav-back {
+  font-size: 12px; color: var(--text-secondary); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 20px; border: 0.5px solid var(--border);
+  background: white; transition: all 0.15s;
+}
+.nav-back:hover { background: var(--bg); color: var(--text-primary); }
+
+.project-hero {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #818cf8 100%);
+  color: white; padding: 5rem 2rem 4rem;
+}
+.project-hero-inner { max-width: 860px; margin: 0 auto; }
+.project-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.15); border: 0.5px solid rgba(255,255,255,0.3);
+  border-radius: 20px; padding: 5px 14px; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem;
+}
+.project-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem; font-weight: 600; line-height: 1.2;
+  margin-bottom: 1rem; max-width: 680px;
+}
+.project-subtitle {
+  font-size: 15px; font-weight: 300; opacity: 0.85;
+  line-height: 1.6; max-width: 560px; margin-bottom: 2rem;
+}
+
+.project-meta { display: flex; flex-wrap: wrap; gap: 1rem; }
+.meta-item {
+  background: rgba(255,255,255,0.1); border: 0.5px solid rgba(255,255,255,0.2);
+  border-radius: 10px; padding: 10px 16px;
+}
+.meta-label { font-size: 10px; opacity: 0.7; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
+.meta-value { font-size: 13px; font-weight: 500; }
+
+.content { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
+.sec-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple-mid); font-weight: 600; margin-bottom: 0.5rem; }
+.sec-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; }
+
+.context-block {
+  background: var(--purple-light); border-left: 3px solid var(--purple);
+  border-radius: 0 12px 12px 0; padding: 1.5rem 1.75rem; margin-bottom: 3rem;
+}
+.context-text { font-size: 15px; line-height: 1.8; color: var(--text-secondary); font-weight: 300; }
+.context-text strong { color: var(--text-primary); font-weight: 500; }
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Ratio 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #000;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.missions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 3rem; }
+.mission-card {
+  background: white; border: 0.5px solid var(--border);
+  border-radius: 12px; padding: 1.5rem; transition: box-shadow 0.15s;
+}
+.mission-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.mission-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 12px; }
+.mission-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.mission-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+.project-footer { background: white; border-top: 0.5px solid var(--border); padding: 2rem; text-align: center; }
+.pf-link { font-size: 13px; padding: 8px 20px; border-radius: 20px; background: var(--purple); color: white; text-decoration: none; font-weight: 500; }
+
+@media (max-width: 640px) {
+  .project-title { font-size: 1.7rem; }
+  .content { padding: 2rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html"><span>A</span>mine BENALI</a>
+  <a class="nav-back" href="index.html">← Retour au portfolio</a>
+</nav>
+
+<div class="project-hero">
+  <div class="project-hero-inner">
+    <div class="project-badge">🚀 Challenge Innovons Ensemble</div>
+    <h1 class="project-title">Innover pour un Impact Territorial Durable</h1>
+    <p class="project-subtitle">Présentation stratégique pour le challenge d'innovation territoriale — une vision moderne du développement régional et de l'entrepreneuriat.</p>
+    <div class="project-meta">
+      <div class="meta-item">
+        <div class="meta-label">Projet</div>
+        <div class="meta-value">Innovons Ensemble</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Thématique</div>
+        <div class="meta-value">Innovation Territoriale</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Format</div>
+        <div class="meta-value">Présentation Stratégique</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <p class="sec-label">01 — Vision</p>
+  <h2 class="sec-title">Le Concept</h2>
+  <div class="context-block">
+    <p class="context-text">
+      Ce projet présente une approche structurée pour répondre aux défis contemporains des territoires. À travers cette présentation, l'objectif est de démontrer comment l'innovation peut servir de levier pour la <strong>croissance locale</strong>, le <strong>dynamisme régional</strong> et la création de valeur durable.
+    </p>
+  </div>
+
+  <p class="sec-label">02 — Présentation Vidéo</p>
+  <h2 class="sec-title">Aperçu des réalisations</h2>
+  
+  <div class="video-container">
+    <iframe 
+      src="https://drive.google.com/file/d/1u-EuG2TA5qJ8mOYycYORf3d0hoExFoTe/preview" 
+      allow="autoplay" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="sec-label">03 — Axes Stratégiques</p>
+  <h2 class="sec-title">Points clés de l'innovation</h2>
+  <div class="missions-grid">
+    <div class="mission-card">
+      <div class="mission-icon" style="background:#f5f3ff;">💡</div>
+      <p class="mission-title">Idéation Territoriale</p>
+      <p class="mission-desc">Développement de concepts innovants adaptés aux besoins réels et spécifiques des régions.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon" style="background:#fffbeb;">📈</div>
+      <p class="mission-title">Impact Économique</p>
+      <p class="mission-desc">Analyse des retombées potentielles et mise en place de leviers de croissance durable.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon" style="background:#f5f3ff;">🤝</div>
+      <p class="mission-title">Synergie d'Acteurs</p>
+      <p class="mission-desc">Mobilisation des institutions, des entreprises et des citoyens autour d'un projet commun.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="project-footer">
+  <p style="margin-bottom: 12px; font-size: 13px; color: #555;">Ce projet illustre ma passion pour l'innovation et le développement territorial.</p>
+  <a class="pf-link" href="mailto:aminebenali3@gmail.com">✉ Me contacter</a>
+</div>
+
+</body>
+</html>
