@@ -210,22 +210,14 @@ footer { padding: 1.5rem 2rem; text-align: center; font-size: 12px; color: var(-
       </div>
     </div>
 
-    <div class="cat-card">
+    <!-- CARTE PROJETS MISE À JOUR : CLIQUEZ POUR OUVRIR LE MODAL -->
+    <div class="cat-card" onclick="openModal('projets')">
       <div class="cat-card-header">
         <div class="cat-icon" style="background:#FAECE7;">▶</div>
-        <span class="cat-count">2 projets</span>
+        <span class="cat-count" id="count-projets">0 projet</span>
       </div>
-      <div class="cat-preview" style="flex-direction:column; gap:6px; height:110px; margin:0 1rem;">
-        <a href="projet-fondation.html" style="flex:1; background:linear-gradient(135deg,#002B7A,#1A56C4); border-radius:8px; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none;">
-          <span style="font-size:14px;">🏦</span>
-          <span style="font-size:12px; font-weight:600; color:white;">Fondation BP CM&amp;GO</span>
-          <span style="font-size:11px; color:rgba(255,255,255,0.7);">→</span>
-        </a>
-        <a href="projet-bpgo.html" style="flex:1; background:linear-gradient(135deg,#0F6E56,#1D9E75); border-radius:8px; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none;">
-          <span style="font-size:14px;">⚙️</span>
-          <span style="font-size:12px; font-weight:600; color:white;">Stage BPGO</span>
-          <span style="font-size:11px; color:rgba(255,255,255,0.7);">→</span>
-        </a>
+      <div class="cat-preview" id="preview-projets" style="flex-direction:column; gap:6px; height:110px; margin:0 1rem;">
+        <div class="cat-preview-empty"><span>🌐</span><p>Aucun projet</p></div>
       </div>
       <div class="cat-card-footer">
         <p class="cat-name">Projets</p>
@@ -381,7 +373,7 @@ const CATEGORIES = {
   logos:        { nom: 'Logos',        icon: '◉', color: '#FAEEDA', desc: 'Identités visuelles & logotypes',          folder: 'images/images/logos/' },
   affiches:     { nom: 'Affiches',     icon: '◈', color: '#E1F5EE', desc: 'Visuels Enactus & Master 2',              folder: 'images/images/affiches/' },
   cv:           { nom: 'CV',           icon: '☰', color: '#EEEDFE', desc: 'Curriculum vitae & documents',            folder: 'images/images/cv/' },
-  projets:      { nom: 'Projets',      icon: '▶', color: '#FAECE7', desc: 'Stages & projets professionnels',         folder: 'images/images/projets/' },
+  projets:      { nom: 'Projets',      icon: '▶', color: '#FAECE7', desc: 'Stages & projets professionnels',         folder: '' }, // Racines du dépôt
   excel:        { nom: 'Excel',        icon: '▦', color: '#E6F1FB', desc: 'Tableaux de bord VBA & KPI',              folder: 'images/images/excel/' },
   publications: { nom: 'Publications', icon: '📱', color: '#E1F5EE', desc: 'Réseaux sociaux & contenus digitaux',    folder: 'images/images/publications/' },
 };
@@ -396,7 +388,8 @@ function getFileType(f) {
 
 function getFilePath(cat, f) {
   if (f.startsWith('http') || f.startsWith('./') || f.startsWith('/')) return f;
-  if (getFileType(f) === 'html') return f;
+  // Pour les fichiers HTML ou si le dossier est vide (racine)
+  if (getFileType(f) === 'html' || !cat.folder) return f;
   return cat.folder + f;
 }
 
@@ -407,18 +400,30 @@ function loadAll() {
     const cat = CATEGORIES[key];
     const countEl = document.getElementById('count-' + key);
     const previewEl = document.getElementById('preview-' + key);
-    if (countEl) countEl.textContent = files.length + ' fichier' + (files.length > 1 ? 's' : '');
+    
+    if (countEl) countEl.textContent = files.length + (key === 'projets' ? ' projet' : ' fichier') + (files.length > 1 ? 's' : '');
+    
     if (previewEl) {
       if (files.length === 0) {
         previewEl.innerHTML = `<div class="cat-preview-empty"><span>${cat.icon}</span><p>Aucun fichier</p></div>`;
       } else {
-        const imgs = files.slice(0, 3).filter(f => getFileType(f) === 'image');
-        if (imgs.length > 0) {
-          previewEl.innerHTML = imgs.map(f => `<img src="${cat.folder}${f}" alt="${f}" onerror="this.style.display='none'">`).join('');
+        // Logique spécifique pour la carte Projets (Aperçu de type bouton)
+        if (key === 'projets') {
+           previewEl.innerHTML = files.slice(0, 2).map(f => `
+             <div style="flex:1; background:linear-gradient(135deg,#666,#999); border-radius:8px; display:flex; align-items:center; justify-content:center; gap:8px; width:100%;">
+               <span style="font-size:14px;">🌐</span>
+               <span style="font-size:11px; font-weight:600; color:white;">${f.replace('.html','')}</span>
+             </div>
+           `).join('');
         } else {
-          const icons = {'pdf':'📄','html':'🌐','other':'📎'};
-          const type = getFileType(files[0]);
-          previewEl.innerHTML = `<div class="cat-preview-empty"><span>${icons[type]||'📎'}</span><p>${files.length} fichier${files.length>1?'s':''}</p></div>`;
+          const imgs = files.slice(0, 3).filter(f => getFileType(f) === 'image');
+          if (imgs.length > 0) {
+            previewEl.innerHTML = imgs.map(f => `<img src="${cat.folder}${f}" alt="${f}" onerror="this.style.display='none'">`).join('');
+          } else {
+            const icons = {'pdf':'📄','html':'🌐','other':'📎'};
+            const type = getFileType(files[0]);
+            previewEl.innerHTML = `<div class="cat-preview-empty"><span>${icons[type]||'📎'}</span><p>${files.length} fichier${files.length>1?'s':''}</p></div>`;
+          }
         }
       }
     }
@@ -433,13 +438,14 @@ function openModal(key) {
   document.getElementById('modal-title').textContent = cat.nom;
   document.getElementById('modal-subtitle').textContent = cat.desc;
   const body = document.getElementById('modal-body');
+  
   if (files.length === 0) {
     body.innerHTML = `
       <div class="modal-empty">
         <div class="modal-empty-icon">${cat.icon}</div>
         <p class="modal-empty-title">Aucun fichier pour l'instant</p>
         <p class="modal-empty-hint">Uploade tes fichiers dans ce dossier GitHub puis ajoute leur nom dans <strong>contenu.js</strong></p>
-        <span class="modal-empty-folder">${cat.folder}</span>
+        <span class="modal-empty-folder">${cat.folder || 'Racine du dépôt'}</span>
       </div>`;
   } else {
     body.innerHTML = `<div class="gallery-grid">` + files.map(f => {
@@ -453,7 +459,7 @@ function openModal(key) {
         return `<a class="gallery-item pdf-item" href="${path}" target="_blank"><span>📄</span><p>${label}</p></a>`;
       }
       if (type === 'html') {
-        return `<a class="gallery-item pdf-item" href="${path}" target="_blank" style="background:linear-gradient(135deg,#E8F0FB,#ddeeff);"><span>🌐</span><p>${label.replace('.html','')}</p></a>`;
+        return `<a class="gallery-item pdf-item" href="${path}" target="_blank" style="background:linear-gradient(135deg,#E8F0FB,#ddeeff); border:1px solid #1D9E75;"><span>🌐</span><p style="font-weight:600; color:#0F6E56;">${label.replace('.html','')}</p></a>`;
       }
       return `<a class="gallery-item pdf-item" href="${path}" target="_blank"><span>📎</span><p>${label}</p></a>`;
     }).join('') + `</div>`;
