@@ -40,6 +40,9 @@ const PORTFOLIO_CONTENU = {
     "post-instagram-6.png",
     "post-instagram-7.png",
     "post-instagram-8.png",
+    "Publication-salle-desport3.png",
+"Publication-salle-desport2.png",
+"Publication-salle-de-sport.png"
   ],
 
 };
