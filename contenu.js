@@ -14,7 +14,7 @@ const PORTFOLIO_CONTENU = {
     "Affiche-evenement-master2.png",
     "https://drive.google.com/file/d/1-MFSweicmW7hFz3E6aYIg4cUmqfmWniq/preview",
     "Affiche-evenement-fondation2.jpeg",
-    "Affiche-evenement-fondation.jpeg",
+    "Affiche-evenement-fondation.jpeg"
   ],
 
   // 📁 images/images/cv/
