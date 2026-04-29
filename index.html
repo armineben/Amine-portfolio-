@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amine BENALI — Portfolio</title>
-<script src="contenu.js"></script>
+<!-- CHARGEMENT DU CONTENU DYNAMIQUE -->
+<script src="js/contenu.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,7 +18,7 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; }
 
-/* NAV */
+/* NAVIGATION */
 nav {
   position: sticky; top: 0; z-index: 100;
   background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
@@ -30,20 +31,16 @@ nav {
 .nav-contact {
   font-size: 12px; padding: 6px 16px; border-radius: 20px;
   background: var(--green); color: white; text-decoration: none; font-weight: 500;
-  transition: background 0.15s;
 }
-.nav-contact:hover { background: var(--green-dark); }
 
-/* HERO */
+/* SECTION HERO */
 .hero { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 2rem; text-align: center; }
 .hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; font-weight: 500; }
 .hero-name { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 600; line-height: 1.1; margin-bottom: 1rem; }
 .hero-name span { color: var(--green); }
 .hero-desc { font-size: 15px; color: var(--text-secondary); font-weight: 300; line-height: 1.7; max-width: 500px; margin: 0 auto 2rem; }
-.hero-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 3rem; }
-.hero-tag { font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 0.5px solid var(--border); color: var(--text-secondary); background: white; }
 
-/* CATEGORIES GRID */
+/* GRILLE DES CATÉGORIES */
 .categories { max-width: 860px; margin: 0 auto; padding: 0 2rem 4rem; }
 .categories-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
 .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -58,89 +55,57 @@ nav {
 .cat-card-header { padding: 1.5rem 1.5rem 1rem; display: flex; align-items: flex-start; justify-content: space-between; }
 .cat-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
 .cat-count { font-size: 11px; color: var(--text-muted); background: var(--bg); padding: 3px 8px; border-radius: 10px; border: 0.5px solid var(--border); }
+
+/* APERÇU DYNAMIQUE DANS LA CARTE */
 .cat-preview { height: 110px; overflow: hidden; margin: 0 1rem; border-radius: 10px; background: var(--bg); display: flex; gap: 4px; }
 .cat-preview img { flex: 1; min-width: 0; object-fit: cover; }
 .cat-preview-empty { width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; border: 1.5px dashed #ddd; border-radius: 10px; }
 .cat-preview-empty span { font-size: 20px; opacity: 0.3; }
 .cat-preview-empty p { font-size: 10px; color: var(--text-muted); }
+
 .cat-card-footer { padding: 1rem 1.5rem 1.25rem; }
 .cat-name { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
 .cat-desc { font-size: 11px; color: var(--text-muted); }
 .cat-arrow { font-size: 11px; color: var(--green); margin-top: 6px; }
 
-/* MODAL GALERIE */
+/* MODAL & GALERIE */
 .modal-overlay {
   display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
   z-index: 9999; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
 }
 .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; }
-.modal {
-  background: white; border-radius: 20px; width: 100%; max-width: 760px;
-  overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.3);
-}
-.modal-header {
-  padding: 1.5rem 2rem; display: flex; align-items: center;
-  justify-content: space-between; border-bottom: 0.5px solid var(--border);
-}
-.modal-header-left { display: flex; align-items: center; gap: 12px; }
+.modal { background: white; border-radius: 20px; width: 100%; max-width: 760px; overflow: hidden; }
+.modal-header { padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); }
 .modal-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
 .modal-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; }
-.modal-subtitle { font-size: 12px; color: var(--text-muted); }
-.modal-close {
-  background: var(--bg); border: 0.5px solid var(--border); color: var(--text-secondary);
-  width: 32px; height: 32px; border-radius: 50%; font-size: 14px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-}
+.modal-close { background: var(--bg); border: 0.5px solid var(--border); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; }
 .modal-body { padding: 1.5rem 2rem; }
-.modal-empty { text-align: center; padding: 3rem 2rem; }
-.modal-empty-icon { font-size: 3rem; opacity: 0.2; margin-bottom: 1rem; }
-.modal-empty-title { font-size: 15px; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; }
-.modal-empty-hint { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
-.modal-empty-folder { font-family: monospace; background: var(--bg); padding: 6px 12px; border-radius: 8px; font-size: 12px; color: var(--blue); display: inline-block; margin-top: 10px; border: 0.5px solid var(--border); }
+
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
-.gallery-item { border-radius: 10px; overflow: hidden; border: 0.5px solid var(--border); aspect-ratio: 4/3; cursor: zoom-in; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; }
-.gallery-item:hover img { transform: scale(1.04); }
-.gallery-item.pdf-item { display: flex; align-items: center; justify-content: center; background: var(--bg); flex-direction: column; gap: 8px; cursor: pointer; text-decoration: none; }
-.gallery-item.pdf-item span { font-size: 2rem; }
-.gallery-item.pdf-item p { font-size: 11px; color: var(--text-secondary); text-align: center; padding: 0 8px; }
+.gallery-item { border-radius: 10px; overflow: hidden; border: 0.5px solid var(--border); aspect-ratio: 4/3; cursor: pointer; display: flex; align-items: center; justify-content: center; background: #fff; text-decoration: none; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-item.html-item { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); flex-direction: column; gap: 8px; border: 1px solid #bae6fd; }
 
 /* LIGHTBOX */
-.lightbox { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
 .lightbox.open { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
-.lightbox-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.15); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; }
+.lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
 
-/* PARCOURS */
+/* TIMELINE PARCOURS */
 .parcours-section { max-width: 860px; margin: 0 auto; padding: 0 2rem 4rem; }
-.parcours-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
-.timeline { display: flex; flex-direction: column; }
 .timeline-item { display: grid; grid-template-columns: 130px 1fr; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 0.5px solid var(--border); }
-.timeline-item:last-child { border-bottom: none; }
-.timeline-date { font-size: 11px; color: var(--text-muted); padding-top: 3px; line-height: 1.5; }
-.timeline-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.timeline-date { font-size: 11px; color: var(--text-muted); }
+.timeline-title { font-size: 14px; font-weight: 600; }
 .timeline-place { font-size: 13px; color: var(--green); margin-bottom: 6px; }
-.timeline-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
 
 /* CONTACT */
-.contact-section { background: white; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); padding: 3rem 2rem; text-align: center; margin-bottom: 0; }
-.contact-title { font-family: 'Playfair Display', serif; font-size: 1.75rem; margin-bottom: 0.75rem; }
-.contact-desc { font-size: 14px; color: var(--text-secondary); margin-bottom: 1.5rem; font-weight: 300; }
-.contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-.contact-link { font-size: 13px; padding: 8px 20px; border-radius: 24px; border: 0.5px solid var(--border); color: var(--text-primary); text-decoration: none; background: white; transition: all 0.15s; }
-.contact-link:hover { background: var(--bg); }
+.contact-section { background: white; border-top: 0.5px solid var(--border); padding: 3rem 2rem; text-align: center; }
+.contact-link { font-size: 13px; padding: 8px 20px; border-radius: 24px; border: 0.5px solid var(--border); color: var(--text-primary); text-decoration: none; display: inline-block; margin: 5px; }
 .contact-link.primary { background: var(--green); color: white; border-color: var(--green); }
-.contact-link.primary:hover { background: var(--green-dark); }
 
 footer { padding: 1.5rem 2rem; text-align: center; font-size: 12px; color: var(--text-muted); }
 
-@media (max-width: 640px) {
-  .cat-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero-name { font-size: 2rem; }
-  nav { padding: 0 1rem; }
-  .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
-  .modal-overlay { padding: 20px 12px; }
-}
+@media (max-width: 640px) { .cat-grid { grid-template-columns: 1fr; } .timeline-item { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -153,201 +118,81 @@ footer { padding: 1.5rem 2rem; text-align: center; font-size: 12px; color: var(-
 <div class="hero">
   <p class="hero-label">Portfolio créatif & digital</p>
   <h1 class="hero-name">Amine <span>BENALI</span></h1>
-  <p class="hero-desc">Chargé de communication et digital marketing, passionné de création visuelle, d'outils digitaux et de storytelling de marque.</p>
-  <div class="hero-tags">
-    <span class="hero-tag">🇹🇳 Tunisie · 🇫🇷 France</span>
-    <span class="hero-tag">Master ESC Tunis</span>
-    <span class="hero-tag">Automotive & Bancaire</span>
-  </div>
+  <p class="hero-desc">Chargé de communication et digital marketing, passionné de création visuelle, d'outils digitaux et de storytelling.</p>
 </div>
 
 <div class="categories">
   <h2 class="categories-title">Mes créations</h2>
-  <div class="cat-grid" id="cat-grid">
+  <div class="cat-grid">
 
+    <!-- LOGOS -->
     <div class="cat-card" onclick="openModal('logos')">
-      <div class="cat-card-header">
-        <div class="cat-icon" style="background:#FAEEDA;">◉</div>
-        <span class="cat-count" id="count-logos">0 fichier</span>
-     <div class="cat-card" onclick="openModal('projets')">
-  <div class="cat-card-header">
-    <div class="cat-icon" style="background:#FAECE7;">▶</div>
-    <span class="cat-count" id="count-projets">0 projet</span>
-  </div>
-  <div class="cat-preview" id="preview-projets">
-    <div class="cat-preview-empty"><span>▶</span><p>Aucun projet</p></div>
-  </div>
-  <div class="cat-card-footer">
-    <p class="cat-name">Projets</p>
-    <p class="cat-desc">Stages & projets professionnels</p>
-    <p class="cat-arrow">Voir tout →</p>
-  </div>
-</div>
-      </div>
-      <div class="cat-preview" id="preview-cv">
-        <div class="cat-preview-empty"><span>📄</span><p>Aucun fichier</p></div>
-      </div>
-      <div class="cat-card-footer">
-        <p class="cat-name">CV</p>
-        <p class="cat-desc">Curriculum vitae & documents</p>
-        <p class="cat-arrow">Voir tout →</p>
-      </div>
+      <div class="cat-card-header"><div class="cat-icon" style="background:#FAEEDA;">◉</div><span class="cat-count" id="count-logos">0</span></div>
+      <div class="cat-preview" id="preview-logos"><div class="cat-preview-empty"><span>🖼️</span></div></div>
+      <div class="cat-card-footer"><p class="cat-name">Logos</p><p class="cat-arrow">Voir tout →</p></div>
     </div>
 
-    <div class="cat-card">
+    <!-- AFFICHES -->
+    <div class="cat-card" onclick="openModal('affiches')">
+      <div class="cat-card-header"><div class="cat-icon" style="background:#E1F5EE;">◈</div><span class="cat-count" id="count-affiches">0</span></div>
+      <div class="cat-preview" id="preview-affiches"><div class="cat-preview-empty"><span>🖼️</span></div></div>
+      <div class="cat-card-footer"><p class="cat-name">Affiches</p><p class="cat-arrow">Voir tout →</p></div>
+    </div>
+
+    <!-- PROJETS (C'est ici que la magie opère pour vos fichiers HTML) -->
+    <div class="cat-card" onclick="openModal('projets')">
       <div class="cat-card-header">
         <div class="cat-icon" style="background:#FAECE7;">▶</div>
-        <span class="cat-count">2 projets</span>
+        <span class="cat-count" id="count-projets">0</span>
       </div>
-      <div class="cat-preview" style="flex-direction:column; gap:6px; height:110px; margin:0 1rem;">
-        <a href="projet-fondation.html" style="flex:1; background:linear-gradient(135deg,#002B7A,#1A56C4); border-radius:8px; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none;">
-          <span style="font-size:14px;">🏦</span>
-          <span style="font-size:12px; font-weight:600; color:white;">Fondation BP CM&amp;GO</span>
-          <span style="font-size:11px; color:rgba(255,255,255,0.7);">→</span>
-        </a>
-        <a href="projet-bpgo.html" style="flex:1; background:linear-gradient(135deg,#0F6E56,#1D9E75); border-radius:8px; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none;">
-          <span style="font-size:14px;">⚙️</span>
-          <span style="font-size:12px; font-weight:600; color:white;">Stage BPGO</span>
-          <span style="font-size:11px; color:rgba(255,255,255,0.7);">→</span>
-        </a>
+      <div class="cat-preview" id="preview-projets">
+        <div class="cat-preview-empty"><span>🌐</span><p>Chargement...</p></div>
       </div>
       <div class="cat-card-footer">
-        <p class="cat-name">Projets</p>
-        <p class="cat-desc">Stages & projets professionnels</p>
+        <p class="cat-name">Projets HTML</p>
+        <p class="cat-desc">Pages de projets dynamiques</p>
         <p class="cat-arrow">Voir les détails →</p>
       </div>
     </div>
 
+    <!-- EXCEL -->
     <div class="cat-card" onclick="openModal('excel')">
-      <div class="cat-card-header">
-        <div class="cat-icon" style="background:#E6F1FB;">▦</div>
-        <span class="cat-count" id="count-excel">0 fichier</span>
-      </div>
-      <div class="cat-preview" id="preview-excel">
-        <div class="cat-preview-empty"><span>📊</span><p>Aucun fichier</p></div>
-      </div>
-      <div class="cat-card-footer">
-        <p class="cat-name">Excel</p>
-        <p class="cat-desc">Tableaux de bord VBA & KPI</p>
-        <p class="cat-arrow">Voir tout →</p>
-      </div>
-    </div>
-
-    <div class="cat-card" onclick="openModal('publications')">
-      <div class="cat-card-header">
-        <div class="cat-icon" style="background:#E1F5EE;">📱</div>
-        <span class="cat-count" id="count-publications">0 fichier</span>
-      </div>
-      <div class="cat-preview" id="preview-publications">
-        <div class="cat-preview-empty"><span>📱</span><p>Aucun fichier</p></div>
-      </div>
-      <div class="cat-card-footer">
-        <p class="cat-name">Publications</p>
-        <p class="cat-desc">Réseaux sociaux & contenus</p>
-        <p class="cat-arrow">Voir tout →</p>
-      </div>
+      <div class="cat-card-header"><div class="cat-icon" style="background:#E6F1FB;">▦</div><span class="cat-count" id="count-excel">0</span></div>
+      <div class="cat-preview" id="preview-excel"><div class="cat-preview-empty"><span>📊</span></div></div>
+      <div class="cat-card-footer"><p class="cat-name">Excel & VBA</p><p class="cat-arrow">Voir tout →</p></div>
     </div>
 
   </div>
 </div>
 
 <div class="parcours-section">
-  <h2 class="parcours-title">Expériences Professionnelles</h2>
+  <h2 class="parcours-title">Expériences</h2>
   <div class="timeline">
-
-    <div class="timeline-item">
-      <div class="timeline-date">Depuis 2023</div>
-      <div>
-        <p class="timeline-title">Créateur de Contenu Digital & Community Manager (Freelance)</p>
-        <p class="timeline-place">Chocolaterie Bonébien</p>
-        <p class="timeline-desc">
-          ▸ Conception et rédaction de publications pour Instagram et Facebook<br>
-          ▸ Création de visuels attractifs pour les produits et offres saisonnières<br>
-          ▸ Gestion de l'image de marque numérique pour accroître l'engagement client
-        </p>
-      </div>
-    </div>
-
     <div class="timeline-item">
       <div class="timeline-date">2024 – 2025</div>
       <div>
-        <p class="timeline-title">Stage PFE — Junior PMO : Optimisation & Automatisation</p>
-        <p class="timeline-place">Fondation BP CM&GO · Nantes, France 🇫🇷</p>
-        <p class="timeline-desc">
-          ▸ Automatisation de la gestion des candidatures via Excel VBA<br>
-          ▸ Intégration des flux via EmailTech et Microsoft Teams<br>
-          ▸ Formation de l'équipe aux nouveaux outils digitaux
-        </p>
+        <p class="timeline-title">Junior PMO : Optimisation & Automatisation</p>
+        <p class="timeline-place">Fondation BP CM&GO · Nantes 🇫🇷</p>
       </div>
     </div>
-
-    <div class="timeline-item">
-      <div class="timeline-date">Juil. – Août 2024</div>
-      <div>
-        <p class="timeline-title">Stage — Transformation Digitale & Automatisation</p>
-        <p class="timeline-place">Banque Populaire Grand Ouest (BPGO) — France 🇫🇷</p>
-        <p class="timeline-desc">
-          ▸ Création de supports pédagogiques et vidéos (Canva)<br>
-          ▸ Automatisation des flux de crédits via RPA<br>
-          ▸ Coordination besoins métiers et équipes techniques
-        </p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-date">Juin – Août 2023<br>Mai – Juin 2024</div>
-      <div>
-        <p class="timeline-title">Stagiaire en Gestion et Développement Commercial</p>
-        <p class="timeline-place">Equipement Rationnel Electrique & Pièces Auto — Tunisie 🇹🇳</p>
-        <p class="timeline-desc">
-          ▸ Création de tableaux de bord Excel pour le suivi du CA et des stocks<br>
-          ▸ Recherche technique via catalogues Partscout et lecture de cartes grises
-        </p>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-date">2020 – 2021</div>
-      <div>
-        <p class="timeline-title">Vice-Président Communication (Engagement Associatif)</p>
-        <p class="timeline-place">Enactus ESC Tunis</p>
-        <p class="timeline-desc">
-          ▸ Pilotage de la stratégie de communication du club<br>
-          ▸ Création de supports visuels pour les événements et projets sociaux
-        </p>
-      </div>
-    </div>
-
   </div>
 </div>
 
 <div class="contact-section">
   <h2 class="contact-title">Travaillons ensemble</h2>
-  <p class="contact-desc">Disponible pour des opportunités en communication & digital marketing.</p>
-  
-  <div class="contact-links" style="margin-bottom: 20px;">
-    <a class="contact-link" href="tel:+21625975620">📞 Tunisie : +216 25 975 620</a>
-    <a class="contact-link" href="https://wa.me/33768631068" target="_blank">💬 WhatsApp : +33 7 68 63 10 68</a>
-  </div>
-
-  <div class="contact-links">
-    <a class="contact-link primary" href="mailto:aminebenali3@gmail.com">✉ M'écrire</a>
-    <a class="contact-link" href="https://linkedin.com/in/amine-benali-9640b61a4" target="_blank">LinkedIn</a>
-    <a class="contact-link" href="https://github.com/armineben" target="_blank">GitHub</a>
-  </div>
+  <a class="contact-link primary" href="mailto:aminebenali3@gmail.com">✉ M'écrire</a>
+  <a class="contact-link" href="https://github.com/armineben" target="_blank">GitHub</a>
 </div>
 
-<footer>© 2025 Amine BENALI · Portfolio personnel · <a href="https://armineben.github.io" style="color:var(--text-muted);">armineben.github.io</a></footer>
+<footer>© 2026 Amine BENALI</footer>
 
+<!-- MODAL GALERIE -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-header-left">
+      <div class="modal-header-left" style="display:flex; align-items:center; gap:10px;">
         <div class="modal-icon" id="modal-icon"></div>
-        <div>
-          <p class="modal-title" id="modal-title"></p>
-          <p class="modal-subtitle" id="modal-subtitle"></p>
-        </div>
+        <p class="modal-title" id="modal-title"></p>
       </div>
       <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')">✕</button>
     </div>
@@ -355,55 +200,37 @@ footer { padding: 1.5rem 2rem; text-align: center; font-size: 12px; color: var(-
   </div>
 </div>
 
-<div class="lightbox" id="lightbox" onclick="document.getElementById('lightbox').classList.remove('open')">
-  <button class="lightbox-close">✕</button>
-  <img id="lightbox-img" src="" alt="">
-</div>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')"><img id="lightbox-img" src=""></div>
 
 <script>
+// CONFIGURATION DES DOSSIERS
 const CATEGORIES = {
-  logos:        { nom: 'Logos',        icon: '◉', color: '#FAEEDA', desc: 'Identités visuelles & logotypes',          folder: 'images/images/logos/' },
-  affiches:     { nom: 'Affiches',     icon: '◈', color: '#E1F5EE', desc: 'Visuels Enactus & Master 2',              folder: 'images/images/affiches/' },
-  cv:           { nom: 'CV',           icon: '☰', color: '#EEEDFE', desc: 'Curriculum vitae & documents',            folder: 'images/images/cv/' },
-  projets:      { nom: 'Projets',      icon: '▶', color: '#FAECE7', desc: 'Stages & projets professionnels',         folder: 'images/images/projets/' },
-  excel:        { nom: 'Excel',        icon: '▦', color: '#E6F1FB', desc: 'Tableaux de bord VBA & KPI',              folder: 'images/images/excel/' },
-  publications: { nom: 'Publications', icon: '📱', color: '#E1F5EE', desc: 'Réseaux sociaux & contenus digitaux',    folder: 'images/images/publications/' },
+  logos:   { nom: 'Logos',    icon: '◉', color: '#FAEEDA', folder: 'images/images/logos/' },
+  affiches:{ nom: 'Affiches', icon: '◈', color: '#E1F5EE', folder: 'images/images/affiches/' },
+  excel:   { nom: 'Excel',    icon: '▦', color: '#E6F1FB', folder: 'images/images/excel/' },
+  projets: { nom: 'Projets',  icon: '▶', color: '#FAECE7', folder: '' } // Racine pour les .html
 };
 
 function getFileType(f) {
   const ext = f.toLowerCase().split('.').pop();
-  if (['pdf'].includes(ext)) return 'pdf';
-  if (['html', 'htm'].includes(ext)) return 'html';
-  if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].includes(ext)) return 'image';
+  if (ext === 'html') return 'html';
+  if (['jpg', 'jpeg', 'png', 'webp'].includes(ext)) return 'image';
   return 'other';
-}
-
-function getFilePath(cat, f) {
-  if (f.startsWith('http') || f.startsWith('./') || f.startsWith('/')) return f;
-  if (getFileType(f) === 'html') return f;
-  return cat.folder + f;
 }
 
 function loadAll() {
   if (typeof PORTFOLIO_CONTENU === 'undefined') return;
   Object.keys(CATEGORIES).forEach(key => {
     const files = PORTFOLIO_CONTENU[key] || [];
-    const cat = CATEGORIES[key];
     const countEl = document.getElementById('count-' + key);
     const previewEl = document.getElementById('preview-' + key);
-    if (countEl) countEl.textContent = files.length + ' fichier' + (files.length > 1 ? 's' : '');
-    if (previewEl) {
-      if (files.length === 0) {
-        previewEl.innerHTML = `<div class="cat-preview-empty"><span>${cat.icon}</span><p>Aucun fichier</p></div>`;
+    if (countEl) countEl.textContent = files.length + (files.length > 1 ? ' fichiers' : ' fichier');
+    if (previewEl && files.length > 0) {
+      if (getFileType(files[0]) === 'image') {
+        previewEl.innerHTML = `<img src="${CATEGORIES[key].folder}${files[0]}">`;
       } else {
-        const imgs = files.slice(0, 3).filter(f => getFileType(f) === 'image');
-        if (imgs.length > 0) {
-          previewEl.innerHTML = imgs.map(f => `<img src="${cat.folder}${f}" alt="${f}" onerror="this.style.display='none'">`).join('');
-        } else {
-          const icons = {'pdf':'📄','html':'🌐','other':'📎'};
-          const type = getFileType(files[0]);
-          previewEl.innerHTML = `<div class="cat-preview-empty"><span>${icons[type]||'📎'}</span><p>${files.length} fichier${files.length>1?'s':''}</p></div>`;
-        }
+        previewEl.innerHTML = `<div class="cat-preview-empty"><span>📄</span><p>${files.length} documents</p></div>`;
       }
     }
   });
@@ -411,50 +238,35 @@ function loadAll() {
 
 function openModal(key) {
   const cat = CATEGORIES[key];
-  const files = (typeof PORTFOLIO_CONTENU !== 'undefined' ? PORTFOLIO_CONTENU[key] : []) || [];
+  const files = PORTFOLIO_CONTENU[key] || [];
   document.getElementById('modal-icon').textContent = cat.icon;
   document.getElementById('modal-icon').style.background = cat.color;
   document.getElementById('modal-title').textContent = cat.nom;
-  document.getElementById('modal-subtitle').textContent = cat.desc;
+  
   const body = document.getElementById('modal-body');
   if (files.length === 0) {
-    body.innerHTML = `
-      <div class="modal-empty">
-        <div class="modal-empty-icon">${cat.icon}</div>
-        <p class="modal-empty-title">Aucun fichier pour l'instant</p>
-        <p class="modal-empty-hint">Uploade tes fichiers dans ce dossier GitHub puis ajoute leur nom dans <strong>contenu.js</strong></p>
-        <span class="modal-empty-folder">${cat.folder}</span>
-      </div>`;
+    body.innerHTML = "<p style='text-align:center; padding:2rem;'>Aucun fichier trouvé.</p>";
   } else {
     body.innerHTML = `<div class="gallery-grid">` + files.map(f => {
       const type = getFileType(f);
-      const path = getFilePath(cat, f);
-      const label = f.split('/').pop();
+      const path = cat.folder + f;
       if (type === 'image') {
-        return `<div class="gallery-item" onclick="openLightbox('${path}')"><img src="${path}" alt="${label}" loading="lazy"></div>`;
+        return `<div class="gallery-item" onclick="openLightbox('${path}')"><img src="${path}"></div>`;
+      } else if (type === 'html') {
+        return `<a class="gallery-item html-item" href="${f}"><span>🌐</span><p style="font-size:11px; font-weight:600; text-align:center;">${f.replace('.html','')}</p></a>`;
       }
-      if (type === 'pdf') {
-        return `<a class="gallery-item pdf-item" href="${path}" target="_blank"><span>📄</span><p>${label}</p></a>`;
-      }
-      if (type === 'html') {
-        return `<a class="gallery-item pdf-item" href="${path}" target="_blank" style="background:linear-gradient(135deg,#E8F0FB,#ddeeff);"><span>🌐</span><p>${label.replace('.html','')}</p></a>`;
-      }
-      return `<a class="gallery-item pdf-item" href="${path}" target="_blank"><span>📎</span><p>${label}</p></a>`;
+      return `<a class="gallery-item html-item" href="${path}" target="_blank"><span>📄</span><p>${f}</p></a>`;
     }).join('') + `</div>`;
   }
   document.getElementById('modal-overlay').classList.add('open');
-}
-
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-overlay')) {
-    document.getElementById('modal-overlay').classList.remove('open');
-  }
 }
 
 function openLightbox(src) {
   document.getElementById('lightbox-img').src = src;
   document.getElementById('lightbox').classList.add('open');
 }
+
+function closeModal(e) { if (e.target.id === 'modal-overlay') e.target.classList.remove('open'); }
 
 document.addEventListener('DOMContentLoaded', loadAll);
 </script>
