@@ -25,7 +25,6 @@ const PORTFOLIO_CONTENU = {
   projets: [
     "projet-fondation.html",
     "projet-bpgo.html",
-    "Projet-innovant-secteur-santé-pays-dela-loire.html"
   ],
 
   // 📁 images/images/excel/
