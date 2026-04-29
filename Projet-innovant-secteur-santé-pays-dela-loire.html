@@ -3,15 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projet Innovons Ensemble — Amine BENALI</title>
+<title>Projet Santé Innovante — Amine BENALI</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --purple: #6366f1; --purple-light: #f5f3ff; --purple-mid: #4f46e5;
-  --orange: #f59e0b; --orange-light: #fffbeb;
-  --text-primary: #1a1a1a; --text-secondary: #555; --text-muted: #999;
-  --border: #e8e8e8; --bg: #fafaf8;
+  --blue: #0ea5e9; --blue-light: #f0f9ff; --blue-mid: #0284c7;
+  --text-primary: #1a1a1a; --text-secondary: #555; --border: #e8e8e8; --bg: #fafaf8;
 }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); }
@@ -24,7 +22,7 @@ nav {
   justify-content: space-between; height: 56px;
 }
 .nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--text-primary); text-decoration: none; }
-.nav-logo span { color: var(--purple); }
+.nav-logo span { color: var(--blue); }
 .nav-back {
   font-size: 12px; color: var(--text-secondary); text-decoration: none;
   display: flex; align-items: center; gap: 6px;
@@ -34,7 +32,7 @@ nav {
 .nav-back:hover { background: var(--bg); color: var(--text-primary); }
 
 .project-hero {
-  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #818cf8 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 50%, #38bdf8 100%);
   color: white; padding: 5rem 2rem 4rem;
 }
 .project-hero-inner { max-width: 860px; margin: 0 auto; }
@@ -47,11 +45,11 @@ nav {
 .project-title {
   font-family: 'Playfair Display', serif;
   font-size: 2.4rem; font-weight: 600; line-height: 1.2;
-  margin-bottom: 1rem; max-width: 680px;
+  margin-bottom: 1rem; max-width: 700px;
 }
 .project-subtitle {
-  font-size: 15px; font-weight: 300; opacity: 0.85;
-  line-height: 1.6; max-width: 560px; margin-bottom: 2rem;
+  font-size: 15px; font-weight: 300; opacity: 0.9;
+  line-height: 1.6; max-width: 600px; margin-bottom: 2rem;
 }
 
 .project-meta { display: flex; flex-wrap: wrap; gap: 1rem; }
@@ -63,35 +61,21 @@ nav {
 .meta-value { font-size: 13px; font-weight: 500; }
 
 .content { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
-.sec-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple-mid); font-weight: 600; margin-bottom: 0.5rem; }
+.sec-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue-mid); font-weight: 600; margin-bottom: 0.5rem; }
 .sec-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; }
 
 .context-block {
-  background: var(--purple-light); border-left: 3px solid var(--purple);
+  background: var(--blue-light); border-left: 3px solid var(--blue);
   border-radius: 0 12px 12px 0; padding: 1.5rem 1.75rem; margin-bottom: 3rem;
 }
 .context-text { font-size: 15px; line-height: 1.8; color: var(--text-secondary); font-weight: 300; }
-.context-text strong { color: var(--text-primary); font-weight: 500; }
 
 .video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* Ratio 16:9 */
-  height: 0;
-  overflow: hidden;
-  border-radius: 16px;
-  background: #000;
-  margin-bottom: 3rem;
+  position: relative; width: 100%; padding-bottom: 56.25%; height: 0;
+  overflow: hidden; border-radius: 16px; background: #000; margin-bottom: 3rem;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
 .missions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 3rem; }
 .mission-card {
@@ -104,11 +88,10 @@ nav {
 .mission-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
 
 .project-footer { background: white; border-top: 0.5px solid var(--border); padding: 2rem; text-align: center; }
-.pf-link { font-size: 13px; padding: 8px 20px; border-radius: 20px; background: var(--purple); color: white; text-decoration: none; font-weight: 500; }
+.pf-link { font-size: 13px; padding: 8px 20px; border-radius: 20px; background: var(--blue-mid); color: white; text-decoration: none; font-weight: 500; }
 
 @media (max-width: 640px) {
   .project-title { font-size: 1.7rem; }
-  .content { padding: 2rem 1.25rem; }
 }
 </style>
 </head>
@@ -121,21 +104,21 @@ nav {
 
 <div class="project-hero">
   <div class="project-hero-inner">
-    <div class="project-badge">🚀 Challenge Innovons Ensemble</div>
-    <h1 class="project-title">Innover pour un Impact Territorial Durable</h1>
-    <p class="project-subtitle">Présentation stratégique pour le challenge d'innovation territoriale — une vision moderne du développement régional et de l'entrepreneuriat.</p>
+    <div class="project-badge">🏥 Innovation Santé</div>
+    <h1 class="project-title">Projet Innovant : Secteur Santé Pays de la Loire</h1>
+    <p class="project-subtitle">Développement de solutions numériques pour l'amélioration du parcours de soin et la gestion des données de santé en région.</p>
     <div class="project-meta">
       <div class="meta-item">
-        <div class="meta-label">Projet</div>
-        <div class="meta-value">Innovons Ensemble</div>
+        <div class="meta-label">Région</div>
+        <div class="meta-value">Pays de la Loire</div>
       </div>
       <div class="meta-item">
-        <div class="meta-label">Thématique</div>
-        <div class="meta-value">Innovation Territoriale</div>
+        <div class="meta-label">Expertise</div>
+        <div class="meta-value">Santé Connectée</div>
       </div>
       <div class="meta-item">
-        <div class="meta-label">Format</div>
-        <div class="meta-value">Présentation Stratégique</div>
+        <div class="meta-label">Année</div>
+        <div class="meta-value">2025</div>
       </div>
     </div>
   </div>
@@ -143,16 +126,16 @@ nav {
 
 <div class="content">
 
-  <p class="sec-label">01 — Vision</p>
-  <h2 class="sec-title">Le Concept</h2>
+  <p class="sec-label">01 — Contexte</p>
+  <h2 class="sec-title">Le Projet</h2>
   <div class="context-block">
     <p class="context-text">
-      Ce projet présente une approche structurée pour répondre aux défis contemporains des territoires. À travers cette présentation, l'objectif est de démontrer comment l'innovation peut servir de levier pour la <strong>croissance locale</strong>, le <strong>dynamisme régional</strong> et la création de valeur durable.
+      Ce projet explore les opportunités de transformation digitale dans le secteur de la santé au sein de la région Pays de la Loire. L'objectif est d'optimiser l'interaction entre les professionnels de santé et les patients grâce à des outils technologiques innovants et une gestion de données sécurisée.
     </p>
   </div>
 
   <p class="sec-label">02 — Présentation Vidéo</p>
-  <h2 class="sec-title">Aperçu des réalisations</h2>
+  <h2 class="sec-title">Aperçu vidéo du projet</h2>
   
   <div class="video-container">
     <iframe 
@@ -162,30 +145,30 @@ nav {
     </iframe>
   </div>
 
-  <p class="sec-label">03 — Axes Stratégiques</p>
-  <h2 class="sec-title">Points clés de l'innovation</h2>
+  <p class="sec-label">03 — Composantes Clés</p>
+  <h2 class="sec-title">Objectifs stratégiques</h2>
   <div class="missions-grid">
     <div class="mission-card">
-      <div class="mission-icon" style="background:#f5f3ff;">💡</div>
-      <p class="mission-title">Idéation Territoriale</p>
-      <p class="mission-desc">Développement de concepts innovants adaptés aux besoins réels et spécifiques des régions.</p>
+      <div class="mission-icon" style="background:#e0f2fe;">📱</div>
+      <p class="mission-title">Outils Connectés</p>
+      <p class="mission-desc">Mise en place d'interfaces fluides pour le suivi patient à distance.</p>
     </div>
     <div class="mission-card">
-      <div class="mission-icon" style="background:#fffbeb;">📈</div>
-      <p class="mission-title">Impact Économique</p>
-      <p class="mission-desc">Analyse des retombées potentielles et mise en place de leviers de croissance durable.</p>
+      <div class="mission-icon" style="background:#f0f9ff;">🔐</div>
+      <p class="mission-title">Sécurité des Données</p>
+      <p class="mission-desc">Garantir la confidentialité et l'intégrité des informations médicales.</p>
     </div>
     <div class="mission-card">
-      <div class="mission-icon" style="background:#f5f3ff;">🤝</div>
-      <p class="mission-title">Synergie d'Acteurs</p>
-      <p class="mission-desc">Mobilisation des institutions, des entreprises et des citoyens autour d'un projet commun.</p>
+      <div class="mission-icon" style="background:#e0f2fe;">📍</div>
+      <p class="mission-title">Impact Local</p>
+      <p class="mission-desc">Renforcement du réseau de santé territorial en Pays de la Loire.</p>
     </div>
   </div>
 
 </div>
 
 <div class="project-footer">
-  <p style="margin-bottom: 12px; font-size: 13px; color: #555;">Ce projet illustre ma passion pour l'innovation et le développement territorial.</p>
+  <p style="margin-bottom: 12px; font-size: 13px; color: #555;">Une démarche alliant management de l'innovation et enjeux de santé publique.</p>
   <a class="pf-link" href="mailto:aminebenali3@gmail.com">✉ Me contacter</a>
 </div>
 
