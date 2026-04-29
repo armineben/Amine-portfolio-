@@ -10,7 +10,7 @@ const PORTFOLIO_CONTENU = {
   ],
 
   // 📁 images/images/affiches/
-  affiches:[
+  affiches: [
     "Affiche-evenement-master2.png",
     "https://drive.google.com/file/d/1VDnWFzGi1ABleP1oqHCD9xTJhoWBLNtj/preview",
     "Affiche-evenement-fondation2.jpeg",
@@ -21,13 +21,14 @@ const PORTFOLIO_CONTENU = {
   cv: [
     // "cv-amine.pdf",
     // "cv-amine-apercu.jpg",
+  ], // <--- IL MANQUAIT CECI POUR FERMER LA SECTION CV
 
-    
   // 🌐 PROJETS HTML - fichiers à la RACINE du dépôt
-projets: [
+  projets: [
     "projet-fondation.html",
     "projet-bpgo.html",
-]
+    "projet-innovons.html" // Ajouté selon votre capture précédente
+  ], // <--- AJOUT D'UNE VIRGULE ICI AUSSI
 
   // 📁 images/images/excel/
   excel: [
