@@ -27,7 +27,9 @@ const PORTFOLIO_CONTENU = {
   // HTML à la racine du dépôt
   projets: [
     "projet-fondation.html",
-    "projet-bpgo.html",
+    "projet-bpgo.html"
+    "projet-innovons.html",
+    "projet-nouveau.html",
   ],
 
   // 📁 images/images/excel/
