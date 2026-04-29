@@ -1,172 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stage BPGO — Amine BENALI</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --blue: #003DA5; --blue-light: #E8F0FB; --blue-mid: #1A56C4;
-  --green: #1D9E75; --green-light: #E1F5EE;
-  --text-primary: #1a1a1a; --text-secondary: #555; --text-muted: #999;
-  --border: #e8e8e8; --bg: #fafaf8;
-}
-html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.6; }
-
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
-  border-bottom: 0.5px solid var(--border);
-  padding: 0 2rem; display: flex; align-items: center;
-  justify-content: space-between; height: 56px;
-}
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--text-primary); text-decoration: none; }
-.nav-logo span { color: var(--green); }
-.nav-back {
-  font-size: 12px; color: var(--text-secondary); text-decoration: none;
-  display: flex; align-items: center; gap: 6px;
-  padding: 5px 14px; border-radius: 20px; border: 0.5px solid var(--border);
-  background: white; transition: all 0.15s;
-}
-.nav-back:hover { background: var(--bg); color: var(--text-primary); }
-
-.project-hero {
-  background: linear-gradient(135deg, #002B7A 0%, #003DA5 50%, #1A56C4 100%);
-  color: white; padding: 5rem 2rem 4rem;
-}
-.project-hero-inner { max-width: 860px; margin: 0 auto; }
-.project-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.15); border: 0.5px solid rgba(255,255,255,0.3);
-  border-radius: 20px; padding: 5px 14px; font-size: 11px;
-  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem;
-}
-.project-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.4rem; font-weight: 600; line-height: 1.2;
-  margin-bottom: 1rem; max-width: 680px;
-}
-
-.content { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
-.sec-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue-mid); font-weight: 600; margin-bottom: 0.5rem; }
-.sec-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; }
-
-/* ZONE VIDÉO */
-.video-wrapper {
-  margin: 2rem 0 3rem;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #000;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  position: relative;
-  padding-bottom: 56.25%; /* Ratio 16:9 */
-  height: 0;
-}
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.context-block {
-  background: var(--blue-light); border-left: 3px solid var(--blue);
-  border-radius: 0 12px 12px 0; padding: 1.5rem 1.75rem; margin-bottom: 3rem;
-}
-
-.missions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 3rem; }
-.mission-card {
-  background: white; border: 0.5px solid var(--border);
-  border-radius: 12px; padding: 1.5rem;
-}
-.mission-icon { font-size: 24px; margin-bottom: 12px; }
-
-.skills-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 3rem; }
-.skill-badge {
-  font-size: 12px; padding: 6px 14px; border-radius: 20px;
-  border: 0.5px solid var(--border); background: white;
-  display: flex; align-items: center; gap: 6px;
-}
-.skill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
-
-.project-footer { background: white; border-top: 0.5px solid var(--border); padding: 3rem 2rem; text-align: center; }
-.pf-link { 
-    display: inline-block;
-    font-size: 14px; padding: 12px 28px; border-radius: 30px; 
-    background: var(--green); color: white; text-decoration: none; font-weight: 500; 
-}
-
-@media (max-width: 640px) {
-  .project-title { font-size: 1.8rem; }
-  .content { padding: 2rem 1rem; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet BPGO — Amine BENALI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #003DA5;
+            --bg: #fafaf8;
+            --text: #1a1a1a;
+            --border: #e8e8e8;
+        }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; }
+        nav { padding: 1.5rem 2rem; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); background: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
+        .badge { display: inline-block; padding: 5px 12px; background: #E8F0FB; color: var(--blue); border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 1rem; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .description { font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 3rem; }
+        
+        /* CONTENEUR VIDÉO SANS CONFLIT */
+        .video-box {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Format 16:9 */
+            height: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        .video-box iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: 0;
+        }
+        .back-link { text-decoration: none; color: #555; font-size: 14px; }
+    </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html"><span>A</span>mine BENALI</a>
-  <a class="nav-back" href="index.html">← Retour</a>
+    <a href="index.html" class="back-link">← Retour au portfolio</a>
+    <div style="font-family: 'Playfair Display', serif;">Amine <strong>BENALI</strong></div>
 </nav>
 
-<div class="project-hero">
-  <div class="project-hero-inner">
-    <div class="project-badge">🏦 Stage Master 1 · 2024</div>
-    <h1 class="project-title">Transformation Digitale & RPA à la BPGO</h1>
-  </div>
-</div>
-
-<div class="content">
-
-  <p class="sec-label">01 — Contexte</p>
-  <h2 class="sec-title">Optimisation des flux bancaires</h2>
-  <div class="context-block">
-    <p>
-      Durant mon stage à la <strong>Banque Populaire Grand Ouest</strong>, j'ai accompagné la digitalisation des processus internes via des solutions <strong>RPA</strong> et la création de supports pédagogiques pour les collaborateurs[cite: 1].
-    </p>
-  </div>
-
-  <p class="sec-label">02 — Démonstration</p>
-  <h2 class="sec-title">Vidéo de présentation</h2>
-  
-  <!-- L'intégration de la vidéo Drive se fait ici -->
-  <div class="video-wrapper">
-    <iframe src="https://drive.google.com/file/d/1-MFSweicmW7hFz3E6aYIg4cUmqfmWniq/preview" allow="autoplay"></iframe>
-  </div>
-
-  <p class="sec-label">03 — Réalisations</p>
-  <h2 class="sec-title">Missions clés</h2>
-  <div class="missions-grid">
-    <div class="mission-card">
-      <div class="mission-icon">⚙️</div>
-      <p><strong>Automatisation RPA</strong></p>
-      <p style="font-size: 13px; color: var(--text-secondary);">Analyse et automatisation des flux de crédits pour gagner en efficacité[cite: 1].</p>
+<div class="container">
+    <span class="badge">Transformation Digitale</span>
+    <h1>Stage à la Banque Populaire Grand Ouest</h1>
+    
+    <div class="description">
+        Accompagnement de la <strong>BPGO</strong> dans l'automatisation de ses processus bancaires. Ma mission a porté sur l'analyse des flux de crédits et la création de supports pédagogiques pour faciliter la transition numérique des équipes.
     </div>
-    <div class="mission-card">
-      <div class="mission-icon">🎨</div>
-      <p><strong>Supports Canva</strong></p>
-      <p style="font-size: 13px; color: var(--text-secondary);">Conception de guides visuels pour faciliter l'adoption des nouveaux outils[cite: 1].</p>
+
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-top: 3rem;">Démonstration du projet</h2>
+    
+    <!-- LECTEUR VIDÉO INTÉGRÉ -->
+    <div class="video-box">
+        <iframe 
+            src="https://drive.google.com/file/d/1-MFSweicmW7hFz3E6aYIg4cUmqfmWniq/preview" 
+            allow="autoplay" 
+            allowfullscreen>
+        </iframe>
     </div>
-  </div>
-
-  <p class="sec-label">04 — Expertise</p>
-  <h2 class="sec-title">Outils maîtrisés</h2>
-  <div class="skills-list">
-    <span class="skill-badge"><span class="skill-dot"></span>UiPath / RPA</span>
-    <span class="skill-badge"><span class="skill-dot" style="background: #f56040;"></span>Canva Design</span>
-    <span class="skill-badge"><span class="skill-dot" style="background: #1D9E75;"></span>Gestion de Projet</span>
-  </div>
-
-</div>
-
-<div class="project-footer">
-  <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Intéressé par mon profil ?</p>
-  <a class="pf-link" href="mailto:aminebenali3@gmail.com">Me contacter par email</a>
 </div>
 
 </body>
