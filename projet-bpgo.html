@@ -8,13 +8,13 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --blue: #003DA5; --blue-light: #E8F0FB; --blue-mid: #1A56C4; --blue-dark: #002B7A;
+  --blue: #003DA5; --blue-light: #E8F0FB; --blue-mid: #1A56C4;
   --green: #1D9E75; --green-light: #E1F5EE;
   --text-primary: #1a1a1a; --text-secondary: #555; --text-muted: #999;
   --border: #e8e8e8; --bg: #fafaf8;
 }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.6; }
 
 nav {
   position: sticky; top: 0; z-index: 100;
@@ -49,57 +49,23 @@ nav {
   font-size: 2.4rem; font-weight: 600; line-height: 1.2;
   margin-bottom: 1rem; max-width: 680px;
 }
-.project-subtitle {
-  font-size: 15px; font-weight: 300; opacity: 0.85;
-  line-height: 1.6; max-width: 560px; margin-bottom: 2rem;
-}
-.project-meta { display: flex; flex-wrap: wrap; gap: 1rem; }
-.meta-item {
-  background: rgba(255,255,255,0.1); border: 0.5px solid rgba(255,255,255,0.2);
-  border-radius: 10px; padding: 10px 16px;
-}
-.meta-label { font-size: 10px; opacity: 0.7; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
-.meta-value { font-size: 13px; font-weight: 500; }
-
-.stats-band { background: white; border-bottom: 0.5px solid var(--border); display: flex; justify-content: center; }
-.stats-inner { max-width: 860px; width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); border-left: 0.5px solid var(--border); }
-.stat { padding: 1.5rem 1.25rem; text-align: center; border-right: 0.5px solid var(--border); }
-.stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; color: var(--blue); margin-bottom: 4px; }
-.stat-label { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
 
 .content { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
 .sec-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue-mid); font-weight: 600; margin-bottom: 0.5rem; }
 .sec-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; }
 
-.context-block {
-  background: var(--blue-light); border-left: 3px solid var(--blue);
-  border-radius: 0 12px 12px 0; padding: 1.5rem 1.75rem; margin-bottom: 3rem;
-}
-.context-text { font-size: 15px; line-height: 1.8; color: var(--text-secondary); font-weight: 300; }
-
-.missions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 3rem; }
-.mission-card {
-  background: white; border: 0.5px solid var(--border);
-  border-radius: 12px; padding: 1.5rem; transition: box-shadow 0.15s;
-}
-.mission-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-.mission-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 12px; }
-.mission-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-.mission-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
-
-/* VIDEO CONTAINER */
-.video-container {
+/* ZONE VIDÉO */
+.video-wrapper {
+  margin: 2rem 0 3rem;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   position: relative;
-  width: 100%;
   padding-bottom: 56.25%; /* Ratio 16:9 */
   height: 0;
-  overflow: hidden;
-  border-radius: 16px;
-  background: #000;
-  margin-bottom: 3rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
-.video-container iframe {
+.video-wrapper iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -108,22 +74,36 @@ nav {
   border: 0;
 }
 
+.context-block {
+  background: var(--blue-light); border-left: 3px solid var(--blue);
+  border-radius: 0 12px 12px 0; padding: 1.5rem 1.75rem; margin-bottom: 3rem;
+}
+
+.missions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 3rem; }
+.mission-card {
+  background: white; border: 0.5px solid var(--border);
+  border-radius: 12px; padding: 1.5rem;
+}
+.mission-icon { font-size: 24px; margin-bottom: 12px; }
+
 .skills-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 3rem; }
 .skill-badge {
   font-size: 12px; padding: 6px 14px; border-radius: 20px;
   border: 0.5px solid var(--border); background: white;
-  color: var(--text-secondary); font-weight: 500;
   display: flex; align-items: center; gap: 6px;
 }
 .skill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
 
-.project-footer { background: white; border-top: 0.5px solid var(--border); padding: 2rem; text-align: center; }
-.pf-link { font-size: 13px; padding: 8px 20px; border-radius: 20px; background: var(--green); color: white; text-decoration: none; font-weight: 500; }
+.project-footer { background: white; border-top: 0.5px solid var(--border); padding: 3rem 2rem; text-align: center; }
+.pf-link { 
+    display: inline-block;
+    font-size: 14px; padding: 12px 28px; border-radius: 30px; 
+    background: var(--green); color: white; text-decoration: none; font-weight: 500; 
+}
 
 @media (max-width: 640px) {
-  .project-title { font-size: 1.7rem; }
-  .stats-inner { grid-template-columns: repeat(3, 1fr); }
-  .content { padding: 2rem 1.25rem; }
+  .project-title { font-size: 1.8rem; }
+  .content { padding: 2rem 1rem; }
 }
 </style>
 </head>
@@ -131,73 +111,62 @@ nav {
 
 <nav>
   <a class="nav-logo" href="index.html"><span>A</span>mine BENALI</a>
-  <a class="nav-back" href="index.html">← Retour au portfolio</a>
+  <a class="nav-back" href="index.html">← Retour</a>
 </nav>
 
 <div class="project-hero">
   <div class="project-hero-inner">
-    <div class="project-badge">🏦 Stage Master 1 · Transformation digitale</div>
-    <h1 class="project-title">Transformation Digitale & Automatisation des Flux Bancaires</h1>
-    <p class="project-subtitle">Accompagnement de la Banque Populaire Grand Ouest dans sa transformation numérique.</p>
-    <div class="project-meta">
-      <div class="meta-item"><div class="meta-label">Structure</div><div class="meta-value">BPGO</div></div>
-      <div class="meta-item"><div class="meta-label">Lieu</div><div class="meta-value">Nantes, France 🇫🇷</div></div>
-      <div class="meta-item"><div class="meta-label">Période</div><div class="meta-value">Juillet – Août 2024</div></div>
-    </div>
-  </div>
-</div>
-
-<div class="stats-band">
-  <div class="stats-inner">
-    <div class="stat"><div class="stat-num">RPA</div><div class="stat-label">Technologie</div></div>
-    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Mois de mission</div></div>
-    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Axes de mission</div></div>
+    <div class="project-badge">🏦 Stage Master 1 · 2024</div>
+    <h1 class="project-title">Transformation Digitale & RPA à la BPGO</h1>
   </div>
 </div>
 
 <div class="content">
 
   <p class="sec-label">01 — Contexte</p>
-  <h2 class="sec-title">La mission</h2>
+  <h2 class="sec-title">Optimisation des flux bancaires</h2>
   <div class="context-block">
-    <p class="context-text">Lors de mon stage à la <strong>Banque Populaire Grand Ouest</strong>, j'ai travaillé sur l'automatisation RPA et la création de supports pour faciliter la transformation digitale des équipes.</p>
+    <p>
+      Durant mon stage à la <strong>Banque Populaire Grand Ouest</strong>, j'ai accompagné la digitalisation des processus internes via des solutions <strong>RPA</strong> et la création de supports pédagogiques pour les collaborateurs[cite: 1].
+    </p>
   </div>
 
-  <p class="sec-label">02 — Missions</p>
-  <h2 class="sec-title">Réalisations</h2>
-  <div class="missions-grid">
-    <div class="mission-card">
-      <div class="mission-icon" style="background:#E8F0FB;">🎨</div>
-      <p class="mission-title">Supports pédagogiques</p>
-      <p class="mission-desc">Utilisation de Canva pour créer des guides visuels[cite: 1].</p>
-    </div>
-    <div class="mission-card">
-      <div class="mission-icon" style="background:#E1F5EE;">⚙️</div>
-      <p class="mission-title">Automatisation RPA</p>
-      <p class="mission-desc">Optimisation des flux bancaires via l'automatisation[cite: 1].</p>
-    </div>
-  </div>
-
-  <p class="sec-label">03 — Démonstration Vidéo</p>
-  <h2 class="sec-title">Aperçu du projet</h2>
+  <p class="sec-label">02 — Démonstration</p>
+  <h2 class="sec-title">Vidéo de présentation</h2>
   
-  <!-- LECTEUR VIDÉO INTÉGRÉ -->
-  <div class="video-container">
+  <!-- L'intégration de la vidéo Drive se fait ici -->
+  <div class="video-wrapper">
     <iframe src="https://drive.google.com/file/d/1-MFSweicmW7hFz3E6aYIg4cUmqfmWniq/preview" allow="autoplay"></iframe>
   </div>
 
-  <p class="sec-label">04 — Outils</p>
-  <h2 class="sec-title">Compétences</h2>
+  <p class="sec-label">03 — Réalisations</p>
+  <h2 class="sec-title">Missions clés</h2>
+  <div class="missions-grid">
+    <div class="mission-card">
+      <div class="mission-icon">⚙️</div>
+      <p><strong>Automatisation RPA</strong></p>
+      <p style="font-size: 13px; color: var(--text-secondary);">Analyse et automatisation des flux de crédits pour gagner en efficacité[cite: 1].</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">🎨</div>
+      <p><strong>Supports Canva</strong></p>
+      <p style="font-size: 13px; color: var(--text-secondary);">Conception de guides visuels pour faciliter l'adoption des nouveaux outils[cite: 1].</p>
+    </div>
+  </div>
+
+  <p class="sec-label">04 — Expertise</p>
+  <h2 class="sec-title">Outils maîtrisés</h2>
   <div class="skills-list">
-    <span class="skill-badge"><span class="skill-dot"></span>Canva</span>
-    <span class="skill-badge"><span class="skill-dot" style="background:#E74C3C;"></span>RPA</span>
-    <span class="skill-badge"><span class="skill-dot" style="background:#1D9E75;"></span>Gestion de projet</span>
+    <span class="skill-badge"><span class="skill-dot"></span>UiPath / RPA</span>
+    <span class="skill-badge"><span class="skill-dot" style="background: #f56040;"></span>Canva Design</span>
+    <span class="skill-badge"><span class="skill-dot" style="background: #1D9E75;"></span>Gestion de Projet</span>
   </div>
 
 </div>
 
 <div class="project-footer">
-  <a class="pf-link" href="mailto:aminebenali3@gmail.com">✉ Me contacter</a>
+  <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Intéressé par mon profil ?</p>
+  <a class="pf-link" href="mailto:aminebenali3@gmail.com">Me contacter par email</a>
 </div>
 
 </body>
