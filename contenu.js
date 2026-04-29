@@ -18,22 +18,18 @@ const PORTFOLIO_CONTENU = {
   ],
 
   // 📁 images/images/cv/
-  cv: [
-    // "cv-amine.pdf",
-    // "cv-amine-apercu.jpg",
-  ], // <--- IL MANQUAIT CECI POUR FERMER LA SECTION CV
+  cv: [], 
 
   // 🌐 PROJETS HTML - fichiers à la RACINE du dépôt
   projets: [
     "projet-fondation.html",
-    "projet-bpgo.html"
-    "Projet-innovant-secteur-santé-pays-dela-loire.html",
-  ], 
+    "projet-bpgo.html",
+    "projet-innovons.html",
+    "Projet-innovant-secteur-santé-pays-dela-loire.html" 
+      ],
 
   // 📁 images/images/excel/
-  excel: [
-    // "dashboard-kpi-1.jpg",
-  ],
+  excel: [],
 
   // 📁 images/images/publications/
   publications: [
