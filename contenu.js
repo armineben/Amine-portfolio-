@@ -27,7 +27,6 @@ const PORTFOLIO_CONTENU = {
     "projet-fondation.html",
     "projet-bpgo.html",
     "projet-innovons.html",
-    // "projet-nouveau.html",
   ],
 
   // 📁 images/images/excel/
