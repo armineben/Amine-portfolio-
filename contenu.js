@@ -1,6 +1,6 @@
 const PORTFOLIO_CONTENU = {
 
-  // 📁 images/images/logos/
+  // 📁 Dossier : images/images/logos/
   logos: [
     "logo-couverture-patisserie.png",
     "logo-couverture-salle-sport.png",
@@ -10,27 +10,29 @@ const PORTFOLIO_CONTENU = {
     "Logo-marque-sans-gluten.png",
   ],
 
-  // 📁 images/images/affiches/
+  // 📁 Dossier : images/images/affiches/
   affiches: [
     "Affiche-evenement-master2.png",
-    "https://drive.google.com/file/d/1VDnWFzGi1ABleP1oqHCD9xTJhoWBLNtj/preview",
+    "https://drive.google.com/file/d/1VDnWFzGi1ABleP1oqHCD9xTJhoWBLNtj/preview", // Affiche Master 2
     "Affiche-evenement-fondation2.jpeg",
     "Affiche-evenement-fondation.jpeg"
   ],
 
-  // 📁 images/images/cv/
+  // 📁 Dossier : images/images/cv/
   cv: [], 
 
-  // 🌐 PROJETS HTML - fichiers à la RACINE du dépôt
+  // 🌐 PROJETS - Fichiers .html à placer à la RACINE de votre dépôt GitHub
+  // Chaque fichier ajouté ici créera automatiquement une nouvelle carte dans votre galerie.
   projets: [
+    "projet-sante-connectee.html", // Nouveau projet avec la vidéo Drive
     "projet-fondation.html",
     "projet-bpgo.html",
   ],
 
-  // 📁 images/images/excel/
+  // 📁 Dossier : images/images/excel/
   excel: [],
 
-  // 📁 images/images/publications/
+  // 📁 Dossier : images/images/publications/
   publications: [
     "post-instagram-1.png",
     "post-instagram-2.jpg",
@@ -41,8 +43,8 @@ const PORTFOLIO_CONTENU = {
     "post-instagram-7.png",
     "post-instagram-8.png",
     "Publication-salle-desport3.png",
-"Publication-salle-desport2.png",
-"Publication-salle-de-sport.png"
+    "Publication-salle-desport2.png",
+    "Publication-salle-de-sport.png"
   ],
 
 };
