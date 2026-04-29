@@ -26,9 +26,8 @@ const PORTFOLIO_CONTENU = {
   // 🌐 PROJETS HTML - fichiers à la RACINE du dépôt
   projets: [
     "projet-fondation.html",
-    "projet-bpgo.html",
-    "projet-innovons.html" // Ajouté selon votre capture précédente
-  ], // <--- AJOUT D'UNE VIRGULE ICI AUSSI
+    "projet-bpgo.html"
+  ], 
 
   // 📁 images/images/excel/
   excel: [
