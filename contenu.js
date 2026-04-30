@@ -33,7 +33,7 @@ const PORTFOLIO_CONTENU = {
   excel: [
     "projet-vba.html",
     "Tableau-aide-à-la-décision.png",
-    "bouton importation data.png",
+    "bouton-importation-data.png",
     "Bouton-création -feuille-automatique.png", 
     "Bouton-envoi-mail.png",
     "Bouton-préparation-des-stats.png",
