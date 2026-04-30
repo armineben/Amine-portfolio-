@@ -32,7 +32,7 @@ const PORTFOLIO_CONTENU = {
   // 📁 Dossier : images/images/excel/
   excel: [
     "📊-projet-vba.html",
-    "GESTION-DE-LA-CLIENTÈLE.html",
+    "👥-gestion-clientele.html",
     "Tableau-aide-à-la-décision.png",
     "bouton-importation-data.png",
     "Bouton-création-feuille-automatique.png", 
