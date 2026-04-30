@@ -30,7 +30,9 @@ const PORTFOLIO_CONTENU = {
   ],
 
   // 📁 Dossier : images/images/excel/
-  excel: [],
+  excel: [
+    "projet-vba.html",
+  ],
 
   // 📁 Dossier : images/images/publications/
   publications: [
