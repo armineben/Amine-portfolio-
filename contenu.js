@@ -24,7 +24,7 @@ const PORTFOLIO_CONTENU = {
   // 🌐 PROJETS - Fichiers .html à placer à la RACINE de votre dépôt GitHub
   // Chaque fichier ajouté ici créera automatiquement une nouvelle carte dans votre galerie.
   projets: [
-    "sante.html", 
+    "santé-connectée.html", 
     "projet-fondation.html",
     "projet-bpgo.html",
   ],
