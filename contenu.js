@@ -39,6 +39,10 @@ const PORTFOLIO_CONTENU = {
     "Bouton-envoi-mail.png",
     "Bouton-préparation-des-stats.png",
     "Bouton-création-stat-et-graphiques.png",
+    "Base_Clients.png",
+    "Programme_Entrainement.png",
+    "Programme_Journalier.png",
+    "Suivi_Objectifs.png",
     
   ],
 
