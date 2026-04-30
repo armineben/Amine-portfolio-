@@ -75,9 +75,9 @@ nav {
 .gallery-item { border-radius: 10px; overflow: hidden; border: 0.5px solid var(--border); aspect-ratio: 4/3; cursor: zoom-in; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; }
 .gallery-item:hover img { transform: scale(1.04); }
-.gallery-item.pdf-item { display: flex; align-items: center; justify-content: center; background: var(--bg); flex-direction: column; gap: 8px; cursor: pointer; text-decoration: none; }
+.gallery-item.pdf-item { display: flex; align-items: center; justify-content: center; background: var(--bg); flex-direction: column; gap: 8px; cursor: pointer; text-decoration: none; border: 0.5px solid var(--border); }
 .gallery-item.pdf-item span { font-size: 2rem; }
-.gallery-item.pdf-item p { font-size: 11px; color: var(--text-secondary); text-align: center; padding: 0 8px; }
+.gallery-item.pdf-item p { font-size: 11px; color: var(--text-secondary); text-align: center; padding: 0 8px; text-transform: capitalize; }
 
 .lightbox { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
 .lightbox.open { display: flex; }
@@ -181,7 +181,6 @@ footer { padding: 1.5rem 2rem; text-align: center; font-size: 12px; color: var(-
       </div>
     </div>
 
-    <!-- CARTE PROJETS — dynamique via contenu.js -->
     <div class="cat-card" onclick="openProjetsModal()">
       <div class="cat-card-header">
         <div class="cat-icon" style="background:#FAECE7;">▶</div>
@@ -351,10 +350,8 @@ const PROJETS_COLORS = [
   'linear-gradient(135deg,#0F6E56,#1D9E75)',
   'linear-gradient(135deg,#5B21B6,#7C3AED)',
   'linear-gradient(135deg,#854F0B,#D97706)',
-  'linear-gradient(135deg,#991B1B,#DC2626)',
-  'linear-gradient(135deg,#065F46,#059669)',
 ];
-const PROJETS_ICONS = ['🏦','⚙️','💡','📊','🎯','🚀','📱','🌍'];
+const PROJETS_ICONS = ['🏦','⚙️','💡','📊','🎯'];
 const PROJETS_LABELS = {
   'projet-fondation.html': 'Fondation BP CM&GO',
   'projet-bpgo.html': 'Stage BPGO',
@@ -378,7 +375,6 @@ function getFilePath(cat, f) {
 function loadAll() {
   if (typeof PORTFOLIO_CONTENU === 'undefined') return;
 
-  // Cartes normales
   Object.keys(CATEGORIES).forEach(key => {
     const files = PORTFOLIO_CONTENU[key] || [];
     const cat = CATEGORIES[key];
@@ -401,7 +397,6 @@ function loadAll() {
     }
   });
 
-  // Carte Projets dynamique
   const projets = PORTFOLIO_CONTENU.projets || [];
   const countEl = document.getElementById('count-projets');
   const previewEl = document.getElementById('preview-projets');
@@ -412,9 +407,19 @@ function loadAll() {
     } else {
       const itemH = Math.floor(106 / Math.min(projets.length, 3));
       previewEl.innerHTML = projets.slice(0,3).map((f, i) => {
-        const label = PROJETS_LABELS[f] || f.replace('.html','').replace('projet-','').replace(/-/g,' ');
+        let label = PROJETS_LABELS[f];
+        let icon = PROJETS_ICONS[i % PROJETS_ICONS.length];
+        
+        if (f.includes('-')) {
+          const parts = f.split('-');
+          if (parts[0].length <= 3) {
+            icon = parts[0];
+            label = parts.slice(1).join(' ').replace('.html', '');
+          }
+        }
+        
+        if (!label) label = f.replace('.html','').replace('projet-','').replace(/-/g,' ');
         const color = PROJETS_COLORS[i % PROJETS_COLORS.length];
-        const icon = PROJETS_ICONS[i % PROJETS_ICONS.length];
         return `<a href="${f}" onclick="event.stopPropagation()" style="flex:1;min-height:${itemH}px;background:${color};border-radius:7px;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;">
           <span style="font-size:12px;">${icon}</span>
           <span style="font-size:11px;font-weight:600;color:white;text-transform:capitalize;">${label}</span>
@@ -434,16 +439,31 @@ function openModal(key) {
   document.getElementById('modal-subtitle').textContent = cat.desc;
   const body = document.getElementById('modal-body');
   if (files.length === 0) {
-    body.innerHTML = `<div class="modal-empty"><div class="modal-empty-icon">${cat.icon}</div><p class="modal-empty-title">Aucun fichier pour l'instant</p><p class="modal-empty-hint">Uploade tes fichiers dans ce dossier GitHub puis ajoute leur nom dans <strong>contenu.js</strong></p><span class="modal-empty-folder">${cat.folder}</span></div>`;
+    body.innerHTML = `<div class="modal-empty"><div class="modal-empty-icon">${cat.icon}</div><p class="modal-empty-title">Dossier vide</p></div>`;
   } else {
     body.innerHTML = '<div class="gallery-grid">' + files.map(f => {
       const type = getFileType(f);
       const path = getFilePath(cat, f);
-      const label = f.split('/').pop();
-      if (type === 'image') return `<div class="gallery-item" onclick="openLightbox('${path}')"><img src="${path}" alt="${label}" loading="lazy"></div>`;
-      if (type === 'pdf') return `<a class="gallery-item pdf-item" href="${path}" target="_blank"><span>📄</span><p>${label}</p></a>`;
-      if (type === 'html') return `<a class="gallery-item pdf-item" href="${path}" target="_blank" style="background:linear-gradient(135deg,#E8F0FB,#ddeeff);"><span>🌐</span><p>${label.replace('.html','')}</p></a>`;
-      return `<a class="gallery-item pdf-item" href="${path}" target="_blank"><span>📎</span><p>${label}</p></a>`;
+      
+      let icon = (type === 'pdf') ? '📄' : '🌐';
+      let cleanLabel = f.replace('.html', '').replace('.pdf', '');
+      
+      if (f.includes('-')) {
+        const parts = f.split('-');
+        if (parts[0].length <= 3) {
+          icon = parts[0];
+          cleanLabel = parts.slice(1).join(' ').replace('.html', '');
+        }
+      }
+
+      if (type === 'image') return `<div class="gallery-item" onclick="openLightbox('${path}')"><img src="${path}" loading="lazy"></div>`;
+      
+      const cardStyle = (key === 'excel') ? 'background:linear-gradient(135deg,#f0f9f0,#e1f5e1); border-color:#c2e0c2;' : '';
+      
+      return `<a class="gallery-item pdf-item" href="${path}" target="_blank" style="${cardStyle}">
+                <span style="font-size:2.5rem; margin-bottom:5px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.1));">${icon}</span>
+                <p style="font-weight:600; color:#333;">${cleanLabel.replace(/-/g, ' ')}</p>
+              </a>`;
     }).join('') + '</div>';
   }
   document.getElementById('modal-overlay').classList.add('open');
@@ -457,17 +477,27 @@ function openProjetsModal() {
   document.getElementById('modal-subtitle').textContent = 'Stages & projets professionnels';
   const body = document.getElementById('modal-body');
   if (projets.length === 0) {
-    body.innerHTML = `<div class="modal-empty"><div class="modal-empty-icon">▶</div><p class="modal-empty-title">Aucun projet</p><p class="modal-empty-hint">Ajoute des fichiers HTML dans contenu.js</p></div>`;
+    body.innerHTML = `<div class="modal-empty"><div class="modal-empty-icon">▶</div><p>Aucun projet</p></div>`;
   } else {
     body.innerHTML = '<div style="display:flex;flex-direction:column;gap:10px;">' + projets.map((f, i) => {
-      const label = PROJETS_LABELS[f] || f.replace('.html','').replace('projet-','').replace(/-/g,' ');
+      let label = PROJETS_LABELS[f];
+      let icon = PROJETS_ICONS[i % PROJETS_ICONS.length];
+      
+      if (f.includes('-')) {
+        const parts = f.split('-');
+        if (parts[0].length <= 3) {
+          icon = parts[0];
+          label = parts.slice(1).join(' ').replace('.html', '');
+        }
+      }
+      
+      if (!label) label = f.replace('.html','').replace('projet-','').replace(/-/g,' ');
       const color = PROJETS_COLORS[i % PROJETS_COLORS.length];
-      const icon = PROJETS_ICONS[i % PROJETS_ICONS.length];
       return `<a href="${f}" target="_blank" style="background:${color};border-radius:12px;padding:1rem 1.5rem;display:flex;align-items:center;gap:12px;text-decoration:none;">
         <span style="font-size:20px;">${icon}</span>
         <div>
           <p style="font-size:14px;font-weight:600;color:white;text-transform:capitalize;margin-bottom:3px;">${label}</p>
-          <p style="font-size:11px;color:rgba(255,255,255,0.7);">Cliquer pour ouvrir →</p>
+          <p style="font-size:11px;color:rgba(255,255,255,0.7);">Ouvrir le projet →</p>
         </div>
       </a>`;
     }).join('') + '</div>';
@@ -475,17 +505,8 @@ function openProjetsModal() {
   document.getElementById('modal-overlay').classList.add('open');
 }
 
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-overlay')) {
-    document.getElementById('modal-overlay').classList.remove('open');
-  }
-}
-
-function openLightbox(src) {
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox').classList.add('open');
-}
-
+function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) document.getElementById('modal-overlay').classList.remove('open'); }
+function openLightbox(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').classList.add('open'); }
 document.addEventListener('DOMContentLoaded', loadAll);
 </script>
 </body>
