@@ -34,7 +34,7 @@ const PORTFOLIO_CONTENU = {
     "projet-vba.html",
     "Tableau-aide-à-la-décision.png",
     "bouton-importation-data.png",
-    "Bouton-création -feuille-automatique.png", 
+    "Bouton-création-feuille-automatique.png", 
     "Bouton-envoi-mail.png",
     "Bouton-préparation-des-stats.png",
     "Bouton-création-stat-et-graphiques.png",
