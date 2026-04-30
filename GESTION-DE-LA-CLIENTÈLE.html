@@ -1,41 +1,191 @@
-<div align="left">
-    <h1>🏋️‍♂️ Système de Gestion de Salle de Sport & Suivi Calorique (VBA Excel)</h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Salle de Sport & VBA — Amine Benali</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD700; /* Jaune Sport */
+            --primary-dark: #ccac00;
+            --bg-dark: #121212;
+            --card-bg: #1e1e1e;
+            --text-light: #f4f4f4;
+            --text-muted: #b0b0b0;
+            --accent-blue: #003DA5;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 30px;
+            transition: 0.3s;
+        }
+        .back-link:hover { opacity: 0.8; transform: translateX(-5px); }
+
+        /* Header & Titre */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Sections */
+        section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--primary);
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 { color: var(--text-light); font-size: 1.3rem; margin-top: 25px; }
+
+        ul { list-style: none; padding: 0; }
+        ul li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        ul li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Badges Technologies */
+        .tech-stack {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .tech-badge {
+            background: #333;
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: 1px solid var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: var(--text-muted);
+        }
+
+        footer strong { color: var(--primary); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Retour au Portfolio</a>
     
-    <p>
-        Ce projet est une solution complète d'automatisation développée sous <strong>Excel VBA</strong>, conçue pour les professionnels du fitness et de la gestion de données sportives. L'outil combine une interface utilisateur "Premium" inspirée des tableaux de bord modernes avec une logique algorithmique pour le suivi des performances physiques.
-    </p>
+    <header>
+        <h1>🏋️‍♂️ Gestion Sportive & Suivi Calorique</h1>
+        <p class="subtitle">Une solution d'automatisation avancée sous Excel VBA pour le coaching et la gestion de données fitness.</p>
+    </header>
 
-    <h2>✨ Points Forts du Projet</h2>
-    <ul>
-        <li><strong>Automatisation Complète :</strong> Génération dynamique de feuilles de calcul, formatage automatique et gestion de base de données via macros VBA.</li>
-        <li><strong>Design Premium :</strong> Interface haute performance utilisant une charte graphique contrastée (Anthracite et Jaune Vif) pour une lisibilité maximale.</li>
-        <li><strong>Algorithmes de Suivi :</strong> Calculs intégrés du BMR (Métabolisme de Base), du déficit calorique et de la progression pondérale en temps réel.</li>
-    </ul>
+    <section>
+        <h2>✨ Points Forts du Projet</h2>
+        <ul>
+            <li><strong>Automatisation Complète :</strong> Génération dynamique de feuilles de calcul et gestion de base de données via macros VBA.</li>
+            <li><strong>Design Premium :</strong> Interface haute performance (Anthracite & Jaune) pour une lisibilité maximale en salle.</li>
+            <li><strong>Algorithmes de Santé :</strong> Calculs intégrés du Métabolisme de Base (BMR) et suivi du déficit calorique en temps réel.</li>
+        </ul>
+    </section>
 
-    <h2>🛠️ Fonctionnalités Techniques</h2>
-    
-    <h3>1. Gestion des Membres (CRM)</h3>
-    <p>Un onglet dédié à la base clients permettant de suivre les adhésions, les types de forfaits (Premium, Standard) et le statut des membres avec un archivage structuré.</p>
+    <section>
+        <h2>🛠️ Fonctionnalités Techniques</h2>
+        
+        <h3>1. Gestion des Membres (CRM)</h3>
+        <p>Système structuré pour suivre les adhésions, les types de forfaits (Premium/Standard) et l'archivage automatique des clients.</p>
 
-    <h3>2. Dashboard de Suivi "Calorie Amortization"</h3>
-    <p>Inspiré des outils d'analyse de données avancés, ce module permet :</p>
-    <ul>
-        <li>Le suivi quotidien du poids avec calcul de l'écart par rapport à l'objectif.</li>
-        <li>La visualisation du déficit calorique (Calories consommées vs brûlées).</li>
-        <li>Une mise en forme conditionnelle dynamique pour identifier visuellement les succès et les zones d'effort.</li>
-    </ul>
+        <h3>2. Dashboard "Calorie Amortization"</h3>
+        <p>Module d'analyse de données avancées incluant :</p>
+        <ul>
+            <li>Suivi quotidien du poids avec calcul automatique d'écart.</li>
+            <li>Visualisation du déficit calorique (Consommé vs Brûlé).</li>
+            <li>Mise en forme conditionnelle dynamique pour le suivi des objectifs.</li>
+        </ul>
 
-    <h3>3. Planification d'Entraînement Dynamique</h3>
-    <p>Génération de programmes journaliers variés incluant les groupes musculaires, les charges, les répétitions et les temps de repos, automatisée pour offrir une rotation fluide des exercices.</p>
+        <h3>3. Planification d'Entraînement</h3>
+        <p>Génération de programmes journaliers automatisés (muscles, charges, répétitions) pour une rotation fluide des exercices.</p>
+    </section>
 
-    <h2>💻 Technologies Utilisées</h2>
-    <ul>
-        <li><strong>Langage :</strong> VBA (Visual Basic for Applications)</li>
-        <li><strong>Logiciel :</strong> Microsoft Excel</li>
-        <li><strong>Concepts :</strong> Programmation orientée objet (Worksheets, Ranges), Mise en forme conditionnelle par code, Algorithmes mathématiques de santé.</li>
-    </ul>
+    <section>
+        <h2>💻 Stack Technique</h2>
+        <div class="tech-stack">
+            <span class="tech-badge">VBA Excel</span>
+            <span class="tech-badge">Programmation Objet</span>
+            <span class="tech-badge">Data Analysis</span>
+            <span class="tech-badge">Dashboarding</span>
+            <span class="tech-badge">Health Algorithms</span>
+        </div>
+    </section>
 
-    <hr>
-    
-    <p><em>Projet réalisé par <strong>Amine Benali</strong> - Expert en automatisation Excel et passionné par la transformation digitale.</em></p>
+    <footer>
+        <p>Projet réalisé par <strong>Amine Benali</strong><br>
+        Expert en automatisation Excel & Transformation Digitale</p>
+    </footer>
 </div>
+
+</body>
+</html>
