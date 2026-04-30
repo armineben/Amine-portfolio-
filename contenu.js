@@ -32,6 +32,12 @@ const PORTFOLIO_CONTENU = {
   // 📁 Dossier : images/images/excel/
   excel: [
     "projet-vba.html",
+    "bouton importation data.png",
+"Bouton-création -feuille-automatique.png",
+"Bouton-création-stat-et-graphiques.png",
+"Bouton-envoi-mail .png",
+"Bouton-préparation-des-stats.png",
+"Tableau-aide-à-la-décision.png",
   ],
 
   // 📁 Dossier : images/images/publications/
