@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Excel VBA — Fondation BP CM&GO · Amine BENALI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --blue: #003DA5; --blue-mid: #1A56C4; --blue-light: #E8F0FB; --blue-dark: #002272;
+            --green: #1D9E75; --green-light: #E1F5EE; --green-dark: #0F6E56;
+            --excel: #1D6F42; --excel-light: #E8F5EE;
+            --amber: #D97706; --amber-light: #FEF3C7;
+            --text-primary: #0f0f0f; --text-secondary: #4a4a4a; --text-muted: #888;
+            --border: #e2e2e2; --bg: #F8F7F4; --white: #ffffff;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.6; }
+
+        /* NAV */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(248,247,244,0.96); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem; display: flex; align-items: center;
+            justify-content: space-between; height: 58px;
+        }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+        .nav-logo span { color: var(--green); }
+        .nav-back {
+            font-size: 12px; color: var(--text-secondary); text-decoration: none;
+            display: flex; align-items: center; gap: 6px;
+            padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border);
+            background: white; transition: all 0.15s; font-weight: 500;
+        }
+        .nav-back:hover { border-color: #bbb; color: var(--text-primary); }
+
+        /* HERO */
+        .hero {
+            background: var(--blue-dark);
+            padding: 5rem 2rem 4rem;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: repeating-linear-gradient(
+                90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px,
+                transparent 1px, transparent 60px
+            ), repeating-linear-gradient(
+                0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px,
+                transparent 1px, transparent 60px
+            );
+        }
+        .hero-inner { max-width: 900px; margin: 0 auto; position: relative; }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px; padding: 5px 14px; font-size: 11px;
+            letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem; font-weight: 500;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem); font-weight: 600;
+            color: white; line-height: 1.15; margin-bottom: 1rem;
+        }
+        .hero-title em { color: #7DD3B0; font-style: normal; }
+        .hero-desc { font-size: 15px; color: rgba(255,255,255,0.75); font-weight: 300; line-height: 1.75; max-width: 580px; margin-bottom: 2.5rem; }
+        .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .hero-pill {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px; padding: 8px 14px; font-size: 12px; color: white;
+        }
+        .hero-pill strong { display: block; font-size: 10px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; font-weight: 500; }
+
+        /* STATS BAND */
+        .stats-band {
+            background: white; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: center;
+        }
+        .stats-inner {
+            max-width: 900px; width: 100%;
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            border-left: 1px solid var(--border);
+        }
+        .stat { padding: 1.5rem 1.25rem; text-align: center; border-right: 1px solid var(--border); }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; color: var(--blue); margin-bottom: 4px; line-height: 1; }
+        .stat-label { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+        /* SECTIONS */
+        .section { max-width: 900px; margin: 0 auto; padding: 3.5rem 2rem; }
+        .section + .section { border-top: 1px solid var(--border); }
+
+        .section-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-mid); font-weight: 600; margin-bottom: 0.5rem; font-family: 'DM Mono', monospace; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .section-intro { font-size: 14px; color: var(--text-secondary); line-height: 1.75; max-width: 640px; margin-bottom: 2rem; font-weight: 300; }
+
+        /* CONTEXT BOX */
+        .context-box {
+            background: var(--blue-light); border-left: 3px solid var(--blue);
+            border-radius: 0 12px 12px 0; padding: 1.5rem 2rem; margin-bottom: 2.5rem;
+        }
+        .context-box p { font-size: 14px; line-height: 1.8; color: var(--text-secondary); }
+        .context-box strong { color: var(--text-primary); }
+
+        /* BESOINS GRID */
+        .besoins-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+        .besoin-card {
+            background: white; border: 1px solid var(--border);
+            border-radius: 14px; padding: 1.5rem; position: relative; overflow: hidden;
+        }
+        .besoin-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--blue); }
+        .besoin-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--blue); opacity: 0.08; line-height: 1; margin-bottom: 8px; }
+        .besoin-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+        .besoin-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* OUTIL CARDS */
+        .outils-grid { display: grid; gap: 16px; }
+        .outil-card {
+            background: white; border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden;
+        }
+        .outil-header {
+            background: var(--excel); padding: 1.25rem 1.5rem;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .outil-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .outil-header-text h3 { font-size: 14px; font-weight: 600; color: white; margin-bottom: 2px; }
+        .outil-header-text p { font-size: 11px; color: rgba(255,255,255,0.7); }
+        .outil-body { padding: 1.5rem; }
+        .outil-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+        .outil-features { display: flex; flex-direction: column; gap: 8px; }
+        .feature-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+        .feature-dot { width: 18px; height: 18px; background: var(--excel-light); color: var(--excel); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+
+        /* SCREENSHOT GRID */
+        .screenshots-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 1.5rem; }
+        .screenshot-card {
+            background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+        }
+        .screenshot-img {
+            width: 100%; background: #f0f4ff;
+            display: flex; align-items: center; justify-content: center;
+            aspect-ratio: 16/10; overflow: hidden;
+        }
+        .screenshot-img img { width: 100%; height: 100%; object-fit: cover; }
+        .screenshot-placeholder {
+            width: 100%; height: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 8px;
+            background: linear-gradient(135deg, #f0f4ff, #e8f0fb);
+        }
+        .screenshot-placeholder span { font-size: 2rem; opacity: 0.3; }
+        .screenshot-placeholder p { font-size: 11px; color: var(--text-muted); text-align: center; }
+        .screenshot-caption { padding: 10px 14px; font-size: 11px; color: var(--text-muted); font-style: italic; border-top: 1px solid var(--border); }
+
+        /* BOUTONS VBA */
+        .boutons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 2rem; }
+        .bouton-card {
+            background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem;
+            position: relative; overflow: hidden;
+        }
+        .bouton-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        .bouton-card.green::before { background: var(--excel); }
+        .bouton-card.blue::before { background: var(--blue); }
+        .bouton-card.amber::before { background: var(--amber); }
+        .bouton-card.purple::before { background: #7C3AED; }
+        .bouton-icon { font-size: 1.5rem; margin-bottom: 10px; }
+        .bouton-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+        .bouton-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+        .bouton-tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 10px; background: var(--excel-light); color: var(--excel); font-weight: 600; margin-top: 8px; font-family: 'DM Mono', monospace; }
+
+        /* RESULTATS */
+        .resultats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .resultat-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center; }
+        .resultat-icon { font-size: 1.75rem; margin-bottom: 8px; }
+        .resultat-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+        .resultat-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+
+        /* OUTILS TAGS */
+        .tools-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
+        .tool-tag {
+            font-size: 12px; padding: 6px 14px; border-radius: 20px;
+            border: 1px solid var(--border); background: white;
+            color: var(--text-secondary); font-weight: 500; display: flex; align-items: center; gap: 6px;
+        }
+        .tool-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+        /* VIDEO SECTION */
+        .video-wrapper {
+            background: #0a0a0a; border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border); aspect-ratio: 16/9;
+            display: flex; align-items: center; justify-content: center;
+            margin-top: 1.5rem;
+        }
+        .video-inner { text-align: center; padding: 2rem; }
+        .play-btn {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.3);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 22px; color: white; text-decoration: none; margin-bottom: 14px;
+            transition: all 0.2s;
+        }
+        .play-btn:hover { background: rgba(255,255,255,0.22); transform: scale(1.05); }
+        .video-label { color: white; font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+        .video-hint { color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 16px; }
+        .video-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 22px; background: var(--green); color: white;
+            border-radius: 24px; font-size: 13px; font-weight: 500; text-decoration: none;
+            transition: background 0.15s;
+        }
+        .video-cta:hover { background: var(--green-dark); }
+
+        /* FOOTER */
+        .page-footer { background: white; border-top: 1px solid var(--border); padding: 2rem; text-align: center; }
+        .page-footer p { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+        .footer-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 20px; border-radius: 20px; background: var(--green); color: white; text-decoration: none; font-size: 13px; font-weight: 500; }
+
+        @media (max-width: 640px) {
+            .hero { padding: 3.5rem 1.5rem 3rem; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .besoins-grid, .boutons-grid, .screenshots-grid, .resultats-grid { grid-template-columns: 1fr; }
+            .section { padding: 2.5rem 1.5rem; }
+            nav { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="nav-logo" href="index.html"><span>A</span>mine BENALI</a>
+    <a class="nav-back" href="index.html">← Retour au portfolio</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">📊 Projet de Fin d'Études · Excel VBA · Automatisation</div>
+        <h1 class="hero-title">Automatisation de la gestion<br>des candidatures · <em>Fondation BP CM&GO</em></h1>
+        <p class="hero-desc">Développement d'un outil Excel VBA complet pour automatiser la gestion des candidatures associatives, la communication des résultats et la production de tableaux de bord analytiques.</p>
+        <div class="hero-pills">
+            <div class="hero-pill"><strong>Structure</strong>Fondation Banque Populaire CM&GO</div>
+            <div class="hero-pill"><strong>Lieu</strong>Nantes, France 🇫🇷</div>
+            <div class="hero-pill"><strong>Période</strong>2024 – 2025</div>
+            <div class="hero-pill"><strong>Rôle</strong>Junior PMO — Stage PFE</div>
+        </div>
+    </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-band">
+    <div class="stats-inner">
+        <div class="stat"><div class="stat-num">5</div><div class="stat-label">Boutons VBA<br>développés</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Besoins<br>identifiés & résolus</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Automatisation<br>des emails</div></div>
+        <div class="stat"><div class="stat-num">86</div><div class="stat-label">Candidatures<br>traitées</div></div>
+    </div>
+</div>
+
+<!-- CONTEXTE -->
+<div class="section">
+    <p class="section-eyebrow">01 — Contexte</p>
+    <h2 class="section-title">Pourquoi cet outil ?</h2>
+    <div class="context-box">
+        <p>La <strong>Fondation Banque Populaire du Grand Ouest</strong> gérait ses candidatures associatives de façon entièrement manuelle — via WordPress et des fichiers épars — entraînant des <strong>délais importants, des erreurs de traitement et une surcharge administrative</strong>. Ma mission : concevoir un outil Excel VBA qui centralise, automatise et fluidifie l'ensemble du processus, de la réception des candidatures jusqu'à l'envoi des résultats aux associations.</p>
+    </div>
+
+    <p class="section-eyebrow" style="margin-top:2rem;">02 — Besoins identifiés</p>
+    <h2 class="section-title">3 problématiques résolues</h2>
+    <div class="besoins-grid">
+        <div class="besoin-card">
+            <div class="besoin-num">01</div>
+            <p class="besoin-title">Gestion & suivi des candidatures</p>
+            <p class="besoin-desc">Absence d'un tableau de bord centralisé. Les données étaient éparpillées sur WordPress sans vue synthétique ni indicateurs de suivi.</p>
+        </div>
+        <div class="besoin-card">
+            <div class="besoin-num">02</div>
+            <p class="besoin-title">Préparation des comités</p>
+            <p class="besoin-desc">Préparation manuelle et chronophage des tableaux par comité de décision, avec risque d'erreurs et de doublons dans les données.</p>
+        </div>
+        <div class="besoin-card">
+            <div class="besoin-num">03</div>
+            <p class="besoin-title">Communication des résultats</p>
+            <p class="besoin-desc">Envoi d'emails individuels et manuels à chaque association, sans traçabilité ni standardisation des messages envoyés.</p>
+        </div>
+    </div>
+</div>
+
+<!-- OUTIL PRINCIPAL -->
+<div class="section">
+    <p class="section-eyebrow">03 — Solution déployée</p>
+    <h2 class="section-title">Le fichier Excel VBA d'aide à la décision</h2>
+    <p class="section-intro">Un fichier Excel unique, enrichi de macros VBA, qui centralise toutes les candidatures importées depuis WordPress et offre une vue complète sur l'état des dossiers.</p>
+
+    <div class="outils-grid">
+        <div class="outil-card">
+            <div class="outil-header">
+                <div class="outil-icon">📋</div>
+                <div class="outil-header-text">
+                    <h3>Tableau d'aide à la décision</h3>
+                    <p>Feuille principale — Vue globale des candidatures</p>
+                </div>
+            </div>
+            <div class="outil-body">
+                <p class="outil-desc">Tableau central regroupant toutes les candidatures avec leurs informations clés : statut, comité, budget, associations concernées et décision finale.</p>
+                <div class="outil-features">
+                    <div class="feature-item"><div class="feature-dot">✓</div>Suivi du statut : soumis, non soumis, à traiter, en attente</div>
+                    <div class="feature-item"><div class="feature-dot">✓</div>Filtrage par comité, département et budget</div>
+                    <div class="feature-item"><div class="feature-dot">✓</div>Colonne de décision finale (accepté, refusé, non éligible)</div>
+                    <div class="feature-item"><div class="feature-dot">✓</div>Mise en couleur automatique selon le statut des dossiers</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREENSHOTS -->
+    <div class="screenshots-grid">
+        <div class="screenshot-card">
+            <div class="screenshot-img">
+                <img src="images/excel/tableau-aide-decision.jpg" alt="Tableau aide à la décision"
+                    onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'><span>📊</span><p>Tableau aide à la décision<br><small>Ajoute : images/excel/tableau-aide-decision.jpg</small></p></div>'">
+            </div>
+            <div class="screenshot-caption">Figure 8 : Tableau aide à la décision</div>
+        </div>
+        <div class="screenshot-card">
+            <div class="screenshot-img">
+                <img src="images/excel/statistiques-precomite.jpg" alt="Statistiques pré-comité"
+                    onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'><span>📈</span><p>Statistiques pré-comité<br><small>Ajoute : images/excel/statistiques-precomite.jpg</small></p></div>'">
+            </div>
+            <div class="screenshot-caption">Figure 9 : Tableau statistique pré-comité par département</div>
+        </div>
+        <div class="screenshot-card">
+            <div class="screenshot-img">
+                <img src="images/excel/tableau-comite.jpg" alt="Tableau par comité"
+                    onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'><span>📁</span><p>Feuille projets par comité<br><small>Ajoute : images/excel/tableau-comite.jpg</small></p></div>'">
+            </div>
+            <div class="screenshot-caption">Figure 10 : Bouton création tableau par comité départemental</div>
+        </div>
+        <div class="screenshot-card">
+            <div class="screenshot-img">
+                <img src="images/excel/graphiques-repartition.jpg" alt="Graphiques de répartition"
+                    onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'><span>🍩</span><p>Graphiques de répartition<br><small>Ajoute : images/excel/graphiques-repartition.jpg</small></p></div>'">
+            </div>
+            <div class="screenshot-caption">Figure 12 : Graphiques de répartition des décisions et budgets</div>
+        </div>
+    </div>
+</div>
+
+<!-- BOUTONS VBA -->
+<div class="section">
+    <p class="section-eyebrow">04 — Boutons VBA développés</p>
+    <h2 class="section-title">5 automatisations clés</h2>
+    <p class="section-intro">Chaque bouton est une macro VBA déclenchée en un clic, éliminant des heures de travail manuel répétitif.</p>
+
+    <div class="boutons-grid">
+        <div class="bouton-card green">
+            <div class="bouton-icon">📊</div>
+            <p class="bouton-title">Tableau statistique pré-comité</p>
+            <p class="bouton-desc">Génère automatiquement un tableau récapitulatif par département avec : nombre de dossiers soumis, non soumis et budget total.</p>
+            <span class="bouton-tag">Besoin 01</span>
+        </div>
+
+        <div class="bouton-card blue">
+            <div class="bouton-icon">📁</div>
+            <p class="bouton-title">Feuille projets par comité</p>
+            <p class="bouton-desc">Importe les projets d'un département sélectionné dans une nouvelle feuille dédiée prête pour la réunion de comité.</p>
+            <span class="bouton-tag">Besoin 02</span>
+        </div>
+
+        <div class="bouton-card green">
+            <div class="bouton-icon">📉</div>
+            <p class="bouton-title">Tableau statistique post-comité</p>
+            <p class="bouton-desc">Génère un tableau de bord avec les décisions prises (acceptées, refusées) et le budget total alloué.</p>
+            <span class="bouton-tag">Besoin 02</span>
+        </div>
+
+        <div class="bouton-card amber">
+            <div class="bouton-icon">🍩</div>
+            <p class="bouton-title">Graphiques de répartition</p>
+            <p class="bouton-desc">Génère automatiquement des graphiques illustrant la répartition des décisions et budgets par département.</p>
+            <span class="bouton-tag">Besoin 02</span>
+        </div>
+
+        <div class="bouton-card blue" style="grid-column: span 2;">
+            <div class="bouton-icon">✉️</div>
+            <p class="bouton-title">Envoi automatique d'emails aux associations</p>
+            <p class="bouton-desc">Détecte la décision et génère un email personnalisé via Outlook. Enregistre l'état d'envoi et archive une copie sur Teams.</p>
+            <span class="bouton-tag">Besoin 03</span>
+        </div>
+    </div>
+
+    <!-- Screenshots emails -->
+    <div class="screenshots-grid">
+        <div class="screenshot-card">
+            <div class="screenshot-img">
+                <img src="images/excel/mails-automatises.jpg" alt="Modèles d'emails automatisés"
+                    onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'><span>✉️</span><p>Modèles d\'e-mails automatisés<br><small>Ajoute : images/excel/mails-automatises.jpg</small></p></div>'">
+            </div>
+            <div class="screenshot-caption">Figure 15 : Modèles de corps d'e-mails automatisés</div>
+        </div>
+        <div class="screenshot-card">
+            <div class="screenshot-img">
+                <img src="images/excel/etat-envoi.jpg" alt="État d'envoi des emails"
+                    onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'><span>📬</span><p>État et heure d\'envoi des mails<br><small>Ajoute : images/excel/etat-envoi.jpg</small></p></div>'">
+            </div>
+            <div class="screenshot-caption">Figure 16 : État et heure d'envoi de mail — traçabilité automatique</div>
+        </div>
+    </div>
+</div>
+
+<!-- VIDEO -->
+<div class="section">
+    <p class="section-eyebrow">05 — Démonstration</p>
+    <h2 class="section-title">Voir le projet en vidéo</h2>
+    <div class="video-wrapper">
+        <div class="video-inner">
+            <a class="play-btn" href="https://drive.google.com/file/d/1u-EuG2TA5qJ8mOYycYORf3d0hoExFoTe/view?usp=drive_link" target="_blank">▶</a>
+            <p class="video-label">Démonstration — Outil Excel VBA Fondation BP CM&GO</p>
+            <a class="video-cta" href="https://drive.google.com/file/d/1u-EuG2TA5qJ8mOYycYORf3d0hoExFoTe/view?usp=drive_link" target="_blank">Regarder la vidéo</a>
+        </div>
+    </div>
+</div>
+
+<!-- RESULTATS -->
+<div class="section">
+    <p class="section-eyebrow">06 — Résultats & impact</p>
+    <div class="resultats-grid">
+        <div class="resultat-card"><div class="resultat-icon">⚡</div><p class="resultat-title">Gain de temps majeur</p><p class="resultat-desc">Réduction de plusieurs heures à quelques clics</p></div>
+        <div class="resultat-card"><div class="resultat-icon">✅</div><p class="resultat-title">Zéro erreur</p><p class="resultat-desc">Données importées automatiquement</p></div>
+        <div class="resultat-card"><div class="resultat-icon">📬</div><p class="resultat-title">100% automatisé</p><p class="resultat-desc">Envoi personnalisé et traçable</p></div>
+    </div>
+
+    <div class="tools-row">
+        <span class="tool-tag"><span class="tool-dot" style="background:#1D6F42;"></span>Microsoft Excel</span>
+        <span class="tool-tag"><span class="tool-dot" style="background:#217346;"></span>VBA / Macros</span>
+        <span class="tool-tag"><span class="tool-dot" style="background:#0078D4;"></span>Outlook / Teams</span>
+    </div>
+</div>
+
+<div class="page-footer">
+    <p>Prêt à collaborer sur un projet similaire ?</p>
+    <a class="footer-btn" href="mailto:aminebenali3@gmail.com">✉ Me contacter</a>
+</div>
+
+</body>
+</html>
