@@ -33,26 +33,30 @@ const PORTFOLIO_CONTENU = {
   excel: [
     "📊-projet-vba.html",
     "👥-gestion-clientele.html",
-    "Tableau-aide-a-la-decision.png",
-    "bouton-importation-data.png",
-    "Bouton-creation-feuille-automatique.png", 
-    "Bouton-envoi-mail.png",
-    "Bouton-preparation-des-stats.png",
-    "Bouton-creation-stat-et-graphiques.png",
     "Base_Clients.png",
+    "Bouton-création-stat-et-graphiques.png",
+    "Bouton-envoi-mail.png",
+    "Bouton-préparation-des-stats.png",
+    "CENTRE-DE-PILOTAGE-DE-PROJET-V2.0.png",
+    "Dashboard1.png",
+    "Facture.png",
+    "PLAN-DE-PROJET-AGILE.png",
     "Programme_Entrainement.png",
     "Programme_Journalier.png",
+    "SUIVI-DE-CHANTIER-ÉLECTRICITÉ.png",
     "Suivi_Objectifs.png",
-    "Facture.png",
-    "Dashboard1.png",
     "Suivi_Taches2.png",
-    "CENTRE-DE-PILOTAGE-DE-PROJET-V2.0.png",
-    "PLAN-DE-PROJET-AGILE.png",
-    "SUIVI-DE-CHANTIER-ELECTRICITE.png"
+    "Tableau-aide-à-la-décision.png",
+    "bouton-importation-data.png"
   ],
 
   // 📁 Dossier : images/images/publications/
   publications: [
+   "Publication-gym.png",
+    "Publication-gym2.png",
+    "Publication-salle-de-sport.png",
+    "Publication-salle-desport2.png",
+    "Publication-salle-desport3.png",
     "post-instagram-1.png",
     "post-instagram-2.jpg",
     "post-instagram-3.png",
@@ -60,12 +64,7 @@ const PORTFOLIO_CONTENU = {
     "post-instagram-5.png",
     "post-instagram-6.png",
     "post-instagram-7.png",
-    "post-instagram-8.png",
-    "Publication-salle-desport3.png",
-    "Publication-salle-desport2.png",
-    "Publication-salle-de-sport.png",
-    "Publication-gym.png",
-    "Publication-gym2.png",
+    "post-instagram-8.png"
   ],
 
 };
