@@ -64,6 +64,7 @@ const PORTFOLIO_CONTENU = {
     "Publication-salle-desport3.png",
     "Publication-salle-desport2.png",
     "Publication-salle-de-sport.png"
+    "Publication-gym.png",
   ],
 
 };
