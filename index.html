@@ -353,10 +353,20 @@ const PROJETS_COLORS = [
 ];
 const PROJETS_ICONS = ['🏦','⚙️','💡','📊','🎯'];
 const PROJETS_LABELS = {
-  'projet-fondation.html': 'Fondation BP CM&GO',
-  'projet-bpgo.html': 'Stage BPGO',
-  'projet-innovons.html': 'Innovons Ensemble',
+  'projet-fondation.html':       { label: 'Fondation BP CM&GO',        icon: '🏦', color: '#E8F0FB', iconColor: '#003DA5' },
+  'projet-bpgo.html':            { label: 'Stage BPGO',                 icon: '⚙️', color: '#E1F5EE', iconColor: '#0F6E56' },
+  'projet-innovons.html':        { label: 'Innovons Ensemble',          icon: '💡', color: '#FEF3C7', iconColor: '#854F0B' },
+  'projet-excel-fondation.html': { label: 'Projet VBA',                 icon: '📊', color: '#E8F5EE', iconColor: '#1D6F42' },
+  'Projet-innovant-secteur-santé-pays-dela-loire.html': { label: 'Santé Connectée', icon: '🏥', color: '#EDE9FE', iconColor: '#7C3AED' },
 };
+function getProjetInfo(f, i) {
+  if (PROJETS_LABELS[f]) return PROJETS_LABELS[f];
+  const fallbackColors = ['#E8F0FB','#E1F5EE','#FEF3C7','#EDE9FE','#FAECE7'];
+  const fallbackIconColors = ['#003DA5','#0F6E56','#854F0B','#7C3AED','#993C1D'];
+  const fallbackIcons = ['🎯','📋','🚀','🌍','📁'];
+  const label = f.replace('.html','').replace('projet-','').replace(/-/g,' ');
+  return { label, icon: fallbackIcons[i % fallbackIcons.length], color: fallbackColors[i % fallbackColors.length], iconColor: fallbackIconColors[i % fallbackIconColors.length] };
+}
 
 function getFileType(f) {
   const ext = f.toLowerCase().split('.').pop();
@@ -405,25 +415,19 @@ function loadAll() {
     if (projets.length === 0) {
       previewEl.innerHTML = '<div class="cat-preview-empty"><span>▶</span><p>Aucun projet</p></div>';
     } else {
-      const itemH = Math.floor(106 / Math.min(projets.length, 3));
-      previewEl.innerHTML = projets.slice(0,3).map((f, i) => {
-        let label = PROJETS_LABELS[f];
-        let icon = PROJETS_ICONS[i % PROJETS_ICONS.length];
-        
-        if (f.includes('-')) {
-          const parts = f.split('-');
-          if (parts[0].length <= 3) {
-            icon = parts[0];
-            label = parts.slice(1).join(' ').replace('.html', '');
-          }
-        }
-        
-        if (!label) label = f.replace('.html','').replace('projet-','').replace(/-/g,' ');
-        const color = PROJETS_COLORS[i % PROJETS_COLORS.length];
-        return `<a href="${f}" onclick="event.stopPropagation()" style="flex:1;min-height:${itemH}px;background:${color};border-radius:7px;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;">
-          <span style="font-size:12px;">${icon}</span>
-          <span style="font-size:11px;font-weight:600;color:white;text-transform:capitalize;">${label}</span>
-          <span style="font-size:10px;color:rgba(255,255,255,0.7);">→</span>
+      const cols = Math.min(projets.length, 3);
+      previewEl.style.display = 'grid';
+      previewEl.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+      previewEl.style.gap = '6px';
+      previewEl.style.padding = '0';
+      previewEl.style.height = '110px';
+      previewEl.style.margin = '0 1rem';
+      previewEl.style.overflow = 'hidden';
+      previewEl.innerHTML = projets.slice(0, 3).map((f, i) => {
+        const info = getProjetInfo(f, i);
+        return `<a href="${f}" onclick="event.stopPropagation()" title="${info.label}" style="background:${info.color};border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-decoration:none;padding:6px 4px;border:0.5px solid rgba(0,0,0,0.06);">
+          <span style="font-size:26px;line-height:1;">${info.icon}</span>
+          <span style="font-size:9px;font-weight:600;color:${info.iconColor};text-align:center;line-height:1.2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 4px;">${info.label}</span>
         </a>`;
       }).join('');
     }
@@ -479,26 +483,11 @@ function openProjetsModal() {
   if (projets.length === 0) {
     body.innerHTML = `<div class="modal-empty"><div class="modal-empty-icon">▶</div><p>Aucun projet</p></div>`;
   } else {
-    body.innerHTML = '<div style="display:flex;flex-direction:column;gap:10px;">' + projets.map((f, i) => {
-      let label = PROJETS_LABELS[f];
-      let icon = PROJETS_ICONS[i % PROJETS_ICONS.length];
-      
-      if (f.includes('-')) {
-        const parts = f.split('-');
-        if (parts[0].length <= 3) {
-          icon = parts[0];
-          label = parts.slice(1).join(' ').replace('.html', '');
-        }
-      }
-      
-      if (!label) label = f.replace('.html','').replace('projet-','').replace(/-/g,' ');
-      const color = PROJETS_COLORS[i % PROJETS_COLORS.length];
-      return `<a href="${f}" target="_blank" style="background:${color};border-radius:12px;padding:1rem 1.5rem;display:flex;align-items:center;gap:12px;text-decoration:none;">
-        <span style="font-size:20px;">${icon}</span>
-        <div>
-          <p style="font-size:14px;font-weight:600;color:white;text-transform:capitalize;margin-bottom:3px;">${label}</p>
-          <p style="font-size:11px;color:rgba(255,255,255,0.7);">Ouvrir le projet →</p>
-        </div>
+    body.innerHTML = '<div class="gallery-grid">' + projets.map((f, i) => {
+      const info = getProjetInfo(f, i);
+      return `<a class="gallery-item pdf-item" href="${f}" target="_blank" style="background:${info.color};border-color:rgba(0,0,0,0.06);">
+        <span style="font-size:2.5rem;margin-bottom:5px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.1));">${info.icon}</span>
+        <p style="font-weight:600;color:${info.iconColor};text-align:center;font-size:12px;padding:0 8px;">${info.label}</p>
       </a>`;
     }).join('') + '</div>';
   }
