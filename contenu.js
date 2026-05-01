@@ -44,6 +44,8 @@ const PORTFOLIO_CONTENU = {
     "Programme_Journalier.png",
     "Suivi_Objectifs.png",
     "Facture.png",
+    "Dashboard1.png",
+    "Suivi_Taches2.png",
     
   ],
 
