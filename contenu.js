@@ -47,7 +47,7 @@ const PORTFOLIO_CONTENU = {
     "Dashboard1.png",
     "Suivi_Taches2.png",
     "CENTRE-DE-PILOTAGE-DE-PROJET-V2.0.png",
-    "PLAN-DE-PROJET-AGILE.png",
+    "PLAN-DE-PROJET-AGILE.png,
     "SUIVI-DE-CHANTIER-ÉLECTRICITÉ.png",
     
     
