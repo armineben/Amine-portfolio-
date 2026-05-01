@@ -19,7 +19,9 @@ const PORTFOLIO_CONTENU = {
   ],
 
   // 📁 Dossier : images/images/cv/
-  cv: [], 
+  cv: [
+    "Carte-cv.png",   
+],
 
   // 🌐 PROJETS - Fichiers .html à placer à la RACINE de votre dépôt GitHub
   // Chaque fichier ajouté ici créera automatiquement une nouvelle carte dans votre galerie.
