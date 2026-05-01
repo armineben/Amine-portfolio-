@@ -33,12 +33,12 @@ const PORTFOLIO_CONTENU = {
   excel: [
     "📊-projet-vba.html",
     "👥-gestion-clientele.html",
-    "Tableau-aide-à-la-décision.png",
+    "Tableau-aide-a-la-decision.png",
     "bouton-importation-data.png",
-    "Bouton-création-feuille-automatique.png", 
+    "Bouton-creation-feuille-automatique.png", 
     "Bouton-envoi-mail.png",
-    "Bouton-préparation-des-stats.png",
-    "Bouton-création-stat-et-graphiques.png",
+    "Bouton-preparation-des-stats.png",
+    "Bouton-creation-stat-et-graphiques.png",
     "Base_Clients.png",
     "Programme_Entrainement.png",
     "Programme_Journalier.png",
@@ -48,9 +48,7 @@ const PORTFOLIO_CONTENU = {
     "Suivi_Taches2.png",
     "CENTRE-DE-PILOTAGE-DE-PROJET-V2.0.png",
     "PLAN-DE-PROJET-AGILE.png",
-    "SUIVI-DE-CHANTIER-ÉLECTRICITÉ.png",
-    
-    
+    "SUIVI-DE-CHANTIER-ELECTRICITE.png"
   ],
 
   // 📁 Dossier : images/images/publications/
