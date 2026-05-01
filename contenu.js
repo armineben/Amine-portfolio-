@@ -63,7 +63,7 @@ const PORTFOLIO_CONTENU = {
     "post-instagram-8.png",
     "Publication-salle-desport3.png",
     "Publication-salle-desport2.png",
-    "Publication-salle-de-sport.png"
+    "Publication-salle-de-sport.png",
     "Publication-gym.png",
     "Publication-gym2.png",
   ],
