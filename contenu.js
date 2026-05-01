@@ -15,7 +15,7 @@ const PORTFOLIO_CONTENU = {
     "Affiche-evenement-master2.png",
     "https://drive.google.com/file/d/1VDnWFzGi1ABleP1oqHCD9xTJhoWBLNtj/preview", // Affiche Master 2
     "Affiche-evenement-fondation2.jpeg",
-    "Affiche-evenement-fondation.jpeg"
+    "Affiche-evenement-fondation.jpeg",
   ],
 
   // 📁 Dossier : images/images/cv/
@@ -47,7 +47,7 @@ const PORTFOLIO_CONTENU = {
     "Dashboard1.png",
     "Suivi_Taches2.png",
     "CENTRE-DE-PILOTAGE-DE-PROJET-V2.0.png",
-    "PLAN-DE-PROJET-AGILE.png,
+    "PLAN-DE-PROJET-AGILE.png",
     "SUIVI-DE-CHANTIER-ÉLECTRICITÉ.png",
     
     
