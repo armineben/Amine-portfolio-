@@ -3,263 +3,231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amine BENALI — Portfolio Digital</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>Amine BENALI — Portfolio</title>
+<script src="contenu.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #0f0f0f;
-  --bg2: #161616;
-  --bg3: #1d1d1d;
-  --border: rgba(255,255,255,0.08);
+  --bg: #111111;
+  --bg2: #181818;
+  --bg3: #202020;
+  --border: rgba(255,255,255,0.07);
   --accent: #1a6bff;
-  --accent-glow: rgba(26,107,255,0.3);
+  --accent-light: rgba(26,107,255,0.15);
   --text: #ffffff;
-  --text-secondary: rgba(255,255,255,0.6);
   --text-muted: rgba(255,255,255,0.4);
+  --text-secondary: rgba(255,255,255,0.6);
+  --green: #10b981;
 }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
 /* ── NAVIGATION ── */
 nav {
-  position: fixed; top: 0; width: 100%; z-index: 1000;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 4rem; height: 70px;
-  background: rgba(15,15,15,0.8);
-  backdrop-filter: blur(12px);
+  padding: 0 2.5rem; height: 70px;
+  background: rgba(17,17,17,0.8);
+  backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
 .nav-logo {
-  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800;
-  text-decoration: none; color: var(--text);
+  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700;
+  color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px;
 }
-.nav-links { display: flex; gap: 2.5rem; }
+.nav-logo-tag {
+  font-size: 11px; padding: 3px 8px; border-radius: 4px;
+  background: var(--accent); color: white; font-weight: 800;
+}
+.nav-links { display: flex; align-items: center; gap: 2.5rem; }
 .nav-links a {
-  text-decoration: none; color: var(--text-secondary);
-  font-size: 13px; font-weight: 500; transition: 0.3s;
+  font-size: 13px; color: var(--text-secondary); text-decoration: none;
+  transition: color 0.3s; font-weight: 500;
 }
-.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover { color: var(--text); }
+.nav-contact {
+  padding: 8px 20px; border-radius: 8px;
+  background: var(--accent); color: white !important;
+  transition: transform 0.2s !important;
+}
+.nav-contact:hover { transform: translateY(-2px); }
 
 /* ── HERO SECTION ── */
 .hero {
   min-height: 100vh;
-  display: grid; grid-template-columns: 1.2fr 0.8fr;
-  padding: 100px 4rem 4rem;
-  gap: 4rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  position: relative;
 }
-.hero-content { display: flex; flex-direction: column; justify-content: center; }
-.hero-tagline { color: var(--accent); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
-.hero-title { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 6vw, 5rem); line-height: 1; font-weight: 800; margin-bottom: 2rem; }
-.hero-desc { font-size: 18px; color: var(--text-secondary); max-width: 550px; margin-bottom: 2.5rem; }
-
-.hero-visual { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
-.profile-img-container {
-  width: 300px; height: 300px;
-  border-radius: 50%; border: 4px solid var(--accent);
-  box-shadow: 0 0 40px var(--accent-glow);
-  overflow: hidden;
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 4rem; z-index: 2;
 }
-.profile-img-container img { width: 100%; height: 100%; object-fit: cover; }
+.hero-eyebrow {
+  font-size: 12px; color: var(--accent); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::after { content: ""; width: 40px; height: 1px; background: var(--accent); }
+.hero-name {
+  font-family: 'Syne', sans-serif; font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800; line-height: 1; margin-bottom: 1.5rem;
+}
+.hero-name span { color: var(--accent); }
+.hero-subtitle {
+  font-size: 16px; color: var(--text-secondary); line-height: 1.6;
+  max-width: 500px; margin-bottom: 2.5rem;
+}
+.hero-cta { display: flex; align-items: center; gap: 20px; }
 
-/* PANNEAUX INFOS */
-.info-panels { width: 100%; display: flex; flex-direction: column; gap: 1rem; }
-.panel {
+.hero-right {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.hero-photo-wrap {
+  position: relative; width: 100%; height: 100%;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.hero-photo {
+  height: 90vh; width: auto; object-fit: contain;
+  filter: grayscale(0.2) contrast(1.1);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+/* Dégradé de fondu au noir pour la base de la photo */
+.hero-photo-wrap::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 200px; background: linear-gradient(to top, var(--bg), transparent);
+}
+
+.hero-stats {
+  position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 1.5rem; z-index: 5;
+}
+.stat-card {
   background: var(--bg2); border: 1px solid var(--border);
-  padding: 1.2rem; border-radius: 16px; transition: 0.3s;
+  padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(10px);
+  min-width: 180px;
 }
-.panel:hover { border-color: var(--accent); transform: translateY(-5px); }
-.panel-label { font-size: 10px; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; }
-.panel-value { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; }
+.stat-number { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); }
+.stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
 
-/* ── SECTION COMMUNE ── */
-section { padding: 8rem 4rem; border-top: 1px solid var(--border); }
+/* ── SECTIONS GÉNÉRALES ── */
+section { padding: 8rem 4rem; }
 .section-header { margin-bottom: 4rem; }
-.section-title { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; }
-
-/* ── PORTFOLIO GRID ── */
-.portfolio-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-.project-card {
-  background: var(--bg2); border-radius: 20px; overflow: hidden;
-  border: 1px solid var(--border); transition: 0.3s;
-}
-.project-card:hover { transform: scale(1.02); border-color: var(--accent); }
-.project-info { padding: 2rem; }
-.project-cat { color: var(--accent); font-size: 12px; font-weight: 700; text-transform: uppercase; }
-.project-title { font-family: 'Syne', sans-serif; font-size: 1.4rem; margin: 0.5rem 0 1rem; }
+.section-tag { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+.section-title { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; }
 
 /* ── EXPÉRIENCES ── */
-.exp-list { display: flex; flex-direction: column; gap: 2rem; }
-.exp-item {
+.timeline { display: flex; flex-direction: column; gap: 2rem; }
+.timeline-item {
   display: grid; grid-template-columns: 200px 1fr;
-  padding-bottom: 2rem; border-bottom: 1px solid var(--border);
+  padding: 2rem; background: var(--bg2); border-radius: 16px; border: 1px solid var(--border);
 }
-.exp-date { color: var(--text-secondary); font-weight: 700; }
-.exp-role { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-.exp-company { color: var(--accent); font-weight: 600; margin-bottom: 1rem; display: block; }
+.timeline-date { color: var(--accent); font-weight: 700; font-size: 14px; }
+.timeline-content h3 { font-family: 'Syne', sans-serif; margin-bottom: 0.5rem; }
+.timeline-place { color: var(--text-muted); font-size: 13px; margin-bottom: 1rem; display: block; }
+.timeline-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
 
-/* ── CONTACT ── */
-.contact-container {
-  background: var(--bg2); padding: 4rem; border-radius: 30px;
-  text-align: center; border: 1px solid var(--border);
+/* ── BOUTONS ── */
+.btn {
+  padding: 14px 28px; border-radius: 10px; text-decoration: none;
+  font-weight: 600; font-size: 14px; transition: 0.3s; display: inline-block;
 }
-.contact-btn {
-  display: inline-block; background: var(--accent); color: white;
-  padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none;
-  font-weight: 700; margin-top: 2rem; transition: 0.3s;
-}
-.contact-btn:hover { box-shadow: 0 0 25px var(--accent-glow); }
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: #1d4ed8; transform: translateY(-3px); }
+.btn-secondary { border: 1px solid var(--border); color: var(--text); }
+.btn-secondary:hover { background: var(--bg3); }
 
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-  .hero { grid-template-columns: 1fr; text-align: center; padding: 120px 2rem 4rem; }
-  .hero-desc { margin: 0 auto 2.5rem; }
-  .exp-item { grid-template-columns: 1fr; gap: 1rem; }
-  nav { padding: 0 2rem; }
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr; text-align: center; }
+  .hero-left { padding: 8rem 2rem 4rem; align-items: center; }
+  .hero-subtitle { margin-left: auto; margin-right: auto; }
+  .hero-right { display: none; }
+  .hero-stats { position: static; flex-direction: row; justify-content: center; transform: none; margin-top: 2rem; }
+  section { padding: 5rem 2rem; }
+  .timeline-item { grid-template-columns: 1fr; gap: 1rem; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">AMINE.B</a>
+  <a class="nav-logo" href="#">
+    <span class="nav-logo-tag">DEV</span>
+    Amine BENALI
+  </a>
   <div class="nav-links">
-    <a href="#projets">Projets</a>
+    <a href="#about">À propos</a>
     <a href="#experience">Parcours</a>
-    <a href="#contact">Contact</a>
+    <a href="#portfolio">Projets</a>
+    <a href="#contact" class="nav-contact">Contact</a>
   </div>
 </nav>
 
-<main>
-  <!-- HERO SECTION -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <p class="hero-tagline">Consultant en Transformation Digitale</p>
-      <h1 class="hero-title">Amine <span style="color:var(--accent)">Benali</span></h1>
-      <p class="hero-desc">
-        Spécialiste PMO et automatisation des processus. J'accompagne les entreprises dans leur transition numérique grâce à l'IA et au développement d'outils sur mesure.
-      </p>
-      <div style="display:flex; gap: 1.5rem;">
-        <a href="#projets" class="contact-btn" style="margin:0">Voir mes projets</a>
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Consultant Digital & Automation</p>
+    <h1 class="hero-name">
+      Expert en<br><span>Transformation</span><br>Digitale
+    </h1>
+    <p class="hero-subtitle">
+      Spécialiste de l'automatisation de processus (VBA, AI) et du management de projets innovants. J'accompagne les entreprises dans leur transition numérique.
+    </p>
+    <div class="hero-cta">
+      <a href="mailto:aminebenali3@gmail.com" class="btn btn-primary">Démarrer un projet</a>
+      <a href="#portfolio" class="btn btn-secondary">Explorer mes travaux</a>
+    </div>
+    
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">03+</div>
+        <div class="stat-label">Années d'Expérience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Projets Automatisés</div>
       </div>
     </div>
+  </div>
 
-    <div class="hero-visual">
-      <div class="profile-img-container">
-        <!-- REMPLACER PAR VOTRE IMAGE -->
-        <img src="VOTRE_PHOTO.jpg" alt="Amine Benali">
-      </div>
-      
-      <div class="info-panels">
-        <div class="panel">
-          <p class="panel-label">Expérience</p>
-          <p class="panel-value">3+ Ans de Consulting</p>
-        </div>
-        <div class="panel">
-          <p class="panel-label">Expertise</p>
-          <p class="panel-value">Management & Automatisation</p>
-        </div>
-        <div class="panel">
-          <p class="panel-label">Formation</p>
-          <p class="panel-value">ESC Tunis — Master Innov'</p>
-        </div>
-      </div>
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <!-- Votre photo avec fondu au noir intégré -->
+      <img class="hero-photo" src="VOTRE_PHOTO.png" alt="Amine Benali">
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- PORTFOLIO SECTION -->
-  <section id="projets">
-    <div class="section-header">
-      <p class="hero-tagline">Réalisations</p>
-      <h2 class="section-title">Mes Projets</h2>
-    </div>
-    <div class="portfolio-grid">
-      <div class="project-card">
-        <div class="project-info">
-          <p class="project-cat">Banque & Finance</p>
-          <h3 class="project-title">Automatisation RPA & VBA</h3>
-          <p style="color:var(--text-secondary)">Optimisation des processus back-office bancaires, réduisant le temps de traitement de 40%.</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-info">
-          <p class="project-cat">Automobile</p>
-          <h3 class="project-title">Analyse de Marché Électrique</h3>
-          <p style="color:var(--text-secondary)">Étude stratégique sur l'autonomie des véhicules et les tendances du marché 2024-2026.</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-info">
-          <p class="project-cat">Digital</p>
-          <h3 class="project-title">Dashboard Management</h3>
-          <p style="color:var(--text-secondary)">Conception de tableaux de bord interactifs pour le suivi de KPIs complexes.</p>
-        </div>
+<section id="experience">
+  <div class="section-header">
+    <span class="section-tag">Mon Parcours</span>
+    <h2 class="section-title">Expériences Professionnelles</h2>
+  </div>
+  
+  <div class="timeline">
+    <!-- Exemple d'item -->
+    <div class="timeline-item">
+      <div class="timeline-date">2025 - Présent</div>
+      <div class="timeline-content">
+        <h3>Appui PMO & Transformation Digitale</h3>
+        <span class="timeline-place">Fondation Banque Populaire & CMGO</span>
+        <p class="timeline-desc">Gestion de projets digitaux, automatisation des reportings via VBA et intégration d'outils IA pour l'optimisation des processus.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- EXPÉRIENCES SECTION -->
-  <section id="experience">
-    <div class="section-header">
-      <p class="hero-tagline">Parcours professionnel</p>
-      <h2 class="section-title">Expériences</h2>
-    </div>
-    <div class="exp-list">
-      <div class="exp-item">
-        <div class="exp-date">2025 - Présent</div>
-        <div>
-          <span class="exp-role">Stagiaire PMO & Transformation Digitale</span>
-          <span class="exp-company">Fondation Banque Populaire & CMGO</span>
-          <p style="color:var(--text-secondary)">Pilotage de projets digitaux et support au management opérationnel.</p>
-        </div>
-      </div>
-      <div class="exp-item">
-        <div class="exp-date">2023 - 2024</div>
-        <div>
-          <span class="exp-role">Expert Secteur Automobile</span>
-          <span class="exp-company">Stage Technique</span>
-          <p style="color:var(--text-secondary)">Gestion des pièces de rechange et support technique pour véhicules connectés.</p>
-        </div>
-      </div>
-      <div class="exp-item">
-        <div class="exp-date">2022</div>
-        <div>
-          <span class="exp-role">Assistant Back-Office</span>
-          <span class="exp-company">Secteur Bancaire</span>
-          <p style="color:var(--text-secondary)">Gestion des données clients et fiabilisation des processus transactionnels.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section id="contact">
-    <div class="contact-container">
-      <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 1rem;">Prêt à collaborer ?</h2>
-      <p style="color:var(--text-secondary); max-width: 600px; margin: 0 auto;">
-        Je suis actuellement ouvert à de nouvelles opportunités en tant que Junior PMO ou Manager de la Transformation Digitale.
-      </p>
-      <a href="mailto:aminebenali3@gmail.com" class="contact-btn">Envoyer un Message</a>
-      <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 2rem;">
-        <a href="https://linkedin.com/in/amine-benali-9640b61a4" target="_blank" style="color:var(--text-secondary); text-decoration: none;">LinkedIn</a>
-        <a href="#" style="color:var(--text-secondary); text-decoration: none;">GitHub</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer style="padding: 2rem 4rem; text-align: center; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted);">
-  &copy; 2026 Amine Benali — Réalisé avec expertise digitale.
-</footer>
+<!-- Le reste des sections (Portfolio, Skills) suivra la même logique -->
 
 </body>
 </html>
