@@ -116,18 +116,19 @@ nav {
 }
 .btn-secondary:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
 .hero-right {
-  position: relative; display: flex; align-items: flex-end; justify-content: center;
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
   padding-bottom: 0;
   background: transparent;
   overflow: visible;
 }
 .hero-photo-wrap {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  position: relative;
+  width: 100%;
   display: flex; align-items: flex-end; justify-content: center;
   background: transparent;
-  z-index: 20; /* photo always on top */
+  z-index: 20;
   pointer-events: none;
+  flex: 1;
 }
 .hero-photo-bg {
   display: none;
@@ -159,10 +160,13 @@ nav {
 
 /* right-side info panels */
 .hero-right-panels {
-  position: absolute; top: 50%; right: 3rem; transform: translateY(-50%);
-  display: flex; flex-direction: column; gap: 1.5rem; z-index: 3;
+  position: relative;
+  width: 100%;
+  display: flex; gap: 1rem; z-index: 25;
+  padding: 0 1.5rem 2rem;
+  margin-top: -2rem;
 }
-.info-panel { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; min-width: 200px; }
+.info-panel { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; min-width: 0; flex: 1; }
 .info-panel-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
 .info-panel-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
 .info-panel-text { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
@@ -519,8 +523,8 @@ footer a:hover { color: var(--accent); }
       >
     </div>
 
-    <!-- Panels -->
-    <div style="position:absolute;top:50%;right:2.5rem;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;z-index:5;">
+    <!-- Panels under photo -->
+    <div class="hero-right-panels">
       <div class="info-panel">
         <p class="info-panel-label">À propos de moi</p>
         <p class="info-panel-title" style="font-size:0.78rem;line-height:1.4;">Spécialiste en projets digitaux | Marketing, Communication & Automatisation des processus</p>
