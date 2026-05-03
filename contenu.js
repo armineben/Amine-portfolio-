@@ -29,6 +29,7 @@ const PORTFOLIO_CONTENU = {
     "santé-connectée.html", 
     "projet-fondation.html",
     "projet-bpgo.html",
+    "Projet_Smart_Parking.html",
   ],
 
   // 📁 Dossier : images/images/excel/
