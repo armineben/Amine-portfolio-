@@ -67,7 +67,8 @@ const PORTFOLIO_CONTENU = {
     "post-instagram-5.png",
     "post-instagram-6.png",
     "post-instagram-7.png",
-    "post-instagram-8.png"
+    "post-instagram-8.png",
+    "we_are_open.png",
   ],
 
 };
