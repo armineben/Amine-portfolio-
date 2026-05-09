@@ -3,62 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Project - Financial Automation</title>
+    <title>Portfolio - Automatisation Salon</title>
     <style>
-        :root { --primary: #2c3e50; --secondary: #3498db; --accent: #27ae60; --bg: #f4f7f6; --text: #333; }
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: var(--text); background-color: var(--bg); margin: 0; padding: 0; }
-        .container { max-width: 800px; margin: 40px auto; background: #fff; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 8px; }
-        header { border-bottom: 2px solid var(--secondary); margin-bottom: 30px; padding-bottom: 10px; }
-        h1 { color: var(--primary); margin: 0; font-size: 2em; }
-        .tagline { color: var(--secondary); font-weight: bold; text-transform: uppercase; font-size: 0.8em; }
-        h2 { color: var(--primary); border-left: 5px solid var(--secondary); padding-left: 15px; font-size: 1.3em; margin-top: 30px; }
-        .tech-stack { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-        .badge { background: var(--primary); color: #fff; padding: 4px 10px; border-radius: 15px; font-size: 0.8em; }
-        .feature-list { list-style: none; padding: 0; }
-        .feature-list li { margin-bottom: 8px; padding-left: 20px; position: relative; }
-        .feature-list li::before { content: '✔'; position: absolute; left: 0; color: var(--accent); }
-        .highlight-box { background: #eef7ff; border-radius: 6px; padding: 15px; border-left: 4px solid var(--secondary); margin: 20px 0; }
-        .code-snippet { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.85em; overflow-x: auto; }
-        footer { margin-top: 40px; text-align: center; font-size: 0.8em; color: #777; }
+        :root { --primary: #2c3e50; --secondary: #3498db; --accent: #27ae60; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; background-color: var(--bg); margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        header { border-bottom: 3px solid var(--secondary); margin-bottom: 20px; }
+        h1 { color: var(--primary); font-size: 1.8em; margin-bottom: 5px; }
+        h2 { color: var(--secondary); font-size: 1.4em; margin-top: 25px; }
+        .badge { background: var(--primary); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: 0.8em; margin-right: 5px; }
+        .highlight { background: #eef7ff; padding: 15px; border-left: 4px solid var(--secondary); margin: 20px 0; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; font-family: monospace; font-size: 0.9em; overflow-x: auto; }
+        footer { text-align: center; margin-top: 30px; font-size: 0.8em; color: #777; }
     </style>
 </head>
 <body>
+
 <div class="container">
     <header>
-        <div class="tagline">Gestion de Projet & Automatisation</div>
-        <h1>Dashboard Financier Automatisé (Excel/VBA)</h1>
+        <h1>Automatisation de Gestion Financière</h1>
+        <p style="color: var(--secondary); font-weight: bold;">CONSULTANT EN GESTION DE PROJET & AUTOMATISATION</p>
     </header>
+
     <section>
-        <h2>Présentation du Projet</h2>
-        <p>Conception d'un outil de pilotage financier pour TPE. Automatisation de la saisie comptable journalière et génération d'une vision analytique annuelle en temps réel.</p>
-        <div class="tech-stack">
+        <h2>Description du Projet</h2>
+        <p>Développement d'un outil Excel/VBA permettant de piloter la rentabilité d'un salon de coiffure en temps réel.</p>
+        <div>
             <span class="badge">Excel VBA</span>
-            <span class="badge">Automatisation</span>
-            <span class="badge">UX Design</span>
+            <span class="badge">Dashboarding</span>
+            <span class="badge">Finance TPE</span>
         </div>
     </section>
+
     <section>
         <h2>Fonctionnalités Clés</h2>
-        <ul class="feature-list">
-            <li>Génération automatique de 12 feuilles mensuelles synchronisées.</li>
-            <li>Intégration automatique des charges fixes (ex: Loyer 500 DT).</li>
-            <li>Indicateurs visuels (CA en vert, Charges en rouge, Bénéfice en bleu).</li>
-            <li>Mise en gras automatique des dates lors de la saisie (Saisie intelligente).</li>
+        <ul>
+            <li><strong>Saisie Intelligente :</strong> Les dates se mettent en gras automatiquement lors de l'entrée de données.</li>
+            <li><strong>Gestion Tunisienne :</strong> Calculs et affichages configurés en Dinars Tunisiens (DT).</li>
+            <li><strong>Architecture Auto-générée :</strong> Création automatique des 12 feuilles mensuelles et d'une synthèse annuelle.</li>
+            <li><strong>Visualisation :</strong> Code couleur pour distinguer immédiatement le CA (Vert), les Charges (Rouge) et le Profit (Bleu).</li>
         </ul>
     </section>
-    <div class="highlight-box">
-        <strong>Impact :</strong> Transformation d'une gestion manuelle en un système analytique fiable, offrant une visibilité immédiate sur la rentabilité nette.
+
+    <div class="highlight">
+        <strong>Résultat :</strong> Une visibilité totale sur les flux financiers et une réduction massive du temps de saisie administrative.
     </div>
+
     <section>
-        <h2>Extrait VBA (Saisie Intelligente)</h2>
-        <div class="code-snippet">
-' Mise en gras auto de la date si la ligne est remplie
-With ws.Cells(row, 1).FormatConditions.Add(Type:=xlExpression, Formula1:="=$B" & row & ">0")
-    .Font.Bold = True
-End With
+        <h2>Aperçu du Code VBA</h2>
+        <div class="code-block">
+' Formatage monétaire personnalisé
+devFormat = "#,##0.000 ""DT"""
+ws.Range("B4:I" & row).NumberFormat = devFormat
+
+' Automatisation du Loyer
+If d = startD Then
+    ws.Cells(row, 7).Value = "Loyer"
+    ws.Cells(row, 8).Value = 500
+End If
         </div>
     </section>
-    <footer>Projet par Amine Benali - Consultant en Gestion de Projet</footer>
+
+    <footer>
+        Projet réalisé par Amine Benali &copy; 2026
+    </footer>
 </div>
+
 </body>
 </html>
