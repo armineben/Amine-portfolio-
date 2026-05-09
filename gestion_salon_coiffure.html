@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Project - Financial Automation</title>
+    <style>
+        :root { --primary: #2c3e50; --secondary: #3498db; --accent: #27ae60; --bg: #f4f7f6; --text: #333; }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: var(--text); background-color: var(--bg); margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 40px auto; background: #fff; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 8px; }
+        header { border-bottom: 2px solid var(--secondary); margin-bottom: 30px; padding-bottom: 10px; }
+        h1 { color: var(--primary); margin: 0; font-size: 2em; }
+        .tagline { color: var(--secondary); font-weight: bold; text-transform: uppercase; font-size: 0.8em; }
+        h2 { color: var(--primary); border-left: 5px solid var(--secondary); padding-left: 15px; font-size: 1.3em; margin-top: 30px; }
+        .tech-stack { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+        .badge { background: var(--primary); color: #fff; padding: 4px 10px; border-radius: 15px; font-size: 0.8em; }
+        .feature-list { list-style: none; padding: 0; }
+        .feature-list li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .feature-list li::before { content: '✔'; position: absolute; left: 0; color: var(--accent); }
+        .highlight-box { background: #eef7ff; border-radius: 6px; padding: 15px; border-left: 4px solid var(--secondary); margin: 20px 0; }
+        .code-snippet { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.85em; overflow-x: auto; }
+        footer { margin-top: 40px; text-align: center; font-size: 0.8em; color: #777; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="tagline">Gestion de Projet & Automatisation</div>
+        <h1>Dashboard Financier Automatisé (Excel/VBA)</h1>
+    </header>
+    <section>
+        <h2>Présentation du Projet</h2>
+        <p>Conception d'un outil de pilotage financier pour TPE. Automatisation de la saisie comptable journalière et génération d'une vision analytique annuelle en temps réel.</p>
+        <div class="tech-stack">
+            <span class="badge">Excel VBA</span>
+            <span class="badge">Automatisation</span>
+            <span class="badge">UX Design</span>
+        </div>
+    </section>
+    <section>
+        <h2>Fonctionnalités Clés</h2>
+        <ul class="feature-list">
+            <li>Génération automatique de 12 feuilles mensuelles synchronisées.</li>
+            <li>Intégration automatique des charges fixes (ex: Loyer 500 DT).</li>
+            <li>Indicateurs visuels (CA en vert, Charges en rouge, Bénéfice en bleu).</li>
+            <li>Mise en gras automatique des dates lors de la saisie (Saisie intelligente).</li>
+        </ul>
+    </section>
+    <div class="highlight-box">
+        <strong>Impact :</strong> Transformation d'une gestion manuelle en un système analytique fiable, offrant une visibilité immédiate sur la rentabilité nette.
+    </div>
+    <section>
+        <h2>Extrait VBA (Saisie Intelligente)</h2>
+        <div class="code-snippet">
+' Mise en gras auto de la date si la ligne est remplie
+With ws.Cells(row, 1).FormatConditions.Add(Type:=xlExpression, Formula1:="=$B" & row & ">0")
+    .Font.Bold = True
+End With
+        </div>
+    </section>
+    <footer>Projet par Amine Benali - Consultant en Gestion de Projet</footer>
+</div>
+</body>
+</html>
