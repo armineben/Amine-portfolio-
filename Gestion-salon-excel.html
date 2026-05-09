@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salon Manager Pro — Excel VBA Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0e13;
+    --surface: #13171f;
+    --surface2: #1a1f2b;
+    --border: rgba(255,255,255,0.07);
+    --accent: #27ae60;
+    --accent2: #2980b9;
+    --accent3: #e67e22;
+    --gold: #f0c040;
+    --text: #e8ecf0;
+    --muted: #7a8494;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── GLOW BLOBS ─── */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; left: -200px; }
+  .blob-2 { width: 500px; height: 500px; background: var(--accent2); bottom: -150px; right: -150px; }
+  .blob-3 { width: 300px; height: 300px; background: var(--gold); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+  /* ─── MAIN WRAPPER ─── */
+  .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 0 4rem;
+    position: relative;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(39,174,96,0.12);
+    border: 1px solid rgba(39,174,96,0.3);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    width: fit-content;
+    animation: fadeSlideUp 0.6s ease both;
+  }
+
+  .badge-dot {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3em;
+    animation: fadeSlideUp 0.6s 0.1s ease both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    animation: fadeSlideUp 0.6s 0.2s ease both;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+    animation: fadeSlideUp 0.6s 0.3s ease both;
+  }
+
+  .tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.3rem 0.8rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .tag.green { color: var(--accent); border-color: rgba(39,174,96,0.25); background: rgba(39,174,96,0.06); }
+  .tag.blue  { color: #5dade2; border-color: rgba(41,128,185,0.3); background: rgba(41,128,185,0.06); }
+  .tag.orange{ color: var(--accent3); border-color: rgba(230,126,34,0.3); background: rgba(230,126,34,0.06); }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeSlideUp 0.6s 0.4s ease both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.8rem;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .btn-primary:hover { background: #2ecc71; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(39,174,96,0.3); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); background: var(--surface); transform: translateY(-2px); }
+
+  /* ─── SECTION TITLES ─── */
+  .section { padding: 6rem 0; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--muted);
+    max-width: 560px;
+    font-size: 0.95rem;
+  }
+
+  /* ─── METRICS STRIP ─── */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 4rem 0;
+  }
+
+  .metric {
+    background: var(--surface);
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .metric-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .metric-value.green { color: var(--accent); }
+  .metric-value.blue  { color: #5dade2; }
+  .metric-value.gold  { color: var(--gold); }
+  .metric-value.orange{ color: var(--accent3); }
+
+  .metric-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── FEATURE GRID ─── */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .feature-card:hover {
+    border-color: rgba(255,255,255,0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .feature-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .feature-icon.green { background: rgba(39,174,96,0.15); }
+  .feature-icon.blue  { background: rgba(41,128,185,0.15); }
+  .feature-icon.gold  { background: rgba(240,192,64,0.15); }
+  .feature-icon.orange{ background: rgba(230,126,34,0.15); }
+  .feature-icon.pink  { background: rgba(231,76,60,0.15); }
+  .feature-icon.purple{ background: rgba(155,89,182,0.15); }
+
+  .feature-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .feature-desc  { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ─── SPREADSHEET PREVIEW ─── */
+  .sheet-preview {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 3rem;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+  }
+
+  .sheet-topbar {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.red   { background: #ff5f57; }
+  .dot.yellow{ background: #febc2e; }
+  .dot.green { background: #28c840; }
+
+  .sheet-tab-bar {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: #0f1318;
+    border-bottom: 1px solid var(--border);
+    padding: 0 1rem;
+  }
+
+  .sheet-tab {
+    padding: 0.55rem 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    white-space: nowrap;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .sheet-tab.active { color: var(--white); border-bottom-color: var(--accent2); }
+  .sheet-tab:hover  { color: var(--text); }
+
+  .sheet-content { padding: 1.5rem; overflow-x: auto; }
+
+  table.excel {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  table.excel th {
+    background: #2c3e50;
+    color: var(--white);
+    padding: 0.6rem 1rem;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  table.excel td {
+    padding: 0.5rem 0.9rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .cell-ca    { background: rgba(41,128,185,0.18); color: #85c1e9; }
+  .cell-charge{ background: rgba(231,76,60,0.12);  color: #f1948a; }
+  .cell-reste { background: rgba(39,174,96,0.15);  color: #82e0aa; }
+  .cell-total { background: rgba(200,200,200,0.12); font-weight: 600; color: var(--white); }
+  .cell-date  { color: var(--muted); }
+  .cell-label { background: rgba(39,174,96,0.25); color: #2ecc71; font-weight: 500; text-align: left; }
+  .cell-price { color: var(--gold); }
+
+  /* ─── CODE BLOCK ─── */
+  .code-section { margin-top: 3rem; }
+
+  .code-window {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .code-topbar {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .code-dots { display: flex; gap: 0.4rem; }
+
+  .code-filename {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  pre {
+    padding: 1.5rem;
+    overflow-x: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    line-height: 1.75;
+    color: #cdd9e5;
+  }
+
+  .kw  { color: #ff79c6; }
+  .fn  { color: #50fa7b; }
+  .str { color: #f1fa8c; }
+  .cm  { color: #6272a4; font-style: italic; }
+  .num { color: #bd93f9; }
+  .var { color: #8be9fd; }
+  .obj { color: #ffb86c; }
+
+  /* ─── CATALOGUE ─── */
+  .catalogue {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .cat-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+  }
+
+  .cat-item:hover {
+    border-color: rgba(39,174,96,0.3);
+    transform: translateX(4px);
+  }
+
+  .cat-name { font-size: 0.9rem; }
+  .cat-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ─── ARCHITECTURE ─── */
+  .arch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  @media(max-width: 700px) {
+    .arch-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 2.5rem; }
+  }
+
+  .arch-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem;
+  }
+
+  .arch-card-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+  }
+
+  .arch-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .arch-list li {
+    font-size: 0.85rem;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .arch-list li::before {
+    content: '→';
+    color: var(--accent2);
+    flex-shrink: 0;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    animation: fadeSlideUp 0.6s 0.8s ease both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollAnim 1.5s ease infinite;
+  }
+
+  @keyframes scrollAnim {
+    0%,100% { transform: scaleY(1); opacity: 1; }
+    50%      { transform: scaleY(0.5); opacity: 0.4; }
+  }
+
+  /* ─── ACTIVE TABS ─── */
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+</style>
+</head>
+<body>
+
+<!-- Blobs -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="badge"><span class="badge-dot"></span> Excel VBA · 2026</div>
+    <h1 class="hero-title">Salon Manager<br><em>Pro</em></h1>
+    <p class="hero-sub">
+      Un système de gestion financière complet pour salon de beauté — 13 feuilles Excel générées automatiquement, suivi mensuel, synthèse annuelle et catalogue tarifaire intégrés.
+    </p>
+    <div class="hero-tags">
+      <span class="tag green">VBA Macro</span>
+      <span class="tag blue">Excel 2016+</span>
+      <span class="tag orange">Gestion Financière</span>
+      <span class="tag">DT Currency</span>
+      <span class="tag">Mise en forme cond.</span>
+      <span class="tag">Auto-génération</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">⬇ Télécharger .xlsm</a>
+      <a href="#apercu" class="btn btn-ghost">Voir l'aperçu →</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ METRICS ═══════════════ -->
+<div class="container">
+  <div class="metrics reveal">
+    <div class="metric">
+      <span class="metric-value green">13</span>
+      <span class="metric-label">Feuilles générées</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value blue">365</span>
+      <span class="metric-label">Lignes de suivi</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value gold">9</span>
+      <span class="metric-label">Prestations catalogue</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value orange">100%</span>
+      <span class="metric-label">Auto-formulé</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ FEATURES ═══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Fonctionnalités</p>
+      <h2 class="section-title">Tout ce dont votre salon a besoin</h2>
+      <p class="section-desc">Une macro VBA qui génère en un clic un outil de gestion complet, structuré et visuellement professionnel.</p>
+    </div>
+
+    <div class="features">
+      <div class="feature-card reveal">
+        <div class="feature-icon green">📊</div>
+        <h3 class="feature-title">Tableau de Bord Annuel</h3>
+        <p class="feature-desc">Synthèse consolidée de tous les mois avec CA total, charges et bénéfice net. Mise à jour automatique via formules liées.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon blue">📅</div>
+        <h3 class="feature-title">12 Feuilles Mensuelles</h3>
+        <p class="feature-desc">Une feuille par mois générée automatiquement. Chaque jour de l'année est pré-listé avec sa formule de calcul du reste.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon gold">💡</div>
+        <h3 class="feature-title">Dates Intelligentes</h3>
+        <p class="feature-desc">Mise en forme conditionnelle : les dates des jours travaillés passent automatiquement en gras dès qu'un CA est saisi.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon orange">💰</div>
+        <h3 class="feature-title">Loyer Automatique</h3>
+        <p class="feature-desc">Charge fixe de 500 DT pré-remplie au 1er de chaque mois dans la colonne "Charges Fixes".</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon pink">🎨</div>
+        <h3 class="feature-title">Code Couleur Pro</h3>
+        <p class="feature-desc">CA en bleu clair, charges en rouge pastel, reste en bleu professionnel. Lecture instantanée de l'état financier.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon purple">💎</div>
+        <h3 class="feature-title">Catalogue Tarifaire</h3>
+        <p class="feature-desc">Toutes les prestations avec leurs tarifs intégrés dans la synthèse. Référence rapide accessible en permanence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ APERÇU TABLEUR ═══════════════ -->
+<section class="section" id="apercu">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Aperçu visuel</p>
+      <h2 class="section-title">Interface Excel générée</h2>
+      <p class="section-desc">Voici à quoi ressemblent les feuilles créées automatiquement par la macro.</p>
+    </div>
+
+    <div class="sheet-preview reveal">
+      <div class="sheet-topbar">
+        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        <span style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);margin-left:0.5rem;">Salon_Manager_2026.xlsm</span>
+      </div>
+
+      <div class="sheet-tab-bar">
+        <div class="sheet-tab active" onclick="switchTab('synth',this)">SYNTHESE ANNUELLE</div>
+        <div class="sheet-tab" onclick="switchTab('jan',this)">Janvier</div>
+        <div class="sheet-tab" onclick="switchTab('feb',this)">Février</div>
+        <div class="sheet-tab" onclick="switchTab('cat',this)">Catalogue</div>
+      </div>
+
+      <div class="sheet-content">
+
+        <!-- SYNTHESE -->
+        <div id="tab-synth" class="tab-content active">
+          <table class="excel">
+            <thead>
+              <tr>
+                <th colspan="4" style="background:#2c3e50;font-size:0.85rem;padding:0.8rem;">TABLEAU DE BORD ANNUEL 2026</th>
+              </tr>
+              <tr>
+                <th>Mois</th><th>CA Brut</th><th>Total Charges</th><th>Bénéfice Net</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="cell-date">Janvier</td><td class="cell-ca">3 200,000 DT</td><td class="cell-charge">980,000 DT</td><td class="cell-reste">2 220,000 DT</td></tr>
+              <tr><td class="cell-date">Février</td><td class="cell-ca">2 750,000 DT</td><td class="cell-charge">870,000 DT</td><td class="cell-reste">1 880,000 DT</td></tr>
+              <tr><td class="cell-date">Mars</td><td class="cell-ca">3 600,000 DT</td><td class="cell-charge">1 050,000 DT</td><td class="cell-reste">2 550,000 DT</td></tr>
+              <tr><td class="cell-date" style="color:var(--muted);font-style:italic;">… × 9 mois</td><td class="cell-ca" style="color:var(--muted);">—</td><td class="cell-charge" style="color:var(--muted);">—</td><td class="cell-reste" style="color:var(--muted);">—</td></tr>
+              <tr><td class="cell-total">TOTAL ANNUEL</td><td class="cell-total cell-ca">38 400,000 DT</td><td class="cell-total cell-charge">11 640,000 DT</td><td class="cell-total cell-reste">26 760,000 DT</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- JANVIER -->
+        <div id="tab-jan" class="tab-content">
+          <table class="excel">
+            <thead>
+              <tr><th colspan="9" style="background:#2980b9;font-size:0.82rem;">GESTION — JANVIER 2026</th></tr>
+              <tr>
+                <th>Date</th><th>CA</th>
+                <th colspan="2">Charges Var.</th>
+                <th colspan="2">Charges Prod.</th>
+                <th colspan="2">Charges Fixes</th>
+                <th>Reste</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-date" style="font-weight:700;color:var(--text);">01/01/2026</td>
+                <td class="cell-ca">250,000 DT</td>
+                <td>Produit</td><td class="cell-charge">30,000 DT</td>
+                <td>—</td><td class="cell-charge">—</td>
+                <td>Loyer</td><td class="cell-charge">500,000 DT</td>
+                <td class="cell-reste">-280,000 DT</td>
+              </tr>
+              <tr>
+                <td class="cell-date" style="font-weight:700;color:var(--text);">02/01/2026</td>
+                <td class="cell-ca">180,000 DT</td>
+                <td>—</td><td class="cell-charge">—</td>
+                <td>—</td><td class="cell-charge">—</td>
+                <td>—</td><td class="cell-charge">—</td>
+                <td class="cell-reste">180,000 DT</td>
+              </tr>
+              <tr>
+                <td class="cell-date">03/01/2026</td>
+                <td class="cell-ca"></td>
+                <td></td><td class="cell-charge"></td>
+                <td></td><td class="cell-charge"></td>
+                <td></td><td class="cell-charge"></td>
+                <td class="cell-reste">0,000 DT</td>
+              </tr>
+              <tr>
+                <td class="cell-date" style="color:var(--muted);font-style:italic;">… × 28 jours</td>
+                <td class="cell-ca" colspan="8" style="color:var(--muted);">—</td>
+              </tr>
+              <tr>
+                <td class="cell-total">TOTAL</td>
+                <td class="cell-total cell-ca">3 200,000 DT</td>
+                <td colspan="6"></td>
+                <td class="cell-total cell-reste">2 220,000 DT</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- FEVRIER -->
+        <div id="tab-feb" class="tab-content">
+          <table class="excel">
+            <thead>
+              <tr><th colspan="9" style="background:#2980b9;font-size:0.82rem;">GESTION — FÉVRIER 2026</th></tr>
+              <tr>
+                <th>Date</th><th>CA</th>
+                <th colspan="2">Charges Var.</th>
+                <th colspan="2">Charges Prod.</th>
+                <th colspan="2">Charges Fixes</th>
+                <th>Reste</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-date" style="font-weight:700;color:var(--text);">01/02/2026</td>
+                <td class="cell-ca">190,000 DT</td>
+                <td>—</td><td class="cell-charge">—</td>
+                <td>—</td><td class="cell-charge">—</td>
+                <td>Loyer</td><td class="cell-charge">500,000 DT</td>
+                <td class="cell-reste">-310,000 DT</td>
+              </tr>
+              <tr>
+                <td class="cell-date" style="font-weight:700;color:var(--text);">02/02/2026</td>
+                <td class="cell-ca">320,000 DT</td>
+                <td>—</td><td class="cell-charge">—</td>
+                <td>—</td><td class="cell-charge">—</td>
+                <td>—</td><td class="cell-charge">—</td>
+                <td class="cell-reste">320,000 DT</td>
+              </tr>
+              <tr>
+                <td class="cell-date" style="color:var(--muted);font-style:italic;">… × 26 jours</td>
+                <td class="cell-ca" colspan="8" style="color:var(--muted);">—</td>
+              </tr>
+              <tr>
+                <td class="cell-total">TOTAL</td>
+                <td class="cell-total cell-ca">2 750,000 DT</td>
+                <td colspan="6"></td>
+                <td class="cell-total cell-reste">1 880,000 DT</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- CATALOGUE -->
+        <div id="tab-cat" class="tab-content">
+          <table class="excel">
+            <thead>
+              <tr><th colspan="2" style="background:rgb(39,174,96);font-size:0.82rem;">CATALOGUE TARIFS 2026</th></tr>
+              <tr><th>Prestation</th><th>Tarif</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="cell-label">Maquillage</td><td class="cell-price">80 DT+</td></tr>
+              <tr><td class="cell-label">Lash lift</td><td class="cell-price">40 DT</td></tr>
+              <tr><td class="cell-label">Brow lift</td><td class="cell-price">50 DT</td></tr>
+              <tr><td class="cell-label">Cils semi soie</td><td class="cell-price">30 DT</td></tr>
+              <tr><td class="cell-label">Cils en soie</td><td class="cell-price">70 DT+</td></tr>
+              <tr><td class="cell-label">Traçage sourcil</td><td class="cell-price">5 DT</td></tr>
+              <tr><td class="cell-label">Épilation sourcil</td><td class="cell-price">7 DT</td></tr>
+              <tr><td class="cell-label">Épilation visage</td><td class="cell-price">15 DT</td></tr>
+              <tr><td class="cell-label">Brushing</td><td class="cell-price">5 DT+</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ CODE SNIPPET ═══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Code source</p>
+      <h2 class="section-title">Extrait de la macro VBA</h2>
+      <p class="section-desc">Le cœur du projet — génération automatique des feuilles mensuelles avec formules, couleurs et données conditionnelles.</p>
+    </div>
+
+    <div class="code-window reveal code-section">
+      <div class="code-topbar">
+        <div class="code-dots">
+          <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        </div>
+        <span class="code-filename">SalonManager.bas</span>
+      </div>
+      <pre><span class="cm">' ── Génération des 12 feuilles mensuelles ──────────────────</span>
+<span class="kw">For</span> <span class="var">m</span> = <span class="num">1</span> <span class="kw">To</span> <span class="num">12</span>
+    <span class="kw">Set</span> <span class="var">ws</span> = <span class="obj">wb</span>.Worksheets.Add(After:=<span class="obj">wb</span>.Sheets(<span class="obj">wb</span>.Sheets.Count))
+    <span class="var">ws</span>.Name = <span class="var">monthsFr</span>(<span class="var">m</span> - <span class="num">1</span>)
+
+    <span class="cm">' ── En-têtes avec style "bleu professionnel" ──</span>
+    <span class="kw">With</span> <span class="var">ws</span>.Range(<span class="str">"A2:I3"</span>)
+        .Interior.Color = <span class="fn">RGB</span>(<span class="num">41</span>, <span class="num">128</span>, <span class="num">185</span>)
+        .Font.Color = <span class="fn">vbWhite</span>: .Font.Bold = <span class="kw">True</span>
+    <span class="kw">End With</span>
+
+    <span class="cm">' ── Boucle sur chaque jour du mois ────────────</span>
+    <span class="var">startD</span> = <span class="fn">DateSerial</span>(<span class="num">2026</span>, <span class="var">m</span>, <span class="num">1</span>)
+    <span class="var">endD</span>   = <span class="fn">DateSerial</span>(<span class="num">2026</span>, <span class="var">m</span> + <span class="num">1</span>, <span class="num">0</span>)
+    <span class="var">row</span> = <span class="num">4</span>
+    <span class="kw">For</span> <span class="var">d</span> = <span class="var">startD</span> <span class="kw">To</span> <span class="var">endD</span>
+        <span class="var">ws</span>.Cells(<span class="var">row</span>, <span class="num">2</span>).Interior.Color = <span class="fn">RGB</span>(<span class="num">221</span>, <span class="num">235</span>, <span class="num">247</span>) <span class="cm">' CA</span>
+        <span class="var">ws</span>.Cells(<span class="var">row</span>, <span class="num">9</span>).Formula = <span class="str">"=B"</span> & <span class="var">row</span> & <span class="str">"-(D"</span> & <span class="var">row</span> & <span class="str">"+F"</span> & <span class="var">row</span> & <span class="str">"+H"</span> & <span class="var">row</span> & <span class="str">")"</span>
+
+        <span class="kw">If</span> <span class="var">d</span> = <span class="var">startD</span> <span class="kw">Then</span>  <span class="cm">' Loyer auto le 1er</span>
+            <span class="var">ws</span>.Cells(<span class="var">row</span>, <span class="num">7</span>).Value = <span class="str">"Loyer"</span>
+            <span class="var">ws</span>.Cells(<span class="var">row</span>, <span class="num">8</span>).Value = <span class="num">500</span>
+        <span class="kw">End If</span>
+        <span class="var">row</span> = <span class="var">row</span> + <span class="num">1</span>
+    <span class="kw">Next</span> <span class="var">d</span>
+<span class="kw">Next</span> <span class="var">m</span></pre>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ ARCHITECTURE ═══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Architecture</p>
+      <h2 class="section-title">Structure du classeur</h2>
+    </div>
+    <div class="arch-grid reveal">
+      <div class="arch-card">
+        <div class="arch-card-title">Feuille SYNTHÈSE ANNUELLE</div>
+        <ul class="arch-list">
+          <li>Tableau de bord avec CA, charges et bénéfice par mois</li>
+          <li>Formules liées aux 12 feuilles mensuelles</li>
+          <li>Catalogue des 9 prestations avec tarifs</li>
+          <li>Ligne TOTAL ANNUEL calculée automatiquement</li>
+          <li>Format monétaire DT (#,##0.000 "DT")</li>
+        </ul>
+      </div>
+      <div class="arch-card">
+        <div class="arch-card-title">12 Feuilles Mensuelles</div>
+        <ul class="arch-list">
+          <li>Une ligne par jour (28 à 31 selon le mois)</li>
+          <li>Colonnes : CA · Charges Var. · Charges Prod. · Charges Fixes · Reste</li>
+          <li>Formule Reste = CA − Σ(toutes charges)</li>
+          <li>Loyer 500 DT pré-inséré au 1er du mois</li>
+          <li>Mise en forme conditionnelle sur les dates travaillées</li>
+        </ul>
+      </div>
+      <div class="arch-card">
+        <div class="arch-card-title">Automatisation VBA</div>
+        <ul class="arch-list">
+          <li>Macro unique : <code style="color:var(--accent);">ConstruireGestionSalonStylise()</code></li>
+          <li>Suppression et régénération complète à chaque exécution</li>
+          <li>Gestion des noms de mois en français</li>
+          <li>Application.ScreenUpdating désactivé pour la performance</li>
+        </ul>
+      </div>
+      <div class="arch-card">
+        <div class="arch-card-title">Design & UX</div>
+        <ul class="arch-list">
+          <li>Code couleur sémantique : vert=positif, rouge=charge</li>
+          <li>En-têtes de colonnes fusionnées sur 2 niveaux</li>
+          <li>AutoFit sur toutes les colonnes</li>
+          <li>Bordures continues pour lisibilité maximale</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ CATALOGUE PRESTATIONS ═══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Catalogue intégré</p>
+      <h2 class="section-title">Prestations & Tarifs</h2>
+      <p class="section-desc">Le catalogue est directement accessible dans la feuille SYNTHÈSE ANNUELLE pour une consultation rapide pendant la saisie.</p>
+    </div>
+    <div class="catalogue reveal">
+      <div class="cat-item"><span class="cat-name">✨ Maquillage</span><span class="cat-price">80 DT+</span></div>
+      <div class="cat-item"><span class="cat-name">👁 Lash lift</span><span class="cat-price">40 DT</span></div>
+      <div class="cat-item"><span class="cat-name">🖊 Brow lift</span><span class="cat-price">50 DT</span></div>
+      <div class="cat-item"><span class="cat-name">💫 Cils semi soie</span><span class="cat-price">30 DT</span></div>
+      <div class="cat-item"><span class="cat-name">💎 Cils en soie</span><span class="cat-price">70 DT+</span></div>
+      <div class="cat-item"><span class="cat-name">✏️ Traçage sourcil</span><span class="cat-price">5 DT</span></div>
+      <div class="cat-item"><span class="cat-name">🌿 Épilation sourcil</span><span class="cat-price">7 DT</span></div>
+      <div class="cat-item"><span class="cat-name">🌸 Épilation visage</span><span class="cat-price">15 DT</span></div>
+      <div class="cat-item"><span class="cat-name">💆 Brushing</span><span class="cat-price">5 DT+</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="container">
+    <p style="margin-bottom:0.4rem;">Salon Manager Pro · Projet Excel VBA · 2026</p>
+    <p>Développé avec <span style="color:#e74c3c;">♥</span> · <a href="#">GitHub</a> · <a href="#">Portfolio</a></p>
+  </div>
+</footer>
+
+<script>
+  // ── Tab switching
+  function switchTab(id, el) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.sheet-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    el.classList.add('active');
+  }
+
+  // ── Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
