@@ -1,5 +1,23 @@
 const PORTFOLIO_CONTENU = {
 
+  // 🤖 Dossier : images/images/ai-prompts/ (pour les images générées): [
+  
+    title: "Portrait Cinématique",
+    prompt: "A hyper-realistic cinematic portrait of a woman with silver hair, golden hour light, shallow depth of field, Hasselblad medium format, f/1.8, film grain, muted warm tones, editorial fashion photography",
+    model: "Midjourney v6",
+    tags: ["portrait", "cinematic"],
+    image: "images/ai-prompts/portrait-cinematique.png" // ← ton image générée
+  },
+  {
+    title: "Cité Brutaliste Futuriste",
+    prompt: "Brutalist megastructure city, aerial view, overcast sky, raw concrete textures, neon signage reflecting on wet streets, cyberpunk atmosphere, ultra-detailed, photorealistic",
+    model: "DALL·E 3",
+    tags: ["architecture", "futuriste"],
+    image: "images/ai-prompts/cite-brutaliste.png"
+  },
+  // ➕ Ajoute tes nouvelles entrées ici en copiant le bloc ci-dessus
+],
+
   // 📁 Dossier : images/images/logos/
   logos: [
     "logo-couverture-patisserie.png",
