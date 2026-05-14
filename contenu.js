@@ -2,7 +2,7 @@ const PORTFOLIO_CONTENU = {
 
   // 📁 Dossier : images/images/ai-prompts/
 Ai_prompts: [
-    "AI_Image_Prompts.htlm",
+    "AI_Image_Prompts.html",
 ],
 
   // 📁 Dossier : images/images/logos/
