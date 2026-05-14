@@ -1,7 +1,7 @@
 const PORTFOLIO_CONTENU = {
 
-  // 📁 Dossier : images/images/ai-prompts/
-Ai_prompts: [
+ // 🌐 IA Prompts HTML — fichiers à la RACINE du dépôt
+ia_prompts: [
     "AI_Image_Prompts.html",
 ],
 
