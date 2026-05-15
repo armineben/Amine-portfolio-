@@ -5,7 +5,7 @@ ia_prompts: [
     "AI_Image_Prompts.html",
     "images/images/prompts/4.png",
     "images/images/prompts/5.png"
-],
+  ],
 
   // 📁 Dossier : images/images/logos/
   logos: [
