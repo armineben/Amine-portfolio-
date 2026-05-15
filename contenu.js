@@ -3,8 +3,8 @@ const PORTFOLIO_CONTENU = {
  // 🌐 IA Prompts HTML — fichiers à la RACINE du dépôt
 ia_prompts: [
     "AI_Image_Prompts.html",
-    "4.png",
-    "5.png",
+    "images/images/prompts/4.png",
+    "images/images/prompts/5.png"
 ],
 
   // 📁 Dossier : images/images/logos/
