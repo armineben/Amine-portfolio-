@@ -4,7 +4,7 @@ const PORTFOLIO_CONTENU = {
 ia_prompts: [
     "AI_Image_Prompts.html",
     "4.png",
-    "5.png"
+    "5.png",
   ],
 
   // 📁 Dossier : images/images/logos/
