@@ -268,7 +268,7 @@ section { padding: 5rem 3.5rem; }
   border-radius: 8px; background: var(--bg3);
   display: flex; gap: 4px; border: 1px solid var(--border);
 }
-.cat-preview img { flex: 1; min-width: 0; object-fit: cover; }
+.cat-preview img, .cat-preview video { flex: 1; min-width: 0; object-fit: cover; height: 100%; }
 .cat-preview-empty {
   width: 100%; display: flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 6px;
@@ -402,9 +402,10 @@ footer a:hover { color: var(--accent); }
 .modal-empty-icon { font-size: 3rem; opacity: 0.15; margin-bottom: 1rem; }
 .modal-empty-title { font-size: 14px; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
-.gallery-item { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 4/3; cursor: zoom-in; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; }
-.gallery-item:hover img { transform: scale(1.04); }
+.gallery-item { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 4/3; cursor: zoom-in; position: relative; }
+.gallery-item img, .gallery-item video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; }
+.gallery-item:hover img, .gallery-item:hover video { transform: scale(1.04); }
+.video-badge { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; pointer-events: none; }
 .gallery-item.pdf-item {
   display: flex; align-items: center; justify-content: center;
   background: var(--bg3); flex-direction: column; gap: 8px;
@@ -418,8 +419,8 @@ footer a:hover { color: var(--accent); }
 /* ── LIGHTBOX ── */
 .lightbox { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: rgba(0,0,0,0.97); align-items: center; justify-content: center; }
 .lightbox.open { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
-.lightbox-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: 1px solid var(--border); color: white; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; }
+.lightbox img, .lightbox video { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+.lightbox-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: 1px solid var(--border); color: white; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; z-index: 100000; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
@@ -445,7 +446,6 @@ footer a:hover { color: var(--accent); }
 }
 
 /* ── SUBTLE ANIMATIONS ── */
-/* Photo foreground fade at bottom */
 .hero-photo-wrap::after {
   content: '';
   position: absolute;
@@ -471,7 +471,6 @@ footer a:hover { color: var(--accent); }
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
     <span class="nav-logo-tag">&lt;/&gt;</span>
@@ -485,7 +484,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-left">
     <p class="hero-eyebrow">Portfolio créatif & digital</p>
@@ -518,31 +516,8 @@ footer a:hover { color: var(--accent); }
   alt="Amine BENALI"
   onerror="this.style.display='none'"
       >
-    </div>
-
-    <!-- Panels under photo -->
-    <div class="hero-right-panels">
-      <div class="info-panel">
-        <p class="info-panel-label">À propos de moi</p>
-        <p class="info-panel-title" style="font-size:0.78rem;line-height:1.4;">Solutions & Créations 360°</p>
-        <p class="info-panel-text">Pilotage de projets complets incluant la création de contenus multisupports (visuels, storytelling) et le développement d'outils d'automatisation (VBA/Excel)..</p>
-        <a class="info-panel-link" href="#about">En savoir plus →</a>
-      </div>
-      <div class="info-panel">
-        <p class="info-panel-label">Mon travail</p>
-        <p class="info-panel-title" style="font-size:0.95rem;">Projets & Créations</p>
-        <p class="info-panel-text">Importateur d'idées innovantes · Logos, affiches, publications, tableaux de bord VBA…</p>
-        <a class="info-panel-link" href="#portfolio">Voir le portfolio →</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="scroll-hint">
-    <div class="scroll-dot">↓</div>
-  </div>
 </div>
 
-<!-- ABOUT -->
 <section class="about-section" id="about">
   <div class="about-grid">
     <div class="about-left">
@@ -577,7 +552,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </section>
 
-<!-- COMPANIES BAR -->
 <div class="companies-bar">
   <span class="companies-label">Précédemment chez</span>
   <div class="companies-logos">
@@ -588,7 +562,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </div>
 
-<!-- PORTFOLIO -->
 <section class="portfolio-section" id="portfolio">
   <p class="section-label">Mes créations</p>
   <h2 class="section-title">Ma liste de compétences<br><span style="color:var(--accent)">étendue</span></h2>
@@ -704,7 +677,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </section>
 
-<!-- SKILLS -->
 <section class="skills-section" id="skills">
   <p class="section-label">Mes compétences</p>
   <h2 class="section-title">Ma liste de compétences<br><span style="color:var(--accent)">étendue</span></h2>
@@ -776,7 +748,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section class="experience-section" id="experience">
   <p class="section-label">Expériences Professionnelles</p>
   <h2 class="section-title">Mon parcours</h2>
@@ -856,7 +827,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact-section" id="contact">
   <p class="section-label">Contact</p>
   <h2 class="section-title">Travaillons ensemble</h2>
@@ -874,7 +844,6 @@ footer a:hover { color: var(--accent); }
 
 <footer>© 2025 Amine BENALI · Portfolio personnel · <a href="https://armineben.github.io">armineben.github.io</a></footer>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal">
     <div class="modal-header">
@@ -893,24 +862,19 @@ footer a:hover { color: var(--accent); }
 
 <div class="lightbox" id="lightbox" onclick="document.getElementById('lightbox').classList.remove('open')">
   <button class="lightbox-close">✕</button>
-  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-content" style="display: flex; align-items: center; justify-content: center;" onclick="event.stopPropagation()"></div>
 </div>
 
 <script>
-// ── Embed your photo as base64 so it always works ──
-(function(){
-  const img = document.querySelector('.hero-photo');
-  // The photo is already embedded via the src data URI above.
-  // If you want to use the file instead, change src to: "pdp.png"
-})();
-
+// Configuration des dossiers correspondants aux catégories
 const CATEGORIES = {
   logos:        { nom: 'Logos',        icon: '◉',  color: '#1a1a1a', desc: 'Identités visuelles & logotypes',       folder: 'images/images/logos/' },
   affiches:     { nom: 'Affiches',     icon: '◈',  color: '#1a1a1a', desc: 'Visuels Enactus & Master 2',           folder: 'images/images/affiches/' },
   cv:           { nom: 'CV',           icon: '☰',  color: '#1a1a1a', desc: 'Curriculum vitae & documents',         folder: 'images/images/cv/' },
   excel:        { nom: 'Excel',        icon: '▦',  color: '#1a1a1a', desc: 'Tableaux de bord VBA & KPI',           folder: 'images/images/excel/' },
   publications: { nom: 'Publications', icon: '📱', color: '#1a1a1a', desc: 'Réseaux sociaux & contenus digitaux', folder: 'images/images/publications/' },
-  ia_prompts:   { nom: 'IA Prompts',   icon: '🤖', color: '#1a1a1a', desc: 'Workflows & prompts intelligents',    folder: 'images/images/ia_prompts/' },
+  // CORRIGÉ : pointe vers le bon sous-dossier de votre dépôt GitHub
+  ia_prompts:   { nom: 'IA Prompts',   icon: '🤖', color: '#1a1a1a', desc: 'Workflows & prompts intelligents',    folder: 'images/images/prompts/' },
 };
 
 const PROJETS_LABELS = {
@@ -931,10 +895,11 @@ function getProjetInfo(f, i) {
 }
 
 function getFileType(f) {
-  const ext = f.toLowerCase().split('.').pop();
+  const ext = f.toLowerCase().split('.').pop().split('?')[0];
   if (ext === 'pdf') return 'pdf';
   if (['html','htm'].includes(ext)) return 'html';
   if (['jpg','jpeg','png','gif','webp','svg'].includes(ext)) return 'image';
+  if (['mp4','webm','ogg','mov'].includes(ext)) return 'video';
   return 'other';
 }
 
@@ -952,15 +917,23 @@ function loadAll() {
     const countEl = document.getElementById('count-' + key);
     const previewEl = document.getElementById('preview-' + key);
     if (countEl) countEl.textContent = files.length + ' fichier' + (files.length > 1 ? 's' : '');
+    
     if (previewEl) {
       if (files.length === 0) {
         previewEl.innerHTML = `<div class="cat-preview-empty"><span>${cat.icon}</span><p>Aucun fichier</p></div>`;
       } else {
-        const imgs = files.slice(0,3).filter(f => getFileType(f) === 'image');
-        if (imgs.length > 0) {
-          previewEl.innerHTML = imgs.map(f => `<img src="${cat.folder}${f}" alt="${f}" onerror="this.style.display='none'">`).join('');
+        // Sélection des 3 premiers éléments visuels (images ou vidéos) pour l'aperçu
+        const visualFiles = files.slice(0,3).filter(f => ['image', 'video'].includes(getFileType(f)));
+        if (visualFiles.length > 0) {
+          previewEl.innerHTML = visualFiles.map(f => {
+            const path = getFilePath(cat, f);
+            if (getFileType(f) === 'video') {
+              return `<video src="${path}" muted playsinline loop autoplay onerror="this.style.display='none'"></video>`;
+            }
+            return `<img src="${path}" alt="${f}" onerror="this.style.display='none'">`;
+          }).join('');
         } else {
-          const icons = {pdf:'📄', html:'🌐', other:'📎'};
+          const icons = {pdf:'📄', html:'🌐', video:'🎬', other:'📎'};
           const type = getFileType(files[0]);
           previewEl.innerHTML = `<div class="cat-preview-empty"><span>${icons[type]||'📎'}</span><p>${files.length} fichier${files.length>1?'s':''}</p></div>`;
         }
@@ -996,6 +969,7 @@ function openModal(key) {
   document.getElementById('modal-title').textContent = cat.nom;
   document.getElementById('modal-subtitle').textContent = cat.desc;
   const body = document.getElementById('modal-body');
+  
   if (files.length === 0) {
     body.innerHTML = `<div class="modal-empty"><div class="modal-empty-icon">${cat.icon}</div><p class="modal-empty-title">Dossier vide</p></div>`;
   } else {
@@ -1004,11 +978,22 @@ function openModal(key) {
       const path = getFilePath(cat, f);
       let icon = (type === 'pdf') ? '📄' : '🌐';
       let cleanLabel = f.replace('.html', '').replace('.pdf', '');
+      
       if (f.includes('-')) {
         const parts = f.split('-');
         if (parts[0].length <= 3) { icon = parts[0]; cleanLabel = parts.slice(1).join(' ').replace('.html', ''); }
       }
-      if (type === 'image') return `<div class="gallery-item" onclick="openLightbox('${path}')"><img src="${path}" loading="lazy"></div>`;
+      
+      if (type === 'image') {
+        return `<div class="gallery-item" onclick="openLightbox('${path}', 'image')"><img src="${path}" loading="lazy"></div>`;
+      }
+      if (type === 'video') {
+        return `<div class="gallery-item" onclick="openLightbox('${path}', 'video')">
+                  <span class="video-badge">▶ VIDEO</span>
+                  <video src="${path}" muted playsinline loop autoplay></video>
+                </div>`;
+      }
+      
       const cardStyle = (key === 'excel') ? 'background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.2);' : '';
       return `<a class="gallery-item pdf-item" href="${path}" target="_blank" style="${cardStyle}">
                 <span style="font-size:2.5rem;margin-bottom:5px;">${icon}</span>
@@ -1034,7 +1019,7 @@ function openProjetsModal() {
         <span style="font-size:2.5rem;margin-bottom:5px;">${info.icon}</span>
         <p style="font-weight:600;color:${info.iconColor};text-align:center;font-size:12px;padding:0 8px;">${info.label}</p>
       </a>`;
-    }).join('') + '</div>';
+    }).join('');
   }
   document.getElementById('modal-overlay').classList.add('open');
 }
@@ -1043,10 +1028,23 @@ function closeModal(e) {
   if (e.target === document.getElementById('modal-overlay'))
     document.getElementById('modal-overlay').classList.remove('open');
 }
-function openLightbox(src) {
-  document.getElementById('lightbox-img').src = src;
+
+function openLightbox(src, type) {
+  const contentEl = document.getElementById('lightbox-content');
+  if (type === 'video') {
+    contentEl.innerHTML = `<video src="${src}" controls autoplay style="max-width: 90vw; max-height: 90vh;"></video>`;
+  } else {
+    contentEl.innerHTML = `<img src="${src}" alt="" style="max-width: 90vw; max-height: 90vh; object-fit: contain;">`;
+  }
   document.getElementById('lightbox').classList.add('open');
 }
+
+// Arrêter la vidéo si on ferme le lightbox
+document.getElementById('lightbox').addEventListener('click', function() {
+  document.getElementById('lightbox-content').innerHTML = '';
+  this.classList.remove('open');
+});
+
 document.addEventListener('DOMContentLoaded', loadAll);
 </script>
 </body>
