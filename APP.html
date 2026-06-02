@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Présentation - Secret's Fashion</title>
     
-    <link rel="icon" type="image/jpeg" href="Logo.png">
-    <link rel="apple-touch-icon" href="Logo.png">
+    <!-- Icône de l'application (Favicon pour l'onglet) -->
+    <link rel="icon" type="image/jpeg" href="Logo.jpg">
+    <link rel="apple-touch-icon" href="Logo.jpg">
 
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
     <style>
@@ -45,14 +46,14 @@
             margin-bottom: 4rem;
         }
 
-        /* STYLE AJUSTÉ POUR ACCUEILLIR LE LOGO AVEC UNE FORME RONDE PARFAITE */
+        /* Conteneur du logo en rond parfait */
         .logo-container {
             width: 100px;
             height: 100px;
             margin: 0 auto 1.5rem;
             border: 2px solid var(--primary);
-            border-radius: 50%; /* Arrondi parfait pour correspondre à ton logo circulaire */
-            overflow: hidden; /* Coupe tout ce qui dépasse */
+            border-radius: 50%;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -63,7 +64,7 @@
         .logo-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ajuste l'image sans la déformer */
+            object-fit: cover;
         }
 
         h1 {
@@ -97,7 +98,7 @@
             color: var(--primary);
         }
 
-        .concept-section, .tech-section {
+        .concept-section, .app-preview-section, .tech-section {
             margin-bottom: 4rem;
         }
 
@@ -144,6 +145,23 @@
         .card p {
             color: var(--text-muted);
             font-size: 0.95rem;
+        }
+
+        /* Section Mockup Application */
+        .mockup-container {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+            background-color: #111827; /* S'accorde élégamment avec le fond sombre du mockup */
+        }
+
+        .mockup-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
 
         /* Tableau Tech Stack */
@@ -235,6 +253,7 @@
 <body>
 
     <div class="container">
+        <!-- En-tête -->
         <header>
             <div class="logo-container">
                 <img src="Logo.jpg" alt="Secret's Fashion Logo">
@@ -243,6 +262,7 @@
             <p class="subtitle">Solution sur mesure de Gestion de Stock & Catalogue Numérique</p>
         </header>
 
+        <!-- Section Concept -->
         <section class="concept-section">
             <h2 class="section-title"><i data-lucide="layout-dashboard"></i> Le Concept de l'Application</h2>
             <div class="grid-concept">
@@ -264,6 +284,15 @@
             </div>
         </section>
 
+        <!-- NOUVELLE SECTION : Aperçu Visuel (Mockup) -->
+        <section class="app-preview-section">
+            <h2 class="section-title"><i data-lucide="smartphone"></i> Interface & Expérience Utilisateur</h2>
+            <div class="mockup-container">
+                <img src="application.jpg" alt="Aperçu de l'application Secret's Fashion">
+            </div>
+        </section>
+
+        <!-- Section Technologies -->
         <section class="tech-section">
             <h2 class="section-title"><i data-lucide="terminal"></i> Outils & Technologies de Développement</h2>
             <div class="table-container">
@@ -301,6 +330,7 @@
             </div>
         </section>
 
+        <!-- Section Robustesse Technique -->
         <section class="optimization-section">
             <h3 style="color: #111827; display: flex; align-items: center; gap: 0.6rem; font-size: 1.3rem; font-weight: 700; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">
                 <i data-lucide="check-circle-2" style="color: var(--primary);"></i> Robustesse Technique & Expérience Mobile
@@ -318,6 +348,7 @@
         </section>
     </div>
 
+    <!-- Script pour activer les icônes Lucide -->
     <script>
         lucide.createIcons();
     </script>
