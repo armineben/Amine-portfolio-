@@ -38,7 +38,7 @@ ia_prompts: [
     "projet-bpgo.html",
     "Projet_Smart_Parking.html",
     "Projet-secrets-fashion.html",
-    "APP.html,
+    "APP.html",
    ],
 
   // 📁 Dossier : images/images/excel/
