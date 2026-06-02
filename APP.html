@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation - Secret's Fashion</title>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            --bg-general: #F9FAFB;      /* Gris clair : Fond général */
+            --bg-card: #FFFFFF;         /* Blanc : Fond des cartes et contenus */
+            --primary: #7C3AED;         /* Violet/Pourpre : Couleur principale (accents, boutons) */
+            --primary-light: #F5F3FF;   /* Violet très clair pour les badges et surbrillances */
+            --text-main: #1F2937;       /* Gris très sombre pour le texte principal */
+            --text-muted: #6B7280;      /* Gris intermédiaire pour le texte secondaire */
+            --border: #E5E7EB;          /* Bordures légères */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-general);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 3rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .logo-placeholder {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 1.5rem;
+            background-color: var(--primary-light);
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.1);
+        }
+
+        .logo-placeholder i {
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+
+        /* Sections & Cartes */
+        .section-title {
+            font-size: 1.4rem;
+            color: #111827;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .concept-section, .tech-section {
+            margin-bottom: 4rem;
+        }
+
+        .grid-concept {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 25px -5px rgba(124, 58, 237, 0.1);
+        }
+
+        .card-icon {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .card h3 {
+            color: #111827;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Tableau Tech Stack */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background-color: var(--bg-card);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 1.25rem 1.5rem;
+        }
+
+        th {
+            background-color: #F3F4F6;
+            color: #374151;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:not(:last-child) td {
+            border-bottom: 1px solid var(--border);
+        }
+
+        td b {
+            color: #111827;
+        }
+
+        .tech-badge {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(124, 58, 237, 0.15);
+            display: inline-block;
+        }
+
+        /* Section Optimisation Technique */
+        .optimization-section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .opt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .opt-item h4 {
+            color: #111827;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .opt-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            body { padding: 1.5rem 0.5rem; }
+            th, td { padding: 1rem; }
+            .optimization-section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- En-tête -->
+        <header>
+            <div class="logo-placeholder">
+                <i data-lucide="sparkles" size="40"></i>
+            </div>
+            <h1>Secret's Fashion</h1>
+            <p class="subtitle">Solution sur mesure de Gestion de Stock & Catalogue Numérique</p>
+        </header>
+
+        <!-- Section Concept -->
+        <section class="concept-section">
+            <h2 class="section-title"><i data-lucide="layout-dashboard"></i> Le Concept de l'Application</h2>
+            <div class="grid-concept">
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="package"></i></div>
+                    <h3>Luxe Stock Harmony</h3>
+                    <p>Gestion rigoureuse et centralisée de l'inventaire. Suivi détaillé par tailles, couleurs et catégories spécifiques pour la vente et la location de robes de luxe.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="git-commit"></i></div>
+                    <h3>Flux en Temps Réel</h3>
+                    <p>Automatisation complète du cycle des stocks : enregistrement instantané des ventes, alertes dynamiques de niveau critique et suivi rigoureux des retours de location.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i data-lucide="smartphone"></i></div>
+                    <h3>Catalogue Numérique</h3>
+                    <p>Vitrine digitale haut de gamme au design épuré, pensée pour une navigation mobile ultra-fluide facilitant la présentation visuelle des modèles de la boutique.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Technologies -->
+        <section class="tech-section">
+            <h2 class="section-title"><i data-lucide="terminal"></i> Outils & Technologies de Développement</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Composant</th>
+                            <th>Technologie</th>
+                            <th>Rôle & Objectif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Frontend & UI</b></td>
+                            <td><span class="tech-badge">React / TanStack Start</span></td>
+                            <td>Navigation instantanée sans rechargement de page pour une fluidité de type "App native".</td>
+                        </tr>
+                        <tr>
+                            <td><b>Base de Données</b></td>
+                            <td><span class="tech-badge">Supabase</span></td>
+                            <td>Stockage relationnel PostgreSQL hautement sécurisé pour la synchronisation en temps réel.</td>
+                        </tr>
+                        <tr>
+                            <td><b>Hébergement</b></td>
+                            <td><span class="tech-badge">Cloudflare Workers</span></td>
+                            <td>Architecture serverless mondiale garantissant un chargement ultra-rapide et une sécurité maximale.</td>
+                        </tr>
+                        <tr>
+                            <td><b>Style & Design</b></td>
+                            <td><span class="tech-badge">Tailwind CSS & Lucide</span></td>
+                            <td>Interface responsive de style moderne, entièrement épurée et optimisée pour l'ergonomie mobile.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section Robustesse Technique -->
+        <section class="optimization-section">
+            <h3 style="color: #111827; display: flex; align-items: center; gap: 0.6rem; font-size: 1.3rem; font-weight: 700; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">
+                <i data-lucide="check-circle-2" style="color: var(--primary);"></i> Robustesse Technique & Expérience Mobile
+            </h3>
+            <div class="opt-grid">
+                <div class="opt-item">
+                    <h4><i data-lucide="zap" style="color: #F59E0B;"></i> Routage Sans Redirection</h4>
+                    <p>Optimisation avancée au niveau du serveur Cloudflare (<code>server.ts</code>) forçant un statut HTTP 200 à la racine. Résout définitivement les blocages de routage rencontrés historiquement sur le navigateur Safari (iOS).</p>
+                </div>
+                <div class="opt-item">
+                    <h4><i data-lucide="smartphone" style="color: var(--primary);"></i> Intégration Progressive App</h4>
+                    <p>Configuration personnalisée des balises mobiles (<code>apple-touch-icon</code>). Permet d'épingler l'application directement sur l'écran d'accueil d'un smartphone pour un rendu immersif.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Script pour activer les icônes Lucide -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
