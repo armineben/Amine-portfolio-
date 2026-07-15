@@ -27,6 +27,7 @@ ia_prompts: [
 
   // 📁 Dossier : images/images/cv/
   cv: [
+   "affiche cv .png",
     "Carte-cv.png",   
 ],
 
