@@ -42,6 +42,7 @@ ia_prompts: [
 
   // 📁 Dossier : images/images/excel/
   excel: [
+   "EXCEL.jpeg",
     "📊-projet-vba.html",
     "👥-gestion-clientele.html",
     "📊-gestion-salon-de-coiffure.html",
