@@ -38,8 +38,6 @@ ia_prompts: [
     "projet-fondation.html",
     "projet-bpgo.html",
     "Projet_Smart_Parking.html",
-    "Projet-secrets-fashion.html",
-    "APP.html",
    ],
 
   // 📁 Dossier : images/images/excel/
