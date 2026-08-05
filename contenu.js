@@ -33,9 +33,8 @@ const PORTFOLIO_CONTENU = {
     "Carte-cv.png",   
 ],
 
-// 🌐 PROJETS - Image de couverture + Fichiers .html à la racine
+// 🌐 PROJETS - Fichiers .html à la racine
   projets: [
-    "PROJETS.png",            // Image pour la couverture / galerie
     "santé-connectée.html", 
     "projet-fondation.html",
     "projet-bpgo.html",
