@@ -1,9 +1,9 @@
 const PORTFOLIO_CONTENU = {
 
   // 📁 Dossier : images/images/application/
-  Application_et_logicel: [
-    "DEV.png",
-  ],
+ application: [
+  "DEV.png",
+],
   
   // 📁 Dossier : images/images/logos/
   logos: [
