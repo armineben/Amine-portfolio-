@@ -9,6 +9,7 @@ ia_prompts: [
 
   // 📁 Dossier : images/images/logos/
   logos: [
+    "Couv-LOGO.png",
     "logo-couverture-patisserie.png",
     "logo-couverture-salle-sport.png",
     "logo-patisserie.jpg",
@@ -19,6 +20,7 @@ ia_prompts: [
 
   // 📁 Dossier : images/images/affiches/
   affiches: [
+    "Couv-AFFICHE.png",
     "Affiche-evenement-master2.png",
     "https://drive.google.com/file/d/1VDnWFzGi1ABleP1oqHCD9xTJhoWBLNtj/preview", // Affiche Master 2
     "Affiche-evenement-fondation2.jpeg",
@@ -27,7 +29,8 @@ ia_prompts: [
 
   // 📁 Dossier : images/images/cv/
   cv: [
-   "affiche cv .png",
+   "Couv-CV.png",
+   "affiche cv.png",
     "Carte-cv.png",   
 ],
 
@@ -65,6 +68,7 @@ ia_prompts: [
 
   // 📁 Dossier : images/images/publications/
   publications: [
+   "Couv-PUB.png",
    "Publication-gym.png",
     "Publication-gym2.png",
     "Publication-salle-de-sport.png",
