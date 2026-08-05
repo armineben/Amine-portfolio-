@@ -37,6 +37,7 @@ ia_prompts: [
   // 🌐 PROJETS - Fichiers .html à placer à la RACINE de votre dépôt GitHub
   // Chaque fichier ajouté ici créera automatiquement une nouvelle carte dans votre galerie.
   projets: [
+    "Couv-PROJETS.png",
     "santé-connectée.html", 
     "projet-fondation.html",
     "projet-bpgo.html",
