@@ -986,17 +986,17 @@ footer a:hover { color: var(--accent); }
 
  <div class="cat-grid">
 
-    <div class="cat-card" onclick="openModal('application-et-logiciel')" role="button" tabindex="0">
-        <div class="card-banner" id="banner-application-et-logiciel">
-            <div class="card-banner-empty"><span>💻</span><p>Aucun fichier</p></div>
-        </div>
-        
-        <div class="cat-card-footer">
-            <p class="cat-name">Application et Logiciel</p>
-            <p class="cat-desc">Workflows & prompts intelligents</p>
-            <p class="cat-arrow">Voir tout →</p>
-        </div>
+  <div class="cat-card" onclick="openModal('application')" role="button" tabindex="0">
+    <div class="card-banner" id="banner-application">
+        <div class="card-banner-empty"><span>💻</span><p>Aucun fichier</p></div>
     </div>
+    
+    <div class="cat-card-footer">
+        <p class="cat-name">Application et Logiciel</p>
+        <p class="cat-desc">Workflows & applications</p>
+        <p class="cat-arrow">Voir tout →</p>
+    </div>
+</div>
 
     <div class="cat-card" onclick="openProjetsModal()">
       <div class="card-banner" id="banner-projets">
@@ -1289,7 +1289,7 @@ const CATEGORIES = {
   cv:           { nom: 'CV',           icon: '☰',  color: '#161616', desc: 'Curriculum vitae & documents',         folder: 'images/images/cv/' },
   excel:        { nom: 'Excel',        icon: '▦',  color: '#161616', desc: 'Tableaux de bord VBA & KPI',           folder: 'images/images/excel/' },
   publications: { nom: 'Publications', icon: '📱', color: '#161616', desc: 'Reseaux sociaux & contenus digitaux', folder: 'images/images/publications/' },
-  ia_prompts:   { nom: 'IA Prompts',   icon: '🤖', color: '#161616', desc: 'Workflows & prompts intelligents',    folder: 'images/images/prompts/' },
+ application:  { nom: 'Application et Logiciel', icon: '💻', color: '#161616', desc: 'Workflows & applications', folder: 'images/images/application/' },
 };
 
 const PROJETS_LABELS = {
