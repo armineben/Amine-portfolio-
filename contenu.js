@@ -33,15 +33,14 @@ const PORTFOLIO_CONTENU = {
     "Carte-cv.png",   
 ],
 
-  // 🌐 PROJETS - Fichiers .html à placer à la RACINE de votre dépôt GitHub
-  // Chaque fichier ajouté ici créera automatiquement une nouvelle carte dans votre galerie.
+// 🌐 PROJETS - Image de couverture + Fichiers .html à la racine
   projets: [
-    "PROJETS.png",
+    "PROJETS.png",            // Image pour la couverture / galerie
     "santé-connectée.html", 
     "projet-fondation.html",
     "projet-bpgo.html",
     "Projet_Smart_Parking.html",
-   ],
+  ],
 
   // 📁 Dossier : images/images/excel/
   excel: [
