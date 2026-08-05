@@ -1,15 +1,8 @@
 const PORTFOLIO_CONTENU = {
 
- // 🌐 IA Prompts HTML — fichiers à la RACINE du dépôt
-ia_prompts: [
-    "AI_Image_Prompts.html",
-    "4.png",
-    "5.png",
-  ],
-
   // 📁 Dossier : images/images/logos/
   logos: [
-    "Couv-LOGO.png",
+    "LOGO.png",
     "logo-couverture-patisserie.png",
     "logo-couverture-salle-sport.png",
     "logo-patisserie.jpg",
@@ -20,7 +13,7 @@ ia_prompts: [
 
   // 📁 Dossier : images/images/affiches/
   affiches: [
-    "Couv-AFFICHE.png",
+    "AFFICHE.png",
     "Affiche-evenement-master2.png",
     "https://drive.google.com/file/d/1VDnWFzGi1ABleP1oqHCD9xTJhoWBLNtj/preview", // Affiche Master 2
     "Affiche-evenement-fondation2.jpeg",
@@ -29,7 +22,7 @@ ia_prompts: [
 
   // 📁 Dossier : images/images/cv/
   cv: [
-   "Couv-CV.png",
+   "CV.png",
    "affiche cv.png",
     "Carte-cv.png",   
 ],
@@ -37,7 +30,7 @@ ia_prompts: [
   // 🌐 PROJETS - Fichiers .html à placer à la RACINE de votre dépôt GitHub
   // Chaque fichier ajouté ici créera automatiquement une nouvelle carte dans votre galerie.
   projets: [
-    "Couv-PROJETS.png",
+    "PROJETS.png",
     "santé-connectée.html", 
     "projet-fondation.html",
     "projet-bpgo.html",
@@ -69,7 +62,7 @@ ia_prompts: [
 
   // 📁 Dossier : images/images/publications/
   publications: [
-   "Couv-PUB.png",
+   "PUB.png",
    "Publication-gym.png",
     "Publication-gym2.png",
     "Publication-salle-de-sport.png",
