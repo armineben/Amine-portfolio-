@@ -1,8 +1,7 @@
 const PORTFOLIO_CONTENU = {
   
    // 📁 Dossier : images/images/logiciel-et-application/
-// 📁 Dossier : images/images/logiciel-et-application/
-  application: [
+  "logiciel-et-application": [
     "DEV.png",
   ],
   
@@ -33,9 +32,10 @@ const PORTFOLIO_CONTENU = {
     "Carte-cv.png",   
 ],
 
-// 🌐 PROJETS - Fichiers .html à la racine
+// 🌐 PROJETS - Image de couverture + Fichiers .html à la racine
   projets: [
-    "santé-connectée.html", 
+    "PROJETS.png",            // Couverture principale
+    "sante-connectee.html",   // Accents retirés
     "projet-fondation.html",
     "projet-bpgo.html",
     "Projet_Smart_Parking.html",
