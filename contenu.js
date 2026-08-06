@@ -71,4 +71,13 @@ const PORTFOLIO_CONTENU = {
     "we_are_open.png",
   ],
 
+  // 📁 Dossier : projets-actualites/
+  actualites: [
+    "photo_de_couverture_actualites.png",
+    // Ajoute ici tes photos et vidéos d'actualités :
+    // "event-enactus.jpg",
+    // "conference-bp.mp4",
+    // "photo-equipe.png",
+  ],
+
 };
