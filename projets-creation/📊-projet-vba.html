@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Automatisation Excel VBA · Amine BENALI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --blue: #003DA5; --blue-mid: #1A56C4; --blue-light: #E8F0FB; --blue-dark: #002272;
+            --green: #1D9E75; --green-light: #E1F5EE; --green-dark: #0F6E56;
+            --excel: #1D6F42; --excel-light: #E8F5EE;
+            --amber: #D97706; --amber-light: #FEF3C7;
+            --text-primary: #0f0f0f; --text-secondary: #4a4a4a; --text-muted: #888;
+            --border: #e2e2e2; --bg: #F8F7F4; --white: #ffffff;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.6; }
+
+        /* NAV */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(248,247,244,0.96); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem; display: flex; align-items: center;
+            justify-content: space-between; height: 58px;
+        }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+        .nav-logo span { color: var(--green); }
+        .nav-back {
+            font-size: 12px; color: var(--text-secondary); text-decoration: none;
+            display: flex; align-items: center; gap: 6px;
+            padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border);
+            background: white; transition: all 0.15s; font-weight: 500;
+        }
+        .nav-back:hover { border-color: #bbb; color: var(--text-primary); }
+
+        /* HERO */
+        .hero {
+            background: var(--blue-dark);
+            padding: 5rem 2rem 4rem;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: repeating-linear-gradient(
+                90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px,
+                transparent 1px, transparent 60px
+            ), repeating-linear-gradient(
+                0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px,
+                transparent 1px, transparent 60px
+            );
+        }
+        .hero-inner { max-width: 900px; margin: 0 auto; position: relative; }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px; padding: 5px 14px; font-size: 11px;
+            letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem; font-weight: 500;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 600;
+            color: white; line-height: 1.2; margin-bottom: 1rem;
+        }
+        .hero-title em { color: #7DD3B0; font-style: normal; }
+        .hero-desc { font-size: 15px; color: rgba(255,255,255,0.75); font-weight: 300; line-height: 1.75; max-width: 600px; margin-bottom: 2.5rem; }
+        .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .hero-pill {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px; padding: 8px 14px; font-size: 12px; color: white;
+        }
+        .hero-pill strong { display: block; font-size: 10px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; font-weight: 500; }
+
+        /* STATS BAND */
+        .stats-band {
+            background: white; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: center;
+        }
+        .stats-inner {
+            max-width: 900px; width: 100%;
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            border-left: 1px solid var(--border);
+        }
+        .stat { padding: 1.5rem 1.25rem; text-align: center; border-right: 1px solid var(--border); }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; color: var(--blue); margin-bottom: 4px; line-height: 1; }
+        .stat-label { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+        /* SECTIONS */
+        .section { max-width: 900px; margin: 0 auto; padding: 3.5rem 2rem; }
+        .section + .section { border-top: 1px solid var(--border); }
+        .section-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-mid); font-weight: 600; margin-bottom: 0.5rem; font-family: 'DM Mono', monospace; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .section-intro { font-size: 14px; color: var(--text-secondary); line-height: 1.75; max-width: 640px; margin-bottom: 2rem; font-weight: 300; }
+
+        /* BESOINS GRID */
+        .besoins-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+        .besoin-card {
+            background: white; border: 1px solid var(--border);
+            border-radius: 14px; padding: 1.5rem; position: relative; overflow: hidden;
+        }
+        .besoin-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--blue); }
+        .besoin-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--blue); opacity: 0.08; line-height: 1; margin-bottom: 8px; }
+        .besoin-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+        .besoin-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* SCREENSHOT GRID */
+        .screenshots-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 1.5rem; }
+        .screenshot-card { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .screenshot-img { width: 100%; background: #f0f4ff; aspect-ratio: 16/10; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .screenshot-img img { width: 100%; height: 100%; object-fit: cover; }
+        .screenshot-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #f0f4ff, #e8f0fb); }
+        .screenshot-placeholder span { font-size: 2rem; opacity: 0.3; }
+        .screenshot-placeholder p { font-size: 11px; color: var(--text-muted); text-align: center; padding: 0 10px; }
+        .screenshot-caption { padding: 10px 14px; font-size: 11px; color: var(--text-muted); font-style: italic; border-top: 1px solid var(--border); }
+
+        /* BOUTONS VBA */
+        .boutons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 2rem; }
+        .bouton-card { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; position: relative; overflow: hidden; }
+        .bouton-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        .bouton-card.green::before { background: var(--excel); }
+        .bouton-card.blue::before { background: var(--blue); }
+        .bouton-card.amber::before { background: var(--amber); }
+        .bouton-icon { font-size: 1.5rem; margin-bottom: 10px; }
+        .bouton-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+        .bouton-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+        .bouton-tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 10px; background: var(--excel-light); color: var(--excel); font-weight: 600; margin-top: 8px; font-family: 'DM Mono', monospace; }
+
+        /* RESULTATS */
+        .resultats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .resultat-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center; }
+        .resultat-icon { font-size: 1.75rem; margin-bottom: 8px; }
+        .resultat-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+        .resultat-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+
+        /* FOOTER */
+        .page-footer { background: white; border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; }
+        .page-footer p { font-size: 14px; color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .footer-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 30px; background: var(--green); color: white; text-decoration: none; font-size: 14px; font-weight: 600; transition: background 0.2s; }
+        .footer-btn:hover { background: var(--green-dark); }
+
+        @media (max-width: 640px) {
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .besoins-grid, .boutons-grid, .screenshots-grid, .resultats-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="nav-logo" href="#"><span>A</span>mine BENALI</a>
+    <a class="nav-back" href="#">← Retour au portfolio</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">📊 Expertise Excel VBA · Business Process Automation</div>
+        <h1 class="hero-title">Automatisation des processus de gestion de données et de communication via <em>Excel VBA</em></h1>
+        <p class="hero-desc">Optimisation complète de la chaîne de traitement des candidatures : de l'extraction de données à la communication automatisée des résultats, garantissant fiabilité et gain de temps majeur.</p>
+        <div class="hero-pills">
+            <div class="hero-pill"><strong>Secteur</strong>Fondation Bancaire</div>
+            <div class="hero-pill"><strong>Lieu</strong>Nantes, Rennes France 🇫🇷</div>
+            <div class="hero-pill"><strong>Période</strong>2025</div>
+            <div class="hero-pill"><strong>Rôle</strong>Consultant Automatisation</div>
+        </div>
+    </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-band">
+    <div class="stats-inner">
+        <div class="stat"><div class="stat-num">5</div><div class="stat-label">Boutons VBA<br>développés</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Emails<br>automatisés</div></div>
+        <div class="stat"><div class="stat-num">0</div><div class="stat-label">Erreur de<br>saisie manuelle</div></div>
+        <div class="stat"><div class="stat-num">+4h</div><div class="stat-label">Temps gagné<br>par comité</div></div>
+    </div>
+</div>
+
+<!-- ANALYSE -->
+<div class="section">
+    <p class="section-eyebrow">01 — Problématique</p>
+    <h2 class="section-title">Optimiser le traitement administratif</h2>
+    <p class="section-intro">Le processus initial souffrait de lourdeurs manuelles dans la gestion des 86 candidatures, entraînant des retards de communication et des risques d'erreurs de reporting.</p>
+    
+    <div class="besoins-grid">
+        <div class="besoin-card">
+            <div class="besoin-num">01</div>
+            <p class="besoin-title">Data Management</p>
+            <p class="besoin-desc">Absence de vue consolidée sur les budgets et les statuts par département.</p>
+        </div>
+        <div class="besoin-card">
+            <div class="besoin-num">02</div>
+            <p class="besoin-title">Préparation de Comité</p>
+            <p class="besoin-desc">Extraction manuelle chronophage des dossiers pour les réunions de décision.</p>
+        </div>
+        <div class="besoin-card">
+            <div class="besoin-num">03</div>
+            <p class="besoin-title">Communication</p>
+            <p class="besoin-desc">Envoi manuel de centaines d'emails personnalisés sans suivi d'envoi.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SOLUTIONS -->
+<div class="section">
+    <p class="section-eyebrow">02 — Solutions VBA</p>
+    <h2 class="section-title">L'écosystème d'automatisation</h2>
+    
+    <div class="boutons-grid">
+        <div class="bouton-card green">
+            <div class="bouton-icon">📊</div>
+            <p class="bouton-title">Tableau Statistique</p>
+            <p class="bouton-desc">Génère instantanément les KPIs : budget total, statut des projets et répartition par comité.</p>
+            <span class="bouton-tag">Reporting</span>
+        </div>
+        <div class="bouton-card blue">
+            <div class="bouton-icon">📁</div>
+            <p class="bouton-title">Export par Comité</p>
+            <p class="bouton-desc">Crée dynamiquement des fichiers séparés pour chaque instance de décision départementale.</p>
+            <span class="bouton-tag">Productivité</span>
+        </div>
+        <div class="bouton-card amber" style="grid-column: span 2;">
+            <div class="bouton-icon">✉️</div>
+            <p class="bouton-title">Mailing Engine Intelligent</p>
+            <p class="bouton-desc">Détecte la décision (Accepté/Refusé), génère le corps du mail personnalisé et archive la date/heure d'envoi sur Teams pour une traçabilité totale.</p>
+            <span class="bouton-tag">Communication Automatisée</span>
+        </div>
+    </div>
+
+    <!-- CAPTURES ECRAN -->
+    <div class="screenshots-grid">
+        <div class="screenshot-card">
+            <div class="screenshot-img">
+                <img src="images/excel/statistiques.jpg" alt="Tableau de bord" onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'><span>📈</span><p>Tableau statistique post-comité</p></div>'">
+            </div>
+            <div class="screenshot-caption">Analyse multidimensionnelle des résultats</div>
+        </div>
+        <div class="screenshot-card">
+            <div class="screenshot-img">
+                <img src="images/excel/emails.jpg" alt="Emails automatisés" onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'><span>📬</span><p>Système d\'envoi automatisé</p></div>'">
+            </div>
+            <div class="screenshot-caption">Traçabilité des envois et archivage Teams</div>
+        </div>
+    </div>
+</div>
+
+<!-- IMPACT -->
+<div class="section">
+    <p class="section-eyebrow">03 — Impact & Résultats</p>
+    <h2 class="section-title">Une efficacité opérationnelle accrue</h2>
+    <div class="resultats-grid">
+        <div class="resultat-card"><div class="resultat-icon">⚡</div><p class="resultat-title">Vitesse</p><p class="resultat-desc">Traitement massif des données en quelques secondes.</p></div>
+        <div class="resultat-card"><div class="resultat-icon">🛡️</div><p class="resultat-title">Fiabilité</p><p class="resultat-desc">Suppression totale des erreurs humaines de copie.</p></div>
+        <div class="resultat-card"><div class="resultat-icon">📈</div><p class="resultat-title">Reporting</p><p class="resultat-desc">Visualisation claire des budgets alloués.</p></div>
+    </div>
+</div>
+
+<div class="page-footer">
+    <p>Besoin d'automatiser vos processus métier ?</p>
+    <a class="footer-btn" href="mailto:aminebenali3@gmail.com">✉ Contacter Amine BENALI</a>
+</div>
+
+</body>
+</html>
