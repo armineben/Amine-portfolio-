@@ -1461,35 +1461,46 @@ function openModal(key) {
   document.getElementById('modal-title').textContent = cat.nom;
   document.getElementById('modal-subtitle').textContent = cat.desc;
   const body = document.getElementById('modal-body');
-  
+
   if (files.length === 0) {
     body.innerHTML = '<div class="modal-empty"><div class="modal-empty-icon">' + cat.icon + '</div><p class="modal-empty-title">Dossier vide</p></div>';
   } else {
     body.innerHTML = '<div class="gallery-grid">' + files.map(f => {
       const type = getFileType(f);
       const path = getFilePath(cat, f);
-      let icon = (type === 'pdf') ? '📄' : '🌐';
-      let cleanLabel = f.replace('.html', '').replace('.pdf', '');
-      
-      if (f.includes('-')) {
-        const parts = f.split('-');
-        if (parts[0].length <= 3) { icon = parts[0]; cleanLabel = parts.slice(1).join(' ').replace('.html', ''); }
-      }
-      
+
       if (type === 'image') {
-        return '<div class="gallery-item" onclick="openLightbox(\'' + path + '\', \'image\')"><img src="' + path + '" loading="lazy"></div>';
+        return '<div class="gallery-item" onclick="openLightbox('' + path + '', 'image')"><img src="' + path + '" loading="lazy"></div>';
       }
       if (type === 'video') {
-        return '<div class="gallery-item" onclick="openLightbox(\'' + path + '\', \'video\')">' +
-                  '<span class="video-badge">▶ VIDEO</span>' +
+        return '<div class="gallery-item" onclick="openLightbox('' + path + '', 'video')">' +
+                  '<span class="video-badge">VIDEO</span>' +
                   '<video src="' + path + '" muted playsinline loop autoplay></video>' +
                 '</div>';
       }
-      
+
+      if (f.startsWith('http')) {
+        let label = 'Voir en ligne';
+        let icon = 'Lien';
+        if (f.indexOf('drive.google.com') !== -1) { label = 'Google Drive'; icon = 'Drive'; }
+        return '<a class="gallery-item pdf-item" href="' + path + '" target="_blank">' +
+                  '<span style="font-size:1.2rem;margin-bottom:5px;font-weight:700;color:#ff5c26;">' + icon + '</span>' +
+                  '<p style="font-weight:700;color:#f0f0f0;">' + label + '</p>' +
+                '</a>';
+      }
+
+      let icon = (type === 'pdf') ? 'PDF' : 'Fichier';
+      let cleanLabel = f.replace('.html', '').replace('.pdf', '');
+
+      if (f.indexOf('-') !== -1) {
+        const parts = f.split('-');
+        if (parts[0].length <= 3) { icon = parts[0]; cleanLabel = parts.slice(1).join(' ').replace('.html', ''); }
+      }
+
       const cardStyle = (key === 'excel') ? 'background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.15);' : '';
       return '<a class="gallery-item pdf-item" href="' + path + '" target="_blank" style="' + cardStyle + '">' +
-                '<span style="font-size:2.5rem;margin-bottom:5px;">' + icon + '</span>' +
-                '<p style="font-weight:700;color:#f0f0f0;">' + cleanLabel.replace(/-/g,' ') + '</p>' +
+                '<span style="font-size:1.2rem;margin-bottom:5px;font-weight:700;color:#ff5c26;">' + icon + '</span>' +
+                '<p style="font-weight:700;color:#f0f0f0;">' + cleanLabel.replace(/-/g,' ').replace(/_/g,' ') + '</p>' +
               '</a>';
     }).join('') + '</div>';
   }
