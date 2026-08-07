@@ -1337,13 +1337,13 @@ footer a:hover { color: var(--accent); }
 <script>
 // Configuration des dossiers correspondants aux categories
 const CATEGORIES = {
-  logos:        { nom: 'Logos',        icon: '◉',  color: '#161616', desc: 'Identites visuelles & logotypes',       folder: 'images/images/logos/' },
-  affiches:     { nom: 'Affiches',     icon: '◈',  color: '#161616', desc: 'Visuels Enactus & Master 2',           folder: 'images/images/affiches/' },
-  cv:           { nom: 'CV',           icon: '☰',  color: '#161616', desc: 'Curriculum vitae & documents',         folder: 'images/images/cv/' },
-  excel:        { nom: 'Excel',        icon: '▦',  color: '#161616', desc: 'Tableaux de bord VBA & KPI',           folder: 'images/images/excel/' },
-  publications: { nom: 'Publications', icon: '📱', color: '#161616', desc: 'Reseaux sociaux & contenus digitaux', folder: 'images/images/publications/' },
-  application:  { nom: 'Application et Logiciel', icon: '💻', color: '#161616', desc: 'Workflows & applications', folder: 'images/images/Application/' },
-  actualites:   { nom: 'Actualites',   icon: '🔥', color: '#161616', desc: 'Photos & videos evenements',         folder: 'images/images/actualites/' },
+  logos:        { nom: 'Logos',        icon: '◉',  color: '#161616', desc: 'Identites visuelles & logotypes',       folder: 'projets-logos/' },
+  affiches:     { nom: 'Affiches',     icon: '◈',  color: '#161616', desc: 'Visuels Enactus & Master 2',           folder: 'projets-affiches/' },
+  cv:           { nom: 'CV',           icon: '☰',  color: '#161616', desc: 'Curriculum vitae & documents',         folder: 'projets-cv/' },
+  excel:        { nom: 'Excel',        icon: '▦',  color: '#161616', desc: 'Tableaux de bord VBA & KPI',           folder: 'projets-excel/' },
+  publications: { nom: 'Publications', icon: '📱', color: '#161616', desc: 'Reseaux sociaux & contenus digitaux', folder: 'projets-publications/' },
+  application:  { nom: 'Application et Logiciel', icon: '💻', color: '#161616', desc: 'Workflows & applications', folder: 'projets-applications/' },
+  actualites:   { nom: 'Actualites',   icon: '🔥', color: '#161616', desc: 'Photos & videos evenements',         folder: 'projets-actualites/' },
 };
 
 const PROJETS_LABELS = {
@@ -1379,7 +1379,6 @@ function getFileType(f) {
 
 function getFilePath(cat, f) {
   if (f.startsWith('http') || f.startsWith('./') || f.startsWith('/')) return f;
-  if (getFileType(f) === 'html') return f;
   return cat.folder + f;
 }
 
@@ -1420,7 +1419,7 @@ function loadAll() {
       // Cherche une image de couverture parmi les fichiers projets
       const coverImg = projets.find(f => ['jpg','jpeg','png','gif','webp'].includes(f.toLowerCase().split('.').pop()));
       if (coverImg) {
-        bannerEl.innerHTML = '<img src="' + coverImg + '" alt="Projets" loading="lazy" style="width:100%;height:100%;object-fit:cover;">';
+        bannerEl.innerHTML = '<img src="projets-creation/' + coverImg + '" alt="Projets" loading="lazy" style="width:100%;height:100%;object-fit:cover;">';
       } else {
         const info = getProjetInfo(projets[0], 0);
         bannerEl.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:' + info.color + ';"><span style="font-size:40px;line-height:1;">' + info.icon + '</span><span style="font-size:12px;font-weight:700;color:' + info.iconColor + ';text-align:center;">' + info.label + '</span></div>';
@@ -1520,7 +1519,7 @@ function openProjetsModal() {
   } else {
     body.innerHTML = '<div class="gallery-grid">' + projets.map((f, i) => {
       const info = getProjetInfo(f, i);
-      return '<a class="gallery-item pdf-item" href="' + f + '" target="_blank" style="background:' + info.color + ';border-color:rgba(255,255,255,0.05);">' +
+      return '<a class="gallery-item pdf-item" href="projets-creation/' + f + '" target="_blank" style="background:' + info.color + ';border-color:rgba(255,255,255,0.05);">' +
         '<span style="font-size:2.5rem;margin-bottom:5px;">' + info.icon + '</span>' +
         '<p style="font-weight:700;color:' + info.iconColor + ';text-align:center;font-size:12px;padding:0 10px;">' + info.label + '</p>' +
       '</a>';
