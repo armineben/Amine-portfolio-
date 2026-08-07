@@ -943,8 +943,8 @@ footer a:hover { color: var(--accent); }
     <div class="actu-inner">
 
       <div class="actu-left">
-       <div class="actu-media">
-        <img src="demo-secrets-fashion.png" alt="Secret's Fashion Demo">
+       <div class="actu-media" id="actu-media-banner">
+        <!-- Medias actualites charges dynamiquement depuis contenu.js -->
       </div>
         <div class="actu-content">
           <div class="actu-meta">
@@ -1342,7 +1342,8 @@ const CATEGORIES = {
   cv:           { nom: 'CV',           icon: '☰',  color: '#161616', desc: 'Curriculum vitae & documents',         folder: 'images/images/cv/' },
   excel:        { nom: 'Excel',        icon: '▦',  color: '#161616', desc: 'Tableaux de bord VBA & KPI',           folder: 'images/images/excel/' },
   publications: { nom: 'Publications', icon: '📱', color: '#161616', desc: 'Reseaux sociaux & contenus digitaux', folder: 'images/images/publications/' },
-   application: { nom: 'Application et Logiciel', icon: '💻', color: '#161616', desc: 'Workflows & applications', folder: 'images/images/Application/' },
+  application:  { nom: 'Application et Logiciel', icon: '💻', color: '#161616', desc: 'Workflows & applications', folder: 'images/images/Application/' },
+  actualites:   { nom: 'Actualites',   icon: '🔥', color: '#161616', desc: 'Photos & videos evenements',         folder: 'images/images/actualites/' },
 };
 
 const PROJETS_LABELS = {
@@ -1350,7 +1351,12 @@ const PROJETS_LABELS = {
   'projet-bpgo.html':            { label: 'Stage BPGO',          icon: '⚙️', color: '#1a2a1a', iconColor: '#34d399' },
   'projet-innovons.html':        { label: 'Innovons Ensemble',   icon: '💡', color: '#2a2a1a', iconColor: '#fbbf24' },
   'projet-excel-fondation.html': { label: 'Projet VBA',          icon: '📊', color: '#1a2a1a', iconColor: '#34d399' },
-  'Projet-innovant-secteur-sante-pays-dela-loire.html': { label: 'Santee Connectee', icon: '🏥', color: '#2a1a2a', iconColor: '#a78bfa' },
+  'Projet-innovant-secteur-sante-pays-dela-loire.html': { label: 'Sante Connectee', icon: '🏥', color: '#2a1a2a', iconColor: '#a78bfa' },
+  'Projet_Smart_Parking.html':   { label: 'Smart Parking',       icon: '🚗', color: '#1a1a2a', iconColor: '#60a5fa' },
+  'sante-connectee.html':        { label: 'Sante Connectee',       icon: '🏥', color: '#2a1a2a', iconColor: '#a78bfa' },
+  'gestion-clientele.html':      { label: 'Gestion Clientele',   icon: '👥', color: '#1a2a1a', iconColor: '#34d399' },
+  'gestion-salon-de-coiffure.html': { label: 'Salon Coiffure',   icon: '✂️', color: '#2a2a1a', iconColor: '#fbbf24' },
+  'projet-vba.html':             { label: 'Projet VBA',          icon: '📊', color: '#1a2a1a', iconColor: '#34d399' },
 };
 
 function getProjetInfo(f, i) {
@@ -1358,7 +1364,7 @@ function getProjetInfo(f, i) {
   const fallbackColors = ['#1a2a4a','#1a2a1a','#2a2a1a','#2a1a2a','#2a1a1a'];
   const fallbackIconColors = ['#60a5fa','#34d399','#fbbf24','#a78bfa','#f87171'];
   const fallbackIcons = ['🎯','📋','🚀','🌍','📁'];
-  const label = f.replace('.html','').replace('projet-','').replace(/-/g,' ');
+  const label = f.replace('.html','').replace(/^projet[-_]/,'').replace(/[-_]/g,' ');
   return { label, icon: fallbackIcons[i % fallbackIcons.length], color: fallbackColors[i % fallbackColors.length], iconColor: fallbackIconColors[i % fallbackIconColors.length] };
 }
 
@@ -1411,9 +1417,52 @@ function loadAll() {
     if (projets.length === 0) {
       bannerEl.innerHTML = '<div class="card-banner-empty"><span>▶</span><p>Aucun projet</p></div>';
     } else {
-      const info = getProjetInfo(projets[0], 0);
-      bannerEl.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:' + info.color + ';"><span style="font-size:40px;line-height:1;">' + info.icon + '</span><span style="font-size:12px;font-weight:700;color:' + info.iconColor + ';text-align:center;">' + info.label + '</span></div>';
+      // Cherche une image de couverture parmi les fichiers projets
+      const coverImg = projets.find(f => ['jpg','jpeg','png','gif','webp'].includes(f.toLowerCase().split('.').pop()));
+      if (coverImg) {
+        bannerEl.innerHTML = '<img src="' + coverImg + '" alt="Projets" loading="lazy" style="width:100%;height:100%;object-fit:cover;">';
+      } else {
+        const info = getProjetInfo(projets[0], 0);
+        bannerEl.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:' + info.color + ';"><span style="font-size:40px;line-height:1;">' + info.icon + '</span><span style="font-size:12px;font-weight:700;color:' + info.iconColor + ';text-align:center;">' + info.label + '</span></div>';
+      }
     }
+  }
+
+  // Charger les medias "actualites" dans la carte en vedette
+  const actuFiles = (typeof PORTFOLIO_CONTENU !== 'undefined' ? PORTFOLIO_CONTENU.actualites : []) || [];
+  const actuMediaEl = document.getElementById('actu-media-banner');
+  if (actuMediaEl && actuFiles.length > 0) {
+    const cat = CATEGORIES.actualites;
+    if (actuFiles.length === 1) {
+      const f = actuFiles[0];
+      const type = getFileType(f);
+      const path = getFilePath(cat, f);
+      if (type === 'video') {
+        actuMediaEl.innerHTML = '<video src="' + path + '" muted playsinline loop autoplay style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"></video>';
+      } else {
+        actuMediaEl.innerHTML = '<img src="' + path + '" alt="Actualite" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">';
+      }
+    } else {
+      let carHtml = '<div class="card-banner-carousel">';
+      actuFiles.forEach((f, i) => {
+        const type = getFileType(f);
+        const path = getFilePath(cat, f);
+        if (type === 'video') {
+          carHtml += '<video src="' + path + '" muted playsinline loop autoplay class="' + (i === 0 ? 'active' : '') + '"></video>';
+        } else {
+          carHtml += '<img src="' + path + '" alt="" class="' + (i === 0 ? 'active' : '') + '">';
+        }
+      });
+      carHtml += '<div class="card-banner-dots">';
+      actuFiles.forEach((_, i) => {
+        carHtml += '<div class="card-banner-dot ' + (i === 0 ? 'active' : '') + '"></div>';
+      });
+      carHtml += '</div></div>';
+      actuMediaEl.innerHTML = carHtml;
+      startActuCarousel(actuFiles.length);
+    }
+  } else if (actuMediaEl) {
+    actuMediaEl.innerHTML = '<div class="actu-media-placeholder"><div class="actu-media-icon">🎯</div><p class="actu-media-text">Secret's Fashion</p></div>';
   }
 }
 
@@ -1460,7 +1509,8 @@ function openModal(key) {
 }
 
 function openProjetsModal() {
-  const projets = (typeof PORTFOLIO_CONTENU !== 'undefined' ? PORTFOLIO_CONTENU.projets : []) || [];
+  const allFiles = (typeof PORTFOLIO_CONTENU !== 'undefined' ? PORTFOLIO_CONTENU.projets : []) || [];
+  const projets = allFiles.filter(f => getFileType(f) === 'html');
   document.getElementById('modal-icon').textContent = '▶';
   document.getElementById('modal-title').textContent = 'Projets';
   document.getElementById('modal-subtitle').textContent = 'Stages & projets professionnels';
@@ -1498,6 +1548,23 @@ document.getElementById('lightbox').addEventListener('click', function() {
   document.getElementById('lightbox-content').innerHTML = '';
   this.classList.remove('open');
 });
+
+let actuCarouselInterval = null;
+function startActuCarousel(total) {
+  if (actuCarouselInterval) clearInterval(actuCarouselInterval);
+  let current = 0;
+  actuCarouselInterval = setInterval(() => {
+    const carousel = document.querySelector('#actu-media-banner .card-banner-carousel');
+    if (!carousel) return;
+    const items = carousel.querySelectorAll('img, video');
+    const dots = carousel.querySelectorAll('.card-banner-dot');
+    items[current].classList.remove('active');
+    if (dots[current]) dots[current].classList.remove('active');
+    current = (current + 1) % total;
+    items[current].classList.add('active');
+    if (dots[current]) dots[current].classList.add('active');
+  }, 4000);
+}
 
 document.addEventListener('DOMContentLoaded', loadAll);
 </script>
