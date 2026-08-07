@@ -1470,10 +1470,10 @@ function openModal(key) {
       const path = getFilePath(cat, f);
 
       if (type === 'image') {
-        return '<div class="gallery-item" onclick="openLightbox('' + path + '', 'image')"><img src="' + path + '" loading="lazy"></div>';
+        return '<div class="gallery-item" onclick="openLightbox(\' + path + \', \'image')"><img src="' + path + '" loading="lazy"></div>';
       }
       if (type === 'video') {
-        return '<div class="gallery-item" onclick="openLightbox('' + path + '', 'video')">' +
+        return '<div class="gallery-item" onclick="openLightbox(\' + path + \', \'video')">' +
                   '<span class="video-badge">VIDEO</span>' +
                   '<video src="' + path + '" muted playsinline loop autoplay></video>' +
                 '</div>';
