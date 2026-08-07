@@ -74,10 +74,10 @@ const PORTFOLIO_CONTENU = {
   // 📁 Dossier : projets-actualites/
   actualites: [
     "application.png",
-    // Ajoute ici tes photos et vidéos d'actualités :
-    // "event-enactus.jpg",
-    // "conference-bp.mp4",
-    // "photo-equipe.png",
+    "secret_fashion_actualité_1.png",
+    "secret_fashion_actualité_2.png",
+    "secret_fashion_actualité_3.png",
+    "secret_fashion_actualité_4.png",
   ],
 
 };
