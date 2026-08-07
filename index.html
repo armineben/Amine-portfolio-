@@ -907,7 +907,7 @@ footer a:hover { color: var(--accent); }
           <p class="about-stat-label">Annees d'experience</p>
         </div>
         <div class="about-info-card">
-          <p class="about-stat-num">10 <span>+</span></p>
+          <p class="about-stat-num">6 <span>+</span></p>
           <p class="about-stat-label">Projets realises</p>
         </div>
       </div>
@@ -1288,7 +1288,7 @@ footer a:hover { color: var(--accent); }
 <section class="contact-section" id="contact">
   <p class="section-label">Contact</p>
   <h2 class="section-title">Travaillons ensemble</h2>
-  <p class="contact-desc">Disponible pour des opportunites en Marketing & Web Communication | Content Creation | Digital Transformation & AI | APP Dev No Code | Entrepreneurship.</p>
+  <p class="contact-desc">Disponible pour des opportunites en communication & digital marketing.</p>
   <div class="contact-links" style="margin-bottom:16px;">
     <a class="contact-link" href="tel:+21625975620">+216 25 975 620</a>
     <a class="contact-link" href="https://wa.me/33768631068" target="_blank">WhatsApp FR</a>
@@ -1470,10 +1470,10 @@ function openModal(key) {
       const path = getFilePath(cat, f);
 
       if (type === 'image') {
-        return '<div class="gallery-item" onclick="openLightbox(\' + path + \', \'image')"><img src="' + path + '" loading="lazy"></div>';
+        return "<div class=\"gallery-item\" onclick=\"openLightbox('" + path + "', 'image')\"><img src=\"" + path + "\" loading=\"lazy\"></div>";
       }
       if (type === 'video') {
-        return '<div class="gallery-item" onclick="openLightbox(\' + path + \', \'video')">' +
+        return "<div class=\"gallery-item\" onclick=\"openLightbox('" + path + "', 'video')\">" +
                   '<span class="video-badge">VIDEO</span>' +
                   '<video src="' + path + '" muted playsinline loop autoplay></video>' +
                 '</div>';
