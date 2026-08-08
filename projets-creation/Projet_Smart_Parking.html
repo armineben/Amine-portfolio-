@@ -1,217 +1,496 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Parking - Projet</title>
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #0f172a;
-    color: #fff;
-    line-height: 1.6;
-}
-
-/* SECTIONS TYPE SLIDE */
-.section {
-    min-height: 100vh;
-    padding: 60px 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-/* TITRES */
-h1 {
-    font-size: 3rem;
-    font-weight: 700;
-}
-
-h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #38bdf8;
-}
-
-p {
-    max-width: 800px;
-    opacity: 0.8;
-}
-
-/* HERO */
-.hero {
-    text-align: center;
-}
-
-.hero span {
-    color: #38bdf8;
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.card {
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 12px;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    background: rgba(56,189,248,0.1);
-}
-
-/* STATS */
-.stats {
-    display: flex;
-    gap: 40px;
-    margin-top: 30px;
-}
-
-.stat {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #38bdf8;
-}
-
-/* TABLE */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-td, th {
-    padding: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    text-align: center;
-}
-
-/* FOOTER */
-.footer {
-    text-align: center;
-    font-size: 0.9rem;
-    opacity: 0.6;
-    margin-top: 40px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking — Projet Innovant | Amine BENALI</title>
+    <meta name="description" content="Smart Parking 2025 : solution de stationnement urbain intelligent par Amine BENALI. IoT, IA, énergie solaire et application mobile.">
+    <meta name="author" content="Amine BENALI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0ea5e9; --primary-light: #38bdf8; --primary-dark: #0284c7;
+            --accent: #22d3ee; --bg-dark: #0b1121; --bg-card: rgba(15, 23, 42, 0.8);
+            --bg-card-hover: rgba(30, 41, 59, 0.9); --text-primary: #f8fafc;
+            --text-secondary: #94a3b8; --text-muted: #64748b;
+            --border: rgba(148, 163, 184, 0.1); --success: #22c55e;
+            --warning: #f59e0b; --danger: #ef4444;
+            --gradient-1: linear-gradient(135deg, #0ea5e9 0%, #22d3ee 50%, #0ea5e9 100%);
+            --gradient-2: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --shadow-glow: 0 0 40px rgba(14, 165, 233, 0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); line-height: 1.7; overflow-x: hidden; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .animate-on-scroll { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; } .delay-5 { transition-delay: 0.5s; }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 5%; height: 70px; display: flex; align-items: center; justify-content: space-between; background: rgba(11, 17, 33, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: all 0.3s ease; }
+        nav.scrolled { background: rgba(11, 17, 33, 0.95); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+        .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-logo span { color: var(--primary-light); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s ease; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--primary-light); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--text-primary); } .nav-links a:hover::after { width: 100%; }
+        .nav-cta { background: var(--gradient-1); background-size: 200% 200%; animation: gradientShift 3s ease infinite; color: white; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4); }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 5% 80px; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.06) 0%, transparent 50%), radial-gradient(circle at 50% 80%, rgba(14, 165, 233, 0.05) 0%, transparent 50%); animation: float 8s ease-in-out infinite; pointer-events: none; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.2); padding: 8px 20px; border-radius: 50px; font-size: 0.85rem; color: var(--primary-light); margin-bottom: 32px; animation: fadeInUp 0.8s ease forwards; }
+        .hero-badge .dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s ease infinite; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1.1; margin-bottom: 24px; animation: fadeInUp 0.8s ease 0.1s both; }
+        .hero h1 .highlight { background: var(--gradient-1); background-size: 200% 200%; animation: gradientShift 3s ease infinite; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { font-size: clamp(1rem, 2vw, 1.3rem); color: var(--text-secondary); max-width: 600px; margin-bottom: 16px; animation: fadeInUp 0.8s ease 0.2s both; }
+        .hero-tags { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; animation: fadeInUp 0.8s ease 0.3s both; }
+        .hero-tag { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); padding: 6px 16px; border-radius: 6px; font-size: 0.8rem; color: var(--text-secondary); font-weight: 500; }
+        .hero-author { display: flex; align-items: center; gap: 16px; animation: fadeInUp 0.8s ease 0.4s both; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); padding: 16px 28px; border-radius: 16px; margin-bottom: 12px; }
+        .hero-author-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gradient-1); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.3rem; color: white; font-family: 'Space Grotesk', sans-serif; }
+        .hero-author-info { text-align: left; }
+        .hero-author-name { font-weight: 700; color: var(--text-primary); font-size: 1.1rem; font-family: 'Space Grotesk', sans-serif; }
+        .hero-author-role { font-size: 0.85rem; color: var(--text-muted); }
+        .hero-year { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05)); border: 1px solid rgba(245, 158, 11, 0.3); padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; color: var(--warning); font-weight: 600; animation: fadeInUp 0.8s ease 0.5s both; font-family: 'Space Grotesk', sans-serif; }
+        .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.8rem; animation: fadeIn 1s ease 1s both; }
+        .scroll-indicator .mouse { width: 24px; height: 40px; border: 2px solid var(--text-muted); border-radius: 12px; position: relative; }
+        .scroll-indicator .mouse::after { content: ''; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 4px; height: 8px; background: var(--primary-light); border-radius: 2px; animation: pulse 1.5s ease infinite; }
+        section { padding: 100px 5%; position: relative; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+        .section-number { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+        .section-desc { color: var(--text-secondary); font-size: 1.05rem; }
+        #creator { background: var(--gradient-2); padding: 80px 5%; }
+        .creator-card { max-width: 800px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 48px; display: flex; align-items: center; gap: 32px; position: relative; overflow: hidden; }
+        .creator-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-1); }
+        .creator-avatar { width: 100px; height: 100px; min-width: 100px; border-radius: 50%; background: var(--gradient-1); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 700; color: white; box-shadow: 0 0 30px rgba(14, 165, 233, 0.3); }
+        .creator-info h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 4px; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .creator-info .role { color: var(--text-secondary); font-size: 1rem; margin-bottom: 12px; }
+        .creator-info .year-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); padding: 6px 16px; border-radius: 8px; font-size: 0.85rem; color: var(--warning); font-weight: 600; margin-bottom: 12px; }
+        .creator-info p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+        #probleme { background: var(--gradient-2); }
+        .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
+        .problem-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+        .problem-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-1); transform: scaleX(0); transition: transform 0.4s ease; }
+        .problem-card:hover { transform: translateY(-8px); background: var(--bg-card-hover); box-shadow: var(--shadow-glow); border-color: rgba(14, 165, 233, 0.2); }
+        .problem-card:hover::before { transform: scaleX(1); }
+        .problem-stat { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .problem-label { color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; }
+        .problem-context { max-width: 800px; margin: 0 auto 50px; text-align: center; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; }
+        .solution-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+        .solution-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+        .solution-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s ease; }
+        .solution-card:hover { transform: translateY(-6px); border-color: rgba(14, 165, 233, 0.3); box-shadow: var(--shadow-glow); }
+        .solution-card:hover::before { opacity: 1; }
+        .solution-icon { width: 56px; height: 56px; border-radius: 14px; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.2); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
+        .solution-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; color: var(--text-primary); }
+        .solution-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .solution-img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border); transition: transform 0.4s ease; }
+        .solution-card:hover .solution-img { transform: scale(1.02); }
+        #architecture { background: var(--gradient-2); }
+        .arch-container { max-width: 1000px; margin: 0 auto; }
+        .arch-flow { display: flex; flex-direction: column; gap: 0; }
+        .arch-layer { display: flex; align-items: center; gap: 20px; padding: 24px 32px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; transition: all 0.3s ease; }
+        .arch-layer:hover { border-color: rgba(14, 165, 233, 0.3); background: var(--bg-card-hover); }
+        .arch-layer-icon { width: 48px; height: 48px; min-width: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .arch-layer-icon.frontend { background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.2); }
+        .arch-layer-icon.backend { background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.2); }
+        .arch-layer-icon.iot { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); }
+        .arch-layer-icon.ai { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); }
+        .arch-layer-icon.cloud { background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.2); }
+        .arch-layer-content h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+        .arch-layer-content p { color: var(--text-secondary); font-size: 0.9rem; }
+        .arch-connector { display: flex; justify-content: center; margin: -8px 0; position: relative; z-index: 1; }
+        .arch-connector-line { width: 2px; height: 24px; background: linear-gradient(to bottom, var(--primary), var(--accent)); }
+        .arch-image { max-width: 900px; margin: 50px auto 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+        .arch-image img { width: 100%; height: auto; display: block; }
+        .market-container { max-width: 1000px; margin: 0 auto; }
+        .comparison-table { width: 100%; border-collapse: separate; border-spacing: 0; overflow: hidden; border-radius: 16px; border: 1px solid var(--border); }
+        .comparison-table thead th { background: rgba(14, 165, 233, 0.1); padding: 18px 24px; text-align: left; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text-primary); border-bottom: 1px solid var(--border); }
+        .comparison-table thead th:first-child { border-top-left-radius: 16px; }
+        .comparison-table thead th:last-child { border-top-right-radius: 16px; }
+        .comparison-table tbody tr { background: var(--bg-card); transition: background 0.3s ease; }
+        .comparison-table tbody tr:hover { background: var(--bg-card-hover); }
+        .comparison-table tbody td { padding: 16px 24px; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.95rem; }
+        .comparison-table tbody tr:last-child td:first-child { border-bottom-left-radius: 16px; }
+        .comparison-table tbody tr:last-child td:last-child { border-bottom-right-radius: 16px; }
+        .comparison-table tbody tr:last-child td { border-bottom: none; }
+        .check { color: var(--success); font-weight: 700; font-size: 1.2rem; }
+        .cross { color: var(--danger); font-weight: 700; font-size: 1.2rem; }
+        .highlight-cell { background: rgba(14, 165, 233, 0.05); font-weight: 600; color: var(--text-primary); }
+        #business { background: var(--gradient-2); }
+        .revenue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+        .revenue-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .revenue-card:hover { transform: translateY(-6px); border-color: rgba(14, 165, 233, 0.3); box-shadow: var(--shadow-glow); }
+        .revenue-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .revenue-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+        .revenue-card p { color: var(--text-secondary); font-size: 0.9rem; }
+        .revenue-estimate { display: inline-block; margin-top: 16px; padding: 6px 16px; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 20px; font-size: 0.8rem; color: var(--primary-light); font-weight: 600; }
+        .roadmap-container { max-width: 900px; margin: 0 auto; position: relative; }
+        .roadmap-container::before { content: ''; position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--primary), var(--accent)); }
+        .roadmap-item { display: flex; gap: 32px; margin-bottom: 40px; position: relative; }
+        .roadmap-item:last-child { margin-bottom: 0; }
+        .roadmap-dot { width: 50px; height: 50px; min-width: 50px; border-radius: 50%; background: var(--bg-card); border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--primary-light); position: relative; z-index: 1; }
+        .roadmap-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; flex: 1; transition: all 0.3s ease; }
+        .roadmap-content:hover { border-color: rgba(14, 165, 233, 0.3); background: var(--bg-card-hover); }
+        .roadmap-phase { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .roadmap-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+        .roadmap-desc { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+        .roadmap-duration { display: inline-block; margin-top: 12px; padding: 4px 12px; background: rgba(255, 255, 255, 0.05); border-radius: 6px; font-size: 0.8rem; color: var(--text-muted); }
+        #impact { background: var(--gradient-2); }
+        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+        .impact-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: all 0.4s ease; }
+        .impact-card:hover { transform: translateY(-4px); border-color: rgba(14, 165, 233, 0.2); }
+        .impact-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .impact-card ul { list-style: none; padding: 0; }
+        .impact-card ul li { color: var(--text-secondary); font-size: 0.9rem; padding: 6px 0; padding-left: 20px; position: relative; }
+        .impact-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--primary-light); font-weight: 700; }
+        .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .stack-category { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: all 0.3s ease; }
+        .stack-category:hover { border-color: rgba(14, 165, 233, 0.2); }
+        .stack-category h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+        .stack-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; color: var(--text-secondary); font-size: 0.9rem; }
+        .stack-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); opacity: 0.6; }
+        #gallery { background: var(--gradient-2); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .gallery-item { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 16/10; cursor: pointer; transition: all 0.4s ease; }
+        .gallery-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-glow); border-color: rgba(14, 165, 233, 0.3); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(11, 17, 33, 0.95), transparent); transform: translateY(100%); transition: transform 0.4s ease; }
+        .gallery-item:hover .gallery-overlay { transform: translateY(0); }
+        .gallery-overlay h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text-primary); }
+        .gallery-overlay p { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
+        footer { padding: 60px 5% 40px; text-align: center; border-top: 1px solid var(--border); }
+        .footer-content { max-width: 600px; margin: 0 auto; }
+        .footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+        .footer-logo span { color: var(--primary-light); }
+        .footer-desc { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px; }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 32px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--primary-light); }
+        .footer-author { display: inline-flex; align-items: center; gap: 10px; background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.15); padding: 10px 24px; border-radius: 50px; margin-bottom: 20px; }
+        .footer-author-name { font-weight: 700; color: var(--primary-light); font-family: 'Space Grotesk', sans-serif; }
+        .footer-year { color: var(--warning); font-weight: 600; font-size: 0.9rem; }
+        .footer-copy { color: var(--text-muted); font-size: 0.85rem; padding-top: 24px; border-top: 1px solid var(--border); }
+        @media (max-width: 768px) {
+            .nav-links { display: none; } .nav-cta { display: none; }
+            section { padding: 60px 5%; }
+            .creator-card { flex-direction: column; text-align: center; padding: 32px 24px; }
+            .roadmap-container::before { left: 19px; }
+            .roadmap-dot { width: 40px; height: 40px; min-width: 40px; font-size: 0.8rem; }
+            .roadmap-item { gap: 20px; }
+            .arch-layer { flex-direction: column; text-align: center; }
+        }
+        ::selection { background: rgba(14, 165, 233, 0.3); color: var(--text-primary); }
+    </style>
+<base target="_blank">
 </head>
-
 <body>
 
-<!-- HERO -->
-<section class="section hero">
-    <h1>Smart <span>Parking</span></h1>
-    <p>Stationnement urbain intelligent, sécurisé et écologique</p>
-    <p>IoT • IA • Énergie solaire • Application mobile</p>
-    <br>
-    <p><strong>Amine BENALI</strong> — Chef de Projet</p>
-</section>
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-light);">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/><path d="M3 9h18"/><path d="M3 15h18"/>
+            </svg>
+            Smart<span>Parking</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#probleme">Problème</a></li>
+            <li><a href="#solution">Solution</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#marche">Marché</a></li>
+            <li><a href="#business">Business</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#gallery">Galerie</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Contacter</a>
+    </nav>
 
-<!-- PROBLEME -->
-<section class="section">
-    <h2>01 — Problème & Contexte</h2>
-    <p>
-        Le stationnement urbain est un problème majeur. Les conducteurs perdent jusqu’à 30 minutes par trajet,
-        générant stress, pollution et insécurité.
-    </p>
+    <!-- HERO -->
+    <section class="hero" id="accueil">
+        <div class="hero-badge"><span class="dot"></span>Projet en développement actif — 2025</div>
+        <h1>Réinventons le<br><span class="highlight">stationnement urbain</span></h1>
+        <p class="hero-subtitle">Une solution intelligente, sécurisée et durable qui transforme l'expérience de stationnement en ville grâce à l'IoT, l'IA et les énergies renouvelables.</p>
+        <div class="hero-tags">
+            <span class="hero-tag">🌐 Internet des Objets</span>
+            <span class="hero-tag">🧠 Intelligence Artificielle</span>
+            <span class="hero-tag">☀️ Énergie Solaire</span>
+            <span class="hero-tag">📱 Application Mobile</span>
+        </div>
+        <div class="hero-author">
+            <div class="hero-author-avatar">AB</div>
+            <div class="hero-author-info">
+                <div class="hero-author-name">Amine BENALI</div>
+                <div class="hero-author-role">Chef de Projet & Développeur — Smart Parking Initiative</div>
+            </div>
+        </div>
+        <div class="hero-year">📅 Année de lancement : 2025</div>
+        <div class="scroll-indicator"><div class="mouse"></div><span>Scroll pour explorer</span></div>
+    </section>
 
-    <div class="stats">
-        <div class="stat">97%</div>
-        <div class="stat">67%</div>
-        <div class="stat">86%</div>
-        <div class="stat">64%</div>
-    </div>
-</section>
+    <!-- CREATOR -->
+    <section id="creator">
+        <div class="creator-card animate-on-scroll">
+            <div class="creator-avatar">AB</div>
+            <div class="creator-info">
+                <h3>Amine BENALI</h3>
+                <div class="role">Chef de Projet & Développeur Full-Stack</div>
+                <div class="year-badge">📅 Projet lancé en 2025</div>
+                <p>Passionné par l'innovation technologique et les smart cities, j'ai conçu et développé le projet Smart Parking de A à Z. Cette initiative vise à résoudre un problème urbain majeur en combinant IoT, intelligence artificielle et énergies renouvelables dans une solution complète et scalable.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- SOLUTION -->
-<section class="section">
-    <h2>02 — Solution Smart Parking</h2>
+    <!-- PROBLEME -->
+    <section id="probleme">
+        <div class="section-header animate-on-scroll">
+            <div class="section-number">01 — Le Problème</div>
+            <h2 class="section-title">Le stationnement urbain, un cauchemar quotidien</h2>
+            <p class="section-desc">Les conducteurs urbains perdent un temps précieux, génèrent de la pollution et subissent du stress inutile à la recherche d'une place de parking.</p>
+        </div>
+        <p class="problem-context animate-on-scroll delay-1">Dans les grandes métropoles, le temps moyen passé à chercher une place de stationnement atteint <strong>20 à 30 minutes par trajet</strong>. Ce phénomène engendre une congestion excessive, une augmentation des émissions de CO₂ et une insécurité croissante pour les usagers.</p>
+        <div class="problem-grid">
+            <div class="problem-card animate-on-scroll delay-1"><div class="problem-stat">97%</div><div class="problem-label">des conducteurs stressés par le stationnement</div></div>
+            <div class="problem-card animate-on-scroll delay-2"><div class="problem-stat">67%</div><div class="problem-label">du trafic urbain lié à la recherche de place</div></div>
+            <div class="problem-card animate-on-scroll delay-3"><div class="problem-stat">86%</div><div class="problem-label">des places non optimisées en temps réel</div></div>
+            <div class="problem-card animate-on-scroll delay-4"><div class="problem-stat">64%</div><div class="problem-label">des vols liés à des parkings non sécurisés</div></div>
+        </div>
+    </section>
 
-    <div class="grid">
-        <div class="card">📱 Application mobile</div>
-        <div class="card">🔐 Sécurité biométrique</div>
-        <div class="card">⚡ Recharge EV</div>
-        <div class="card">☀️ Énergie solaire</div>
-        <div class="card">🤖 Chatbot intelligent</div>
-        <div class="card">🏗 Parking rotatif</div>
-    </div>
-</section>
+    <!-- SOLUTION -->
+    <section id="solution">
+        <div class="section-header animate-on-scroll">
+            <div class="section-number">02 — Notre Solution</div>
+            <h2 class="section-title">Smart Parking, l'écosystème complet</h2>
+            <p class="section-desc">Une plateforme intégrée qui connecte conducteurs, infrastructures et données pour une expérience de stationnement fluide et intelligente.</p>
+        </div>
+        <div class="solution-grid">
+            <div class="solution-card animate-on-scroll delay-1">
+                <img src="images/1_Smart_Parking_App_Car_Parking_Finder.png" alt="Application mobile Smart Parking" class="solution-img">
+                <div class="solution-icon">📱</div><h3>Application Mobile</h3><p>Réservation en temps réel, navigation GPS vers la place disponible la plus proche, paiement sans contact et historique complet des stationnements.</p>
+            </div>
+            <div class="solution-card animate-on-scroll delay-2">
+                <img src="images/3_Security_Parking_Barrier_Access_Control.png" alt="Sécurité biométrique parking" class="solution-img">
+                <div class="solution-icon">🔐</div><h3>Sécurité Biométrique</h3><p>Accès sécurisé par reconnaissance faciale ou empreinte digitale. Surveillance 24/7 par caméras IA et alertes instantanées en cas d'intrusion.</p>
+            </div>
+            <div class="solution-card animate-on-scroll delay-3">
+                <img src="images/4_Charging_an_Electric_Vehicle_with.png" alt="Recharge EV avec panneaux solaires" class="solution-img">
+                <div class="solution-icon">⚡</div><h3>Recharge EV Intégrée</h3><p>Bornes de recharge rapide pour véhicules électriques avec réservation de créneau, suivi de consommation et facturation automatique.</p>
+            </div>
+            <div class="solution-card animate-on-scroll delay-1">
+                <img src="images/10_Off_Grid_Solar_Charging_For_EV_Cars.png" alt="Parking solaire autonome" class="solution-img">
+                <div class="solution-icon">☀️</div><h3>Énergie Solaire</h3><p>Autonomie énergétique complète grâce aux panneaux solaires installés sur les toits des parkings. Stockage par batteries pour une utilisation 24h/24.</p>
+            </div>
+            <div class="solution-card animate-on-scroll delay-2">
+                <img src="images/6_Develop_An_IoT_Based_Smart_Parking.png" alt="Système IoT smart parking" class="solution-img">
+                <div class="solution-icon">🤖</div><h3>Chatbot Intelligent</h3><p>Assistant virtuel disponible 24/7 pour répondre aux questions, guider les utilisateurs et résoudre les problèmes en temps réel grâce au NLP.</p>
+            </div>
+            <div class="solution-card animate-on-scroll delay-3">
+                <img src="images/7_China_Automatic_Rotary_Parking_system.png" alt="Parking rotatif automatisé" class="solution-img">
+                <div class="solution-icon">🏗️</div><h3>Parking Rotatif Automatisé</h3><p>Système mécanique intelligent qui maximise l'espace disponible en empilant les véhicules verticalement, doublant la capacité de stationnement.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- MARCHE -->
-<section class="section">
-    <h2>03 — Marché & Concurrents</h2>
+    <!-- ARCHITECTURE -->
+    <section id="architecture">
+        <div class="section-header animate-on-scroll">
+            <div class="section-number">03 — Architecture Technique</div>
+            <h2 class="section-title">Une infrastructure moderne et scalable</h2>
+            <p class="section-desc">Notre stack technique est conçue pour être performante, sécurisée et évolutive, capable de gérer des millions de requêtes en temps réel.</p>
+        </div>
+        <div class="arch-container">
+            <div class="arch-flow">
+                <div class="arch-layer animate-on-scroll delay-1"><div class="arch-layer-icon frontend">📱</div><div class="arch-layer-content"><h4>Couche Frontend</h4><p>React Native (iOS/Android) + React Web Dashboard + PWA pour une expérience utilisateur fluide et responsive</p></div></div>
+                <div class="arch-connector"><div class="arch-connector-line"></div></div>
+                <div class="arch-layer animate-on-scroll delay-2"><div class="arch-layer-icon backend">⚙️</div><div class="arch-layer-content"><h4>API & Backend</h4><p>Node.js / Express + GraphQL API + Authentification JWT + Rate Limiting + Documentation Swagger</p></div></div>
+                <div class="arch-connector"><div class="arch-connector-line"></div></div>
+                <div class="arch-layer animate-on-scroll delay-3"><div class="arch-layer-icon ai">🧠</div><div class="arch-layer-content"><h4>Moteur IA & Analytics</h4><p>Python / TensorFlow pour la prédiction d'occupation + NLP pour le chatbot + Computer Vision pour la surveillance</p></div></div>
+                <div class="arch-connector"><div class="arch-connector-line"></div></div>
+                <div class="arch-layer animate-on-scroll delay-4"><div class="arch-layer-icon iot">📡</div><div class="arch-layer-content"><h4>Couche IoT</h4><p>Capteurs ultrasons / magnétiques + Raspberry Pi / Arduino + Protocole MQTT + Gateway LoRaWAN</p></div></div>
+                <div class="arch-connector"><div class="arch-connector-line"></div></div>
+                <div class="arch-layer animate-on-scroll delay-5"><div class="arch-layer-icon cloud">☁️</div><div class="arch-layer-content"><h4>Cloud & Infrastructure</h4><p>AWS / Azure (serverless) + PostgreSQL + Redis Cache + Docker + Kubernetes + CI/CD GitHub Actions</p></div></div>
+            </div>
+        </div>
+        <div class="arch-image animate-on-scroll"><img src="images/2_Smart_Parking_System_Using_IoT_for.png" alt="Architecture IoT Smart Parking"></div>
+    </section>
 
-    <table>
-        <tr>
-            <th>Fonctionnalité</th>
-            <th>Smart Parking</th>
-            <th>Autres</th>
-        </tr>
-        <tr>
-            <td>Réservation</td>
-            <td>✓</td>
-            <td>✓</td>
-        </tr>
-        <tr>
-            <td>Sécurité biométrique</td>
-            <td>✓</td>
-            <td>✗</td>
-        </tr>
-        <tr>
-            <td>Énergie solaire</td>
-            <td>✓</td>
-            <td>✗</td>
-        </tr>
-    </table>
-</section>
+    <!-- MARCHE -->
+    <section id="marche">
+        <div class="section-header animate-on-scroll">
+            <div class="section-number">04 — Marché & Positionnement</div>
+            <h2 class="section-title">Notre avantage compétitif</h2>
+            <p class="section-desc">Comparatif détaillé des fonctionnalités qui distinguent Smart Parking des solutions existantes sur le marché.</p>
+        </div>
+        <div class="market-container animate-on-scroll delay-1">
+            <table class="comparison-table">
+                <thead><tr><th>Fonctionnalité</th><th class="highlight-cell">Smart Parking</th><th>Solutions Concurrentes</th></tr></thead>
+                <tbody>
+                    <tr><td>Réservation en temps réel</td><td class="highlight-cell"><span class="check">✓</span></td><td><span class="check">✓</span> (partiel)</td></tr>
+                    <tr><td>Sécurité biométrique</td><td class="highlight-cell"><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+                    <tr><td>Énergie solaire autonome</td><td class="highlight-cell"><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+                    <tr><td>Recharge EV intégrée</td><td class="highlight-cell"><span class="check">✓</span></td><td><span class="check">✓</span> (rare)</td></tr>
+                    <tr><td>Chatbot IA 24/7</td><td class="highlight-cell"><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+                    <tr><td>Parking rotatif automatisé</td><td class="highlight-cell"><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+                    <tr><td>Analytics & Prédiction IA</td><td class="highlight-cell"><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+                    <tr><td>Modèle B2B partenariats</td><td class="highlight-cell"><span class="check">✓</span></td><td><span class="check">✓</span> (limité)</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-<!-- BUSINESS -->
-<section class="section">
-    <h2>04 — Business Model</h2>
+    <!-- BUSINESS MODEL -->
+    <section id="business">
+        <div class="section-header animate-on-scroll">
+            <div class="section-number">05 — Business Model</div>
+            <h2 class="section-title">Streams de revenus multiples</h2>
+            <p class="section-desc">Un modèle économique diversifié assurant la viabilité et la croissance du projet sur le long terme.</p>
+        </div>
+        <div class="revenue-grid">
+            <div class="revenue-card animate-on-scroll delay-1"><div class="revenue-icon">💰</div><h3>Paiement Parking</h3><p>Commission sur chaque transaction de stationnement effectuée via la plateforme. Tarification dynamique selon la demande.</p><span class="revenue-estimate">~40% des revenus</span></div>
+            <div class="revenue-card animate-on-scroll delay-2"><div class="revenue-icon">📲</div><h3>Commission Réservation</h3><p>Frais de service sur les réservations anticipées et les places premium. Abonnement mensuel pour les utilisateurs réguliers.</p><span class="revenue-estimate">~25% des revenus</span></div>
+            <div class="revenue-card animate-on-scroll delay-3"><div class="revenue-icon">⚡</div><h3>Recharge Électrique</h3><p>Revenus générés par la vente d'électricité aux véhicules électriques via les bornes intégrées dans nos parkings.</p><span class="revenue-estimate">~15% des revenus</span></div>
+            <div class="revenue-card animate-on-scroll delay-1"><div class="revenue-icon">📢</div><h3>Publicité Ciblée</h3><p>Espaces publicitaires dans l'app et sur les écrans des parkings. Ciblage géolocalisé pour les commerces environnants.</p><span class="revenue-estimate">~10% des revenus</span></div>
+            <div class="revenue-card animate-on-scroll delay-2"><div class="revenue-icon">🤝</div><h3>Partenariats B2B</h3><p>Contrats avec entreprises, centres commerciaux et municipalités pour la gestion complète de leurs parkings.</p><span class="revenue-estimate">~10% des revenus</span></div>
+        </div>
+    </section>
 
-    <div class="grid">
-        <div class="card">💰 Paiement parking</div>
-        <div class="card">📲 Commission réservation</div>
-        <div class="card">📢 Publicité</div>
-        <div class="card">🤝 Partenariats B2B</div>
-        <div class="card">⚡ Recharge EV</div>
-    </div>
-</section>
+    <!-- ROADMAP -->
+    <section id="roadmap">
+        <div class="section-header animate-on-scroll">
+            <div class="section-number">06 — Feuille de Route</div>
+            <h2 class="section-title">De l'idée au déploiement</h2>
+            <p class="section-desc">Un plan d'action structuré en 5 phases pour transformer Smart Parking en réalité opérationnelle.</p>
+        </div>
+        <div class="roadmap-container">
+            <div class="roadmap-item animate-on-scroll delay-1"><div class="roadmap-dot">1</div><div class="roadmap-content"><div class="roadmap-phase">Phase 1 — Fondation</div><div class="roadmap-title">Étude & Conception</div><div class="roadmap-desc">Étude de marché approfondie, analyse concurrentielle, définition des spécifications techniques, création des maquettes UI/UX et validation du concept auprès d'utilisateurs potentiels.</div><span class="roadmap-duration">⏱ 2-3 mois</span></div></div>
+            <div class="roadmap-item animate-on-scroll delay-2"><div class="roadmap-dot">2</div><div class="roadmap-content"><div class="roadmap-phase">Phase 2 — Développement</div><div class="roadmap-title">Application & Backend</div><div class="roadmap-desc">Développement de l'application mobile (iOS/Android), création de l'API backend, mise en place de la base de données, intégration du système de paiement et tests utilisateurs beta.</div><span class="roadmap-duration">⏱ 4-5 mois</span></div></div>
+            <div class="roadmap-item animate-on-scroll delay-3"><div class="roadmap-dot">3</div><div class="roadmap-content"><div class="roadmap-phase">Phase 3 — Intégration</div><div class="roadmap-title">IoT & Intelligence Artificielle</div><div class="roadmap-desc">Installation des capteurs IoT dans le parking pilote, développement du moteur de prédiction IA, intégration du chatbot intelligent et configuration du système de sécurité biométrique.</div><span class="roadmap-duration">⏱ 3-4 mois</span></div></div>
+            <div class="roadmap-item animate-on-scroll delay-4"><div class="roadmap-dot">4</div><div class="roadmap-content"><div class="roadmap-phase">Phase 4 — Validation</div><div class="roadmap-title">Déploiement Pilote</div><div class="roadmap-desc">Lancement du parking pilote dans une zone urbaine cible, collecte de feedbacks utilisateurs, optimisation des algorithmes, ajustements techniques et validation du modèle économique.</div><span class="roadmap-duration">⏱ 3-4 mois</span></div></div>
+            <div class="roadmap-item animate-on-scroll delay-5"><div class="roadmap-dot">5</div><div class="roadmap-content"><div class="roadmap-phase">Phase 5 — Croissance</div><div class="roadmap-title">Scale & Expansion</div><div class="roadmap-desc">Déploiement dans plusieurs villes, intégration de nouveaux partenaires B2B, levée de fonds Series A, expansion internationale et développement de fonctionnalités avancées.</div><span class="roadmap-duration">⏱ 12+ mois</span></div></div>
+        </div>
+    </section>
 
-<!-- ROADMAP -->
-<section class="section">
-    <h2>05 — Roadmap</h2>
+    <!-- IMPACT -->
+    <section id="impact">
+        <div class="section-header animate-on-scroll">
+            <div class="section-number">07 — Impact & Bénéfices</div>
+            <h2 class="section-title">Un impact positif mesurable</h2>
+            <p class="section-desc">Smart Parking ne résout pas seulement un problème pratique — il contribue activement à un avenir urbain plus durable et intelligent.</p>
+        </div>
+        <div class="impact-grid">
+            <div class="impact-card animate-on-scroll delay-1"><h3>🌍 Environnemental</h3><ul><li>Réduction de 30% des émissions CO₂ liées à la recherche de place</li><li>Autonomie énergétique via panneaux solaires</li><li>Encouragement à la mobilité électrique</li><li>Optimisation de l'espace urbain</li></ul></div>
+            <div class="impact-card animate-on-scroll delay-2"><h3>🏙️ Urbain</h3><ul><li>Réduction significative de la congestion routière</li><li>Meilleure gestion du stationnement municipal</li><li>Libération d'espace pour d'autres usages</li><li>Amélioration de la qualité de vie des citoyens</li></ul></div>
+            <div class="impact-card animate-on-scroll delay-3"><h3>👤 Utilisateur</h3><ul><li>Gain de temps : jusqu'à 30 min par trajet</li><li>Réduction du stress lié au stationnement</li><li>Sécurité renforcée pour le véhicule</li><li>Expérience utilisateur fluide et intuitive</li></ul></div>
+            <div class="impact-card animate-on-scroll delay-1"><h3>💼 Économique</h3><ul><li>Nouveau modèle de revenus pour les propriétaires</li><li>Création d'emplois tech et opérationnels</li><li>Attraction commerciale pour les zones équipées</li><li>ROI rapide grâce à l'autonomie énergétique</li></ul></div>
+        </div>
+    </section>
 
-    <div class="grid">
-        <div class="card">Phase 1 — Étude</div>
-        <div class="card">Phase 2 — App</div>
-        <div class="card">Phase 3 — IoT</div>
-        <div class="card">Phase 4 — Pilote</div>
-        <div class="card">Phase 5 — Scale</div>
-    </div>
+    <!-- STACK TECHNO -->
+    <section id="stack">
+        <div class="section-header animate-on-scroll">
+            <div class="section-number">08 — Stack Technologique</div>
+            <h2 class="section-title">Les technologies au cœur du projet</h2>
+            <p class="section-desc">Un écosystème technologique moderne et éprouvé, choisi pour sa performance, sa sécurité et sa maintenabilité.</p>
+        </div>
+        <div class="stack-grid">
+            <div class="stack-category animate-on-scroll delay-1"><h4>Frontend</h4><div class="stack-item"><span class="stack-dot"></span>React Native</div><div class="stack-item"><span class="stack-dot"></span>React.js / Next.js</div><div class="stack-item"><span class="stack-dot"></span>TypeScript</div><div class="stack-item"><span class="stack-dot"></span>Tailwind CSS</div><div class="stack-item"><span class="stack-dot"></span>Redux / Zustand</div></div>
+            <div class="stack-category animate-on-scroll delay-2"><h4>Backend</h4><div class="stack-item"><span class="stack-dot"></span>Node.js / Express</div><div class="stack-item"><span class="stack-dot"></span>GraphQL / REST</div><div class="stack-item"><span class="stack-dot"></span>PostgreSQL</div><div class="stack-item"><span class="stack-dot"></span>Redis</div><div class="stack-item"><span class="stack-dot"></span>Prisma ORM</div></div>
+            <div class="stack-category animate-on-scroll delay-3"><h4>IA & Data</h4><div class="stack-item"><span class="stack-dot"></span>Python / TensorFlow</div><div class="stack-item"><span class="stack-dot"></span>OpenAI API / NLP</div><div class="stack-item"><span class="stack-dot"></span>Computer Vision</div><div class="stack-item"><span class="stack-dot"></span>Pandas / NumPy</div><div class="stack-item"><span class="stack-dot"></span>Scikit-learn</div></div>
+            <div class="stack-category animate-on-scroll delay-1"><h4>IoT & Hardware</h4><div class="stack-item"><span class="stack-dot"></span>Raspberry Pi</div><div class="stack-item"><span class="stack-dot"></span>Arduino / ESP32</div><div class="stack-item"><span class="stack-dot"></span>Capteurs ultrasons</div><div class="stack-item"><span class="stack-dot"></span>MQTT Protocol</div><div class="stack-item"><span class="stack-dot"></span>LoRaWAN Gateway</div></div>
+            <div class="stack-category animate-on-scroll delay-2"><h4>Cloud & DevOps</h4><div class="stack-item"><span class="stack-dot"></span>AWS / Azure</div><div class="stack-item"><span class="stack-dot"></span>Docker & Kubernetes</div><div class="stack-item"><span class="stack-dot"></span>GitHub Actions</div><div class="stack-item"><span class="stack-dot"></span>Terraform</div><div class="stack-item"><span class="stack-dot"></span>Monitoring Grafana</div></div>
+            <div class="stack-category animate-on-scroll delay-3"><h4>Outils & Design</h4><div class="stack-item"><span class="stack-dot"></span>Figma</div><div class="stack-item"><span class="stack-dot"></span>Postman</div><div class="stack-item"><span class="stack-dot"></span>Jest / Cypress</div><div class="stack-item"><span class="stack-dot"></span>Swagger / OpenAPI</div><div class="stack-item"><span class="stack-dot"></span>Notion / Jira</div></div>
+        </div>
+    </section>
 
-    <div class="footer">
-        © 2025 — Amine BENALI — Smart Parking Initiative
-    </div>
-</section>
+    <!-- GALLERY -->
+    <section id="gallery">
+        <div class="section-header animate-on-scroll">
+            <div class="section-number">09 — Galerie Visuelle</div>
+            <h2 class="section-title">Aperçu du projet en images</h2>
+            <p class="section-desc">Découvrez les concepts visuels et les technologies qui composent l'écosystème Smart Parking.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item animate-on-scroll delay-1">
+                <img src="images/1_Smart_Parking_App_Car_Parking_Finder.png" alt="Application Mobile">
+                <div class="gallery-overlay"><h4>Application Mobile</h4><p>Interface utilisateur intuitive pour la réservation et la navigation</p></div>
+            </div>
+            <div class="gallery-item animate-on-scroll delay-2">
+                <img src="images/2_Smart_Parking_System_Using_IoT_for.png" alt="Système IoT">
+                <div class="gallery-overlay"><h4>Système IoT</h4><p>Architecture capteurs-cloud pour le monitoring en temps réel</p></div>
+            </div>
+            <div class="gallery-item animate-on-scroll delay-3">
+                <img src="images/8_Smart_Parking_System_Using_IoT_MOKOSmar.png" alt="Smart Parking IoT">
+                <div class="gallery-overlay"><h4>Monitoring Intelligent</h4><p>Détection automatique des places et gestion des accès</p></div>
+            </div>
+            <div class="gallery-item animate-on-scroll delay-1">
+                <img src="images/4_Charging_an_Electric_Vehicle_with.png" alt="Recharge Solaire EV">
+                <div class="gallery-overlay"><h4>Recharge Solaire EV</h4><p>Panneaux solaires intégrés avec bornes de recharge rapide</p></div>
+            </div>
+            <div class="gallery-item animate-on-scroll delay-2">
+                <img src="images/5_Cost_and_Benefits_of_Solar_Powered.png" alt="Énergie Renouvelable">
+                <div class="gallery-overlay"><h4>Énergie Renouvelable</h4><p>Autonomie énergétique complète du parking</p></div>
+            </div>
+            <div class="gallery-item animate-on-scroll delay-3">
+                <img src="images/9_ARP_Series_8_20_Cars_Rotary_Parking.png" alt="Parking Rotatif">
+                <div class="gallery-overlay"><h4>Parking Rotatif</h4><p>Système mécanique vertical pour maximiser l'espace</p></div>
+            </div>
+        </div>
+    </section>
 
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-logo">Smart<span>Parking</span></div>
+            <p class="footer-desc">Stationnement urbain intelligent, sécurisé et écologique. Un projet développé avec passion pour transformer nos villes.</p>
+            <div class="footer-author">
+                <span class="footer-author-name">👤 Amine BENALI</span>
+                <span style="color: var(--text-muted);">|</span>
+                <span class="footer-year">📅 2025</span>
+            </div>
+            <div class="footer-links">
+                <a href="#probleme">Problème</a>
+                <a href="#solution">Solution</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#business">Business</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#gallery">Galerie</a>
+            </div>
+            <p class="footer-copy">
+                © 2025 — Conçu & Développé par <strong style="color: var(--primary-light);">Amine BENALI</strong><br>
+                Smart Parking Initiative — Tous droits réservés
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
+            else { navbar.classList.remove('scrolled'); }
+        });
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+        }, observerOptions);
+        document.querySelectorAll('.animate-on-scroll').forEach(el => { observer.observe(el); });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+    </script>
 </body>
 </html>
