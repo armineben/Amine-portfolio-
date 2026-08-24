@@ -78,9 +78,7 @@ const PORTFOLIO_CONTENU = {
     "secret_fashion_actualité_2.png",
     "secret_fashion_actualité_3.png",
     "secret_fashion_actualité_4.png",
-    "modefemme.png",
-    "modehomme.png",
-    "pagded'acceuil.png",
+    "Vendly_actualité",
   ],
 
 };
