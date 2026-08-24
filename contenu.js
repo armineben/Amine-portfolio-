@@ -73,6 +73,7 @@ const PORTFOLIO_CONTENU = {
 
   // 📁 Dossier : projets-actualites/
   actualites: [
+    "Vendly_actualité",
     "application.png",
     "secret_fashion_actualité_1.png",
     "secret_fashion_actualité_2.png",
