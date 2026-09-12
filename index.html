@@ -358,7 +358,7 @@ section { padding: 6rem 5rem; }
 @keyframes actuPulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
 .actu-inner {
-  display: grid; grid-template-columns: 1fr 380px; gap: 0;
+  display: grid; grid-template-columns: 1fr; gap: 0;
   min-height: 480px;
 }
 
@@ -367,7 +367,8 @@ section { padding: 6rem 5rem; }
   padding: 0; display: flex; flex-direction: column;
 }
 .actu-media {
-  position: relative; width: 100%; aspect-ratio: 16/9;
+  position: relative; width: 100%; flex: 1;
+  min-height: 480px;
   background: var(--bg-elevated); border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 10px; overflow: hidden;
@@ -388,100 +389,7 @@ section { padding: 6rem 5rem; }
 .actu-media video, .actu-media img {
   width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;
 }
-.actu-content {
-  padding: 2rem 2.5rem 2rem; display: flex; flex-direction: column; flex: 1;
-}
-.actu-meta {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;
-}
-.actu-meta-tag {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--text-muted);
-  padding: 4px 10px; border-radius: 6px;
-  background: var(--bg-elevated); border: 1px solid var(--border);
-}
-.actu-meta-tag.accent {
-  color: var(--accent); background: var(--accent-soft);
-  border-color: rgba(255,92,38,0.15);
-}
-.actu-name {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 800; line-height: 1.1;
-  letter-spacing: -0.03em; margin-bottom: 0.5rem;
-}
-.actu-role {
-  font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 1.25rem;
-}
-.actu-desc {
-  font-size: 14px; color: var(--text-secondary); line-height: 1.8;
-  margin-bottom: 1.5rem;
-}
-.actu-bottom {
-  margin-top: auto;
-  display: flex; flex-direction: column; gap: 1.25rem;
-}
-.actu-stack {
-  display: flex; flex-wrap: wrap; gap: 6px;
-}
-.actu-stack-tag {
-  font-size: 10px; padding: 5px 12px; border-radius: 8px;
-  background: var(--bg-elevated); border: 1px solid var(--border);
-  color: var(--text-secondary); font-weight: 600;
-  transition: all 0.2s ease;
-}
-.actu-stack-tag:hover { border-color: var(--accent); color: var(--accent); }
-.actu-features {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px;
-}
-.actu-feature {
-  font-size: 12px; color: var(--text-muted); font-weight: 500;
-  display: flex; align-items: center; gap: 8px;
-}
-.actu-feature::before {
-  content: ''; display: block; width: 5px; height: 5px;
-  border-radius: 50%; background: var(--accent); opacity: 0.5; flex-shrink: 0;
-}
-
 /* ── Right: Component Cards ── */
-.actu-right {
-  background: var(--bg-elevated);
-  border-left: 1px solid var(--border);
-  padding: 1.5rem;
-  display: flex; flex-direction: column; gap: 10px;
-  overflow-y: auto;
-}
-.actu-comp-card {
-  display: flex; align-items: center; gap: 14px;
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 16px; padding: 14px;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-.actu-comp-card:hover {
-  border-color: var(--border-hover);
-  transform: translateX(3px);
-}
-.actu-comp-thumb {
-  width: 64px; height: 64px; border-radius: 12px;
-  background: var(--bg-elevated); border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; flex-shrink: 0; color: var(--text-muted);
-  position: relative; overflow: hidden;
-}
-.actu-comp-thumb img, .actu-comp-thumb video {
-  width: 100%; height: 100%; object-fit: cover;
-}
-.actu-comp-info { flex: 1; min-width: 0; }
-.actu-comp-title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px; font-weight: 700; margin-bottom: 4px;
-}
-.actu-comp-detail {
-  font-size: 11px; color: var(--text-muted); line-height: 1.5;
-  font-weight: 400;
-}
-
 .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .cat-card {
   background: var(--bg-card); border: 1px solid var(--border);
@@ -603,6 +511,12 @@ section { padding: 6rem 5rem; }
 }
 .timeline-place { font-size: 13px; color: var(--accent); margin-bottom: 12px; font-weight: 600; }
 .timeline-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.9; }
+.timeline-intro { font-size: 13px; color: var(--text-secondary); line-height: 1.9; margin-bottom: 12px; }
+.timeline-desc span.lead {
+  display: block; font-weight: 700; color: var(--text);
+  margin-top: 4px;
+}
+.timeline-desc span.lead::before { display: none; }
 .timeline-desc span { display: block; padding: 3px 0; }
 .timeline-desc span::before {
   content: ''; display: inline-block;
@@ -762,9 +676,6 @@ footer a:hover { color: var(--accent); }
 }
 @media (max-width: 900px) {
   .actu-inner { grid-template-columns: 1fr; }
-  .actu-right { border-left: none; border-top: 1px solid var(--border); padding: 1.25rem; flex-direction: row; flex-wrap: wrap; gap: 10px; }
-  .actu-comp-card { flex: 1 1 calc(50% - 5px); min-width: 0; }
-  .actu-features { grid-template-columns: 1fr; }
   .hero-left { top: 120px; left: 2rem; }
   .hero-right { top: auto; right: auto; left: 2rem; bottom: 120px; transform: none; }
   .hero-intro { max-width: 300px; font-size: 13px; }
@@ -784,9 +695,6 @@ footer a:hover { color: var(--accent); }
   footer, .contact-section { padding-left: 2rem; padding-right: 2rem; }
 }
 @media (max-width: 640px) {
-  .actu-content { padding: 1.5rem; }
-  .actu-comp-card { flex: 1 1 100%; }
-  .actu-comp-thumb { width: 52px; height: 52px; border-radius: 10px; font-size: 18px; }
   .hero-left { top: 100px; left: 1.5rem; }
   .hero-right { left: 1.5rem; bottom: 110px; }
   .hero-intro { max-width: 240px; font-size: 12px; line-height: 1.7; }
@@ -821,6 +729,7 @@ footer a:hover { color: var(--accent); }
 }
 </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -843,7 +752,7 @@ footer a:hover { color: var(--accent); }
 
   <div class="hero-left">
     <p class="hero-eyebrow">PORTFOLIO CREATIF & DIGITAL</p>
-    <h1 class="hero-title">Marketing & Web Communication | Content Creation | Digital Transformation & AI | APP Dev No Code | Entrepreneurship</h1>
+    <h1 class="hero-title">Chef de Projet Digital & PMO Junior | Dev No-Code/IA (ERP, SaaS, CRM) | Marketing & Content Creation | Entrepreneur</h1>
   </div>
 
   <div class="hero-right">
@@ -893,10 +802,13 @@ footer a:hover { color: var(--accent); }
   <div class="about-grid">
     <div class="about-left">
       <p class="section-label">A propos de moi</p>
-      <h2 class="section-title">Je developpe des<br>projets digitaux depuis 2022</h2>
+      <h2 class="section-title">Je developpe des<br>projets digitaux depuis 2024</h2>
       <p class="about-desc">
-        Charge de communication et digital marketing, je combine creativite et outils digitaux pour construire des experiences de marque memorables. 
-        Avec une double experience en Tunisie et en France, j'interviens sur des projets varies allant de l'identite visuelle a l'automatisation de processus.
+        PMO Junior & Chef de Projet Digital spécialisé en transformation digitale, automatisation des processus et solutions
+métier. Diplômé d’un Master 2 en Management & Entrepreneuriat, avec une double compétence en gestion de projet et
+technologies numériques. Expérience en cadrage, suivi opérationnel, coordination métiers/IT, automatisation, reporting
+KPI et conduite du changement. Profil technique maîtrisant le développement logiciel, l’IA générative, le No-Code/Low-
+Code et les outils Data.
       </p>
       <a href="mailto:aminebenali3@gmail.com" class="btn-primary" style="display:inline-block;margin-top:0.5rem;">Plus sur moi</a>
     </div>
@@ -946,81 +858,6 @@ footer a:hover { color: var(--accent); }
        <div class="actu-media" id="actu-media-banner">
         <!-- Medias actualites charges dynamiquement depuis contenu.js -->
       </div>
-        <div class="actu-content">
-          <div class="actu-meta">
-            <span class="actu-meta-tag accent">Projet personnel</span>
-            <span class="actu-meta-tag">2025</span>
-          </div>
-          <h3 class="actu-name">Secret's Fashion</h3>
-          <p class="actu-role">Developpeur Full-Stack — Conception & developpement de A a Z</p>
-          <p class="actu-desc">
-            Application web professionnelle de gestion commerciale pour une boutique de lingerie et pret-a-porter feminin. Elle centralise l'ensemble des operations : catalogue client, stock, ventes, reservations, livraisons, depenses, rapports, et gestion des utilisateurs.
-          </p>
-          <div class="actu-bottom">
-            <div class="actu-stack">
-              <span class="actu-stack-tag">React 19</span>
-              <span class="actu-stack-tag">TypeScript</span>
-              <span class="actu-stack-tag">TanStack Start</span>
-              <span class="actu-stack-tag">TanStack Router</span>
-              <span class="actu-stack-tag">TanStack Query</span>
-              <span class="actu-stack-tag">Tailwind CSS v4</span>
-              <span class="actu-stack-tag">shadcn/ui</span>
-              <span class="actu-stack-tag">Recharts</span>
-              <span class="actu-stack-tag">Supabase</span>
-              <span class="actu-stack-tag">Cloudflare Workers</span>
-            </div>
-            <div class="actu-features">
-              <span class="actu-feature">Catalogue client</span>
-              <span class="actu-feature">Gestion de stock</span>
-              <span class="actu-feature">Ventes & encaissement</span>
-              <span class="actu-feature">Reservations & livraisons</span>
-              <span class="actu-feature">Tableau de bord KPI</span>
-              <span class="actu-feature">Rapports & export Excel</span>
-              <span class="actu-feature">Suivi des depenses</span>
-              <span class="actu-feature">Gestion utilisateurs</span>
-              <span class="actu-feature">Authentification Securisee</span>
-              <span class="actu-feature">SSR Cloudflare Workers</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="actu-right">
-        <div class="actu-comp-card">
-          <div class="actu-comp-thumb">⚛</div>
-          <div class="actu-comp-info">
-            <p class="actu-comp-title">Frontend</p>
-            <p class="actu-comp-detail">React 19 · TanStack Start (SSR) · TanStack Router</p>
-          </div>
-        </div>
-        <div class="actu-comp-card">
-          <div class="actu-comp-thumb">🎨</div>
-          <div class="actu-comp-info">
-            <p class="actu-comp-title">UI / Design System</p>
-            <p class="actu-comp-detail">Tailwind CSS v4 · shadcn/ui · Recharts</p>
-          </div>
-        </div>
-        <div class="actu-comp-card">
-          <div class="actu-comp-thumb">🗄</div>
-          <div class="actu-comp-info">
-            <p class="actu-comp-title">Backend / BDD</p>
-            <p class="actu-comp-detail">Supabase (PostgreSQL) · Supabase Auth</p>
-          </div>
-        </div>
-        <div class="actu-comp-card">
-          <div class="actu-comp-thumb">☁</div>
-          <div class="actu-comp-info">
-            <p class="actu-comp-title">Deploiement</p>
-            <p class="actu-comp-detail">Cloudflare Workers · SSR optimise</p>
-          </div>
-        </div>
-        <div class="actu-comp-card">
-          <div class="actu-comp-thumb">🔄</div>
-          <div class="actu-comp-info">
-            <p class="actu-comp-title">State Management</p>
-            <p class="actu-comp-detail">TanStack Query · Cache & invalidation</p>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -1188,51 +1025,111 @@ footer a:hover { color: var(--accent); }
 
 <section class="experience-section" id="experience">
   <p class="section-label">Experiences Professionnelles</p>
-  <h2 class="section-title">Mon parcours</h2>
+  <h2 class="section-title">Mon parcours & projets réalisations</h2>
   <div class="section-divider"></div>
   <div class="timeline">
 
-    <div class="timeline-item">
-      <div class="timeline-date">Juin 2026</div>
+        <div class="timeline-item">
+      <div class="timeline-date">En production</div>
       <div class="timeline-dot"></div>
       <div class="timeline-right">
-        <p class="timeline-title">Developpeur Full-Stack — Secret's Fashion (Projet personnel)</p>
-        <p class="timeline-place">Application mobile de gestion pour boutique de pret-a-porter feminin</p>
+        <p class="timeline-title">Développeur Full-Stack — AUTO-PILOT</p>
+        <p class="timeline-place">ERP Desktop & Facturation Électronique</p>
+        <p class="timeline-intro">Conception et développement d'un ERP AUTO-PILOT, la solution ERP nouvelle génération conçue spécifiquement pour les professionnels de l'automobile.</p>
         <div class="timeline-desc">
-          <span>Conception et developpement d'une application mobile complete avec gestionnaire de stock avance, dashboards analytiques et multiples fonctionnalites metiers</span>
-          <span>Stack technique : React 19, TanStack Start (SSR), Supabase, Cloudflare Workers — architecture optimisee pour le mobile</span>
-          <span>Modules cles : catalogue client, stock temps reel, ventes, reservations, livraisons, depenses, rapports KPI et gestion multi-utilisateurs</span>
+          <span class="lead">⚙️ 16 modules intégrés pour tout gérer :</span>
+          <span>Suivi des clients et fournisseurs</span>
+          <span>Gestion intelligente du stock et pièces détachées</span>
+          <span>Facturation, devis et ordres de réparation en quelques clics</span>
+          <span>Tableaux de bord et indicateurs en temps réel</span>
         </div>
       </div>
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-date">Juillet 2026 — En cours</div>
+      <div class="timeline-date">2026</div>
       <div class="timeline-dot"></div>
       <div class="timeline-right">
-        <p class="timeline-title">Developpeur Full-Stack — VENDLY (Projet en cours)</p>
-        <p class="timeline-place">Application de gestion commerciale pour magasins de pret-a-porter homme & femme</p>
+        <p class="timeline-title">Bankly — Plateforme FinTech & Comparateur Bancaire</p>
+        <p class="timeline-place">React • SPA • API REST • Intelligence Artificielle</p>
         <div class="timeline-desc">
-          <span>Developpement en cours d'une solution SaaS dediee aux magasins de pret-a-porter, couvrant l'ensemble du cycle commercial</span>
-          <span>Focus sur l'experience utilisateur mobile-first et l'automatisation des processus de vente et de gestion de stock</span>
+          <span>Conception d'un MVP mobile-first simulant une interface bancaire native</span>
+          <span>Comparateur dynamique des tarifs bancaires et suivi des réglementations de la BCT</span>
+          <span>Intégration d'un chatbot IA à réponses contextuelles</span>
         </div>
       </div>
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-date">Aout 2026 — En cours</div>
+      <div class="timeline-date">2026</div>
       <div class="timeline-dot"></div>
       <div class="timeline-right">
-        <p class="timeline-title">Architecte & Developpeur — ERP AUTO-PILOT (Projet en cours)</p>
-        <p class="timeline-place">ERP modulaire et autonome pour la gestion d'entreprise</p>
+        <p class="timeline-title">Secret's Fashion — Application Web / PWA</p>
+        <p class="timeline-place">React • PWA • Supabase • Cloud</p>
         <div class="timeline-desc">
-          <span>Conception d'un ERP intelligent et autonome integrant l'automatisation IA, la gestion de stocks predictive et les tableaux de bord decisionnels</span>
-          <span>Architecture modulaire permettant l'adaptation a differents secteurs d'activite avec un moteur de workflows automatises</span>
+          <span>PWA métier de gestion des commandes et réservations en temps réel</span>
+          <span>Développement de tableaux de bord analytiques enrichis par l'IA et mise en place d'une infrastructure Cloud</span>
         </div>
       </div>
     </div>
 
     <div class="timeline-item">
+      <div class="timeline-date">2026</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-right">
+        <p class="timeline-title">Vendly — Application SaaS / PWA</p>
+        <p class="timeline-place">React • PWA • Supabase • Cloud</p>
+        <div class="timeline-desc">
+          <span>Solution SaaS multi-boutiques dédiée aux magasins de prêt-à-porter homme & femme</span>
+          <span>POS tactile, gestion de stock en temps réel et couverture complète du cycle commercial</span>
+          <span>Tableaux de bord analytiques enrichis par l'IA et infrastructure Cloud</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2026</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-right">
+        <p class="timeline-title">IRON GYM — Système de Gestion & Analytics</p>
+        <p class="timeline-place">Excel VBA • UserForms • CRM</p>
+        <div class="timeline-desc">
+          <span>Développement d'un CRM VBA pour le suivi automatisé des abonnements et relances à J-7</span>
+          <span>Création d'un calculateur anthropométrique et d'un moteur de génération de programmes personnalisés</span>
+          <span>Résultats annoncés : -70% de temps administratif et +30% de rétention</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2026</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-right">
+        <p class="timeline-title">SALON DE BEAUTÉ — Système de Gestion Financière Automatisé</p>
+        <p class="timeline-place">Excel VBA • Modélisation financière • Automation</p>
+        <div class="timeline-desc">
+          <span>Développement d'une macro VBA générant automatiquement un classeur comptable de 13 feuilles</span>
+          <span>Implémentation du suivi financier (marges, loyer, charges) et intégration d'un catalogue tarifaire</span>
+          <span>Ergonomie avec mise en forme conditionnelle dynamique et mise en page optimisée pour l'impression</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2025</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-right">
+        <p class="timeline-title">Smart Parking Initiative — IoT & Smart City</p>
+        <p class="timeline-place">IoT • Application mobile • Énergie solaire</p>
+        <div class="timeline-desc">
+          <span>Conception d'une solution de parking intelligent intégrant des panneaux photovoltaïques</span>
+          <span>Application mobile de guidage en temps réel et réservation de places</span>
+          <span>Concept de contrôle d'accès par reconnaissance faciale et QR Code</span>
+        </div>
+      </div>
+    </div>
+
+<div class="timeline-item">
       <div class="timeline-date">Depuis 2023</div>
       <div class="timeline-dot"></div>
       <div class="timeline-right">
@@ -1588,4 +1485,4 @@ function startActuCarousel(total) {
 document.addEventListener('DOMContentLoaded', loadAll);
 </script>
 </body>
-</html>
+</html>  
