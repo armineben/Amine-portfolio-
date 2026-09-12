@@ -852,15 +852,24 @@ Code et les outils Data.
   <h2 class="section-title">Projets & Expertises<br><span style="color:var(--accent)">techniques</span></h2>
   <div class="section-divider"></div>
 
-  <div class="actu-card">
-    <span class="actu-badge">Actualite</span>
-    <div class="actu-inner">
-
-      <div class="actu-left">
-       <div class="actu-media" id="actu-media-banner">
-        <!-- Medias actualites charges dynamiquement depuis contenu.js -->
+<div class="actu-card actu-card-full">
+  <span class="actu-badge">Actualite</span>
+  
+  <div class="actu-inner">
+    <div class="actu-media-full">
+      <div class="actu-media" id="actu-media-banner">
+        <!-- Médias actualités chargés dynamiquement depuis contenu.js -->
       </div>
-      </div>
+      
+      <!-- Boutons de navigation du carrousel -->
+      <button class="actu-nav prev" onclick="prevActuSlide()" aria-label="Précédent">&#10094;</button>
+      <button class="actu-nav next" onclick="nextActuSlide()" aria-label="Suivant">&#10095;</button>
+      
+      <!-- Indicateurs (points) -->
+      <div class="actu-dots" id="actu-dots"></div>
+    </div>
+  </div>
+</div>
 
     </div>
   </div>
