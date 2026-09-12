@@ -3,6 +3,8 @@ const PORTFOLIO_CONTENU = {
   // 📁 Dossier : projets-applications/
   application: [
     "photo_de_couverture_developpement.png",
+    "AUTOPILOT.png",
+    "Accueil.png",
   ],
 
   // 📁 Dossier : projets-creation/
@@ -74,11 +76,7 @@ const PORTFOLIO_CONTENU = {
   // 📁 Dossier : projets-actualites/
   actualites: [
     "application.png",
-    "secret_fashion_actualité_1.png",
-    "secret_fashion_actualité_2.png",
-    "secret_fashion_actualité_3.png",
-    "secret_fashion_actualité_4.png",
-    "Vendly_actualité",
+    "Autopilotaactualité",
   ],
 
 };
