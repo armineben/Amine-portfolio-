@@ -50,7 +50,9 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  background: var(--bg-elevated);
   opacity: 0;
   transition: opacity 0.8s ease-in-out;
   pointer-events: none;
@@ -387,7 +389,7 @@ section { padding: 6rem 5rem; }
   letter-spacing: 0.02em;
 }
 .actu-media video, .actu-media img {
-  width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: contain; background: var(--bg-elevated); position: absolute; inset: 0;
 }
 /* ── Right: Component Cards ── */
 .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -1367,9 +1369,9 @@ function loadAll() {
       const type = getFileType(f);
       const path = getFilePath(cat, f);
       if (type === 'video') {
-        actuMediaEl.innerHTML = '<video src="' + path + '" muted playsinline loop autoplay style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"></video>';
+        actuMediaEl.innerHTML = '<video src="' + path + '" muted playsinline loop autoplay style="width:100%;height:100%;object-fit:contain;background:var(--bg-elevated);position:absolute;inset:0;"></video>';
       } else {
-        actuMediaEl.innerHTML = '<img src="' + path + '" alt="Actualite" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">';
+        actuMediaEl.innerHTML = '<img src="' + path + '" alt="Actualite" style="width:100%;height:100%;object-fit:contain;background:var(--bg-elevated);position:absolute;inset:0;">';
       }
     } else {
       let carHtml = '<div class="card-banner-carousel">';
