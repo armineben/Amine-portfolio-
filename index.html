@@ -40,7 +40,8 @@ body {
 
 /* ── CARD BANNER CAROUSEL ── */
 .card-banner-carousel {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -369,8 +370,8 @@ section { padding: 6rem 5rem; }
   padding: 0; display: flex; flex-direction: column;
 }
 .actu-media {
-  position: relative; width: 100%; flex: 1;
-  min-height: 480px;
+  position: relative; width: 100%; flex: none;
+  height: 520px; min-height: 480px;
   background: var(--bg-elevated); border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 10px; overflow: hidden;
@@ -860,20 +861,9 @@ Code et les outils Data.
       <div class="actu-media" id="actu-media-banner">
         <!-- Médias actualités chargés dynamiquement depuis contenu.js -->
       </div>
-      
-      <!-- Boutons de navigation du carrousel -->
-      <button class="actu-nav prev" onclick="prevActuSlide()" aria-label="Précédent">&#10094;</button>
-      <button class="actu-nav next" onclick="nextActuSlide()" aria-label="Suivant">&#10095;</button>
-      
-      <!-- Indicateurs (points) -->
-      <div class="actu-dots" id="actu-dots"></div>
     </div>
   </div>
 </div>
-
-    </div>
-  </div>
-
 
   <p class="section-label">Mes creations</p>
   <h2 class="section-title">Projets & Expertises<br><span style="color:var(--accent)">techniques</span></h2>
@@ -1505,7 +1495,7 @@ function startActuCarousel(total) {
     current = (current + 1) % total;
     items[current].classList.add('active');
     if (dots[current]) dots[current].classList.add('active');
-  }, 4000);
+  }, 3000);
 }
 
 document.addEventListener('DOMContentLoaded', loadAll);
