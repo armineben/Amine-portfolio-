@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projet Fondation BP CM&GO — Amine BENALI</title>
+<title>Projet Fondation BP CM&GO | Amine BENALI</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --blue: #003DA5;
-  --blue-light: #E8F0FB;
-  --blue-mid: #1A56C4;
-  --green: #1D9E75;
-  --green-light: #E1F5EE;
-  --text-primary: #1a1a1a;
-  --text-secondary: #555;
-  --text-muted: #999;
-  --border: #e8e8e8;
-  --bg: #fafaf8;
+  --blue: #173E36;
+  --blue-light: #E8F0EB;
+  --blue-mid: #B85C43;
+  --green: #D16B4A;
+  --green-light: #F8E9E2;
+  --text-primary: #192821;
+  --text-secondary: #53625A;
+  --text-muted: #748078;
+  --border: #DCE4DD;
+  --bg: #F3F6F1;
 }
 
 html { scroll-behavior: smooth; }
@@ -27,101 +27,101 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 /* NAV */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
-  border-bottom: 0.5px solid var(--border);
-  padding: 0 2rem; display: flex; align-items: center;
-  justify-content: space-between; height: 56px;
+  background: #173E36; color: white;
+  padding: 0 max(2rem, calc((100vw - 1120px) / 2)); display: flex; align-items: center;
+  justify-content: space-between; height: 68px;
 }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--text-primary); text-decoration: none; }
-.nav-logo span { color: var(--green); }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: white; text-decoration: none; }
+.nav-logo span { color: #EF9A70; }
 .nav-back {
-  font-size: 12px; color: var(--text-secondary); text-decoration: none;
+  font-size: 12px; color: white; text-decoration: none;
   display: flex; align-items: center; gap: 6px;
-  padding: 5px 14px; border-radius: 20px; border: 0.5px solid var(--border);
-  background: white; transition: all 0.15s;
+  padding: 8px 14px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.35);
+  background: transparent; transition: background 0.15s;
 }
-.nav-back:hover { background: var(--bg); color: var(--text-primary); }
+.nav-back:hover { background: rgba(255,255,255,0.12); }
 
 /* HERO PROJET */
 .project-hero {
-  background: linear-gradient(135deg, #002B7A 0%, #003DA5 50%, #1A56C4 100%);
-  color: white; padding: 5rem 2rem 4rem;
+  background: linear-gradient(90deg, rgba(16,48,41,0.97) 0%, rgba(16,48,41,0.88) 48%, rgba(16,48,41,0.4) 100%), url('2.jpeg') center 42% / cover;
+  color: white; padding: 5.5rem 2rem 4.5rem; min-height: 480px;
+  display: flex; align-items: center;
 }
-.project-hero-inner { max-width: 860px; margin: 0 auto; }
+.project-hero-inner { max-width: 1120px; width: 100%; margin: 0 auto; }
 .project-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.15); border: 0.5px solid rgba(255,255,255,0.3);
-  border-radius: 20px; padding: 5px 14px; font-size: 11px;
-  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem;
+  background: rgba(239,154,112,0.18); border: 1px solid rgba(239,154,112,0.65);
+  border-radius: 3px; padding: 7px 12px; font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem;
 }
 .project-title {
   font-family: 'Playfair Display', serif;
-  font-size: 2.4rem; font-weight: 600; line-height: 1.2;
-  margin-bottom: 1rem; max-width: 680px;
+  font-size: 3.25rem; font-weight: 600; line-height: 1.08;
+  margin-bottom: 1.25rem; max-width: 720px;
 }
 .project-subtitle {
-  font-size: 15px; font-weight: 300; opacity: 0.85;
-  line-height: 1.6; max-width: 560px; margin-bottom: 2rem;
+  font-size: 17px; font-weight: 300; opacity: 0.9;
+  line-height: 1.7; max-width: 620px; margin-bottom: 2rem;
 }
 .project-meta { display: flex; flex-wrap: wrap; gap: 1rem; }
 .meta-item {
-  background: rgba(255,255,255,0.1); border: 0.5px solid rgba(255,255,255,0.2);
-  border-radius: 10px; padding: 10px 16px;
+  background: rgba(13,42,36,0.48); border: 1px solid rgba(255,255,255,0.24);
+  border-radius: 4px; padding: 10px 16px;
 }
 .meta-label { font-size: 10px; opacity: 0.7; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
 .meta-value { font-size: 13px; font-weight: 500; }
 
 /* STATS BAND */
 .stats-band {
-  background: white; border-bottom: 0.5px solid var(--border);
+  background: #173E36; border-bottom: 4px solid #D16B4A; color: white;
   padding: 0; display: flex; justify-content: center;
 }
 .stats-inner {
-  max-width: 860px; width: 100%;
+  max-width: 1120px; width: 100%;
   display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 0; border-left: 0.5px solid var(--border);
+  gap: 0; border-left: 1px solid rgba(255,255,255,0.2);
 }
 .stat {
   padding: 1.5rem 1.25rem; text-align: center;
-  border-right: 0.5px solid var(--border);
+  border-right: 1px solid rgba(255,255,255,0.2);
 }
 .stat-num {
   font-family: 'Playfair Display', serif; font-size: 2rem;
-  font-weight: 600; color: var(--blue); margin-bottom: 4px;
+  font-weight: 600; color: #F3A17D; margin-bottom: 4px;
 }
-.stat-label { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.76); line-height: 1.4; }
 
 /* MAIN CONTENT */
-.content { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
+.content { max-width: 1120px; margin: 0 auto; padding: 4.5rem 2rem; }
 
 /* SECTION TITLE */
 .sec-label {
-  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--blue-mid); font-weight: 600; margin-bottom: 0.5rem;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--blue-mid); font-weight: 600; margin-bottom: 0.65rem;
 }
 .sec-title {
-  font-family: 'Playfair Display', serif; font-size: 1.4rem;
-  font-weight: 600; margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif; font-size: 1.9rem;
+  font-weight: 600; margin-bottom: 1.5rem; line-height: 1.2;
 }
 
 /* CONTEXT BLOCK */
 .context-block {
-  background: var(--blue-light); border-left: 3px solid var(--blue);
-  border-radius: 0 12px 12px 0; padding: 1.5rem 1.75rem;
+  background: var(--blue-light); border-left: 4px solid var(--green);
+  border-radius: 0; padding: 1.75rem 2rem;
   margin-bottom: 3rem;
 }
 .context-text {
-  font-size: 15px; line-height: 1.8; color: var(--text-secondary); font-weight: 300;
+  font-size: 16px; line-height: 1.85; color: var(--text-secondary); font-weight: 400;
 }
 .context-text strong { color: var(--text-primary); font-weight: 500; }
 
 /* PROBLEMATIQUE */
 .problem-card {
-  background: white; border: 0.5px solid var(--border);
-  border-radius: 16px; padding: 2rem; margin-bottom: 3rem;
+  background: transparent; border: 0; border-left: 4px solid var(--green);
+  border-radius: 0; padding: 0.75rem 1.75rem; margin-bottom: 4rem;
 }
 .problem-quote {
-  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-family: 'Playfair Display', serif; font-size: 1.5rem;
   font-style: italic; color: var(--blue); line-height: 1.6;
   padding-left: 1.25rem; border-left: 3px solid var(--blue);
 }
@@ -132,11 +132,11 @@ nav {
   gap: 12px; margin-bottom: 3rem;
 }
 .mission-card {
-  background: white; border: 0.5px solid var(--border);
-  border-radius: 12px; padding: 1.25rem;
-  transition: box-shadow 0.15s;
+  background: white; border: 1px solid var(--border);
+  border-radius: 6px; padding: 1.5rem;
+  transition: transform 0.15s, border-color 0.15s;
 }
-.mission-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.mission-card:hover { transform: translateY(-3px); border-color: var(--green); }
 .mission-icon {
   width: 38px; height: 38px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
@@ -151,8 +151,8 @@ nav {
   gap: 12px; margin-bottom: 3rem;
 }
 .solution-card {
-  background: white; border: 0.5px solid var(--border);
-  border-radius: 16px; padding: 1.5rem; position: relative; overflow: hidden;
+  background: white; border: 1px solid var(--border);
+  border-radius: 6px; padding: 1.75rem; position: relative; overflow: hidden;
 }
 .solution-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -176,17 +176,19 @@ nav {
 /* SLIDES SHOWCASE */
 .slides-showcase { margin-bottom: 3rem; }
 .slides-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
+.real-images-grid { margin-top: 1.5rem; }
 .slide-thumb {
-  border-radius: 10px; overflow: hidden;
-  border: 0.5px solid var(--border); background: white;
-  aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;
+  border-radius: 5px; overflow: hidden;
+  border: 1px solid var(--border); background: white;
+  aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;
   position: relative; cursor: pointer; transition: transform 0.15s;
 }
-.slide-thumb:hover { transform: scale(1.02); }
-.slide-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.slide-thumb:hover { transform: translateY(-3px); }
+.slide-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s; }
+.slide-thumb:hover img { transform: scale(1.035); }
 .slide-placeholder {
   width: 100%; height: 100%; display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 8px;
@@ -197,8 +199,8 @@ nav {
 .slide-placeholder-text { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
 .slide-label {
   position: absolute; bottom: 0; left: 0; right: 0;
-  background: rgba(0,0,0,0.6); color: white;
-  font-size: 10px; padding: 5px 8px; text-align: center;
+  background: rgba(23,62,54,0.9); color: white;
+  font-size: 12px; padding: 10px 12px; text-align: left;
 }
 
 /* RESULTATS */
@@ -207,8 +209,8 @@ nav {
   gap: 10px; margin-bottom: 3rem;
 }
 .result-card {
-  background: white; border: 0.5px solid var(--border);
-  border-radius: 12px; padding: 1.25rem; text-align: center;
+  background: white; border: 1px solid var(--border);
+  border-radius: 6px; padding: 1.4rem; text-align: left;
 }
 .result-icon { font-size: 24px; margin-bottom: 8px; }
 .result-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
@@ -218,7 +220,7 @@ nav {
 .tools-section { margin-bottom: 3rem; }
 .tools-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .tool-badge {
-  font-size: 12px; padding: 6px 14px; border-radius: 20px;
+  font-size: 12px; padding: 8px 12px; border-radius: 3px;
   border: 0.5px solid var(--border); background: white;
   color: var(--text-secondary); font-weight: 500;
   display: flex; align-items: center; gap: 6px;
@@ -244,24 +246,33 @@ nav {
 
 /* FOOTER PROJECT */
 .project-footer {
-  background: white; border-top: 0.5px solid var(--border);
-  padding: 2rem; text-align: center;
+  background: #173E36; border-top: 4px solid #D16B4A;
+  padding: 3rem 2rem; text-align: center; color: white;
 }
-.pf-text { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+.pf-text { font-size: 15px; color: rgba(255,255,255,0.82); margin-bottom: 16px; }
 .pf-link {
-  font-size: 13px; padding: 8px 20px; border-radius: 20px;
-  background: var(--green); color: white; text-decoration: none;
+  display: inline-block; font-size: 13px; padding: 10px 18px; border-radius: 3px;
+  background: #D16B4A; color: white; text-decoration: none;
   font-weight: 500; transition: opacity 0.15s;
 }
 .pf-link:hover { opacity: 0.85; }
 
 @media (max-width: 640px) {
-  .project-title { font-size: 1.7rem; }
+  .project-title { font-size: 2.2rem; }
+  .project-hero { padding: 4rem 1.25rem 3rem; min-height: 0; background-position: 58% center; }
+  .project-subtitle { font-size: 15px; }
+  .project-meta { gap: 0.6rem; }
+  .meta-item { flex: 1 1 45%; padding: 9px 10px; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat { padding: 1rem 0.5rem; }
+  .stat-num { font-size: 1.6rem; }
   .solutions-grid { grid-template-columns: 1fr; }
   .slides-grid { grid-template-columns: repeat(2, 1fr); }
-  .content { padding: 2rem 1.25rem; }
-  nav { padding: 0 1rem; }
+  .content { padding: 3rem 1.25rem; }
+  .sec-title { font-size: 1.6rem; }
+  .problem-quote { font-size: 1.2rem; }
+  .slide-label { font-size: 10px; padding: 7px; }
+  nav { padding: 0 1.25rem; }
 }
 </style>
 </head>
@@ -277,11 +288,11 @@ nav {
 <div class="project-hero">
   <div class="project-hero-inner">
     <div class="project-badge">🏦 Projet de fin d'études · Stage</div>
-    <h1 class="project-title">Optimisation & Automatisation des processus de la Fondation BP CM&GO</h1>
-    <p class="project-subtitle">Modernisation de la gestion des candidatures et de la communication interne par des solutions VBA et RPA adaptées aux besoins opérationnels de la Fondation.</p>
+    <h1 class="project-title">Optimisation et automatisation des processus de la Fondation BP CM&GO</h1>
+    <p class="project-subtitle">Dans le cadre de mon stage, j'ai conçu des solutions d'automatisation pour fiabiliser la gestion des candidatures et fluidifier la communication interne de la Fondation.</p>
     <div class="project-meta">
       <div class="meta-item">
-        <div class="meta-label">Structure</div>
+        <div class="meta-label">Organisme d'accueil</div>
         <div class="meta-value">Fondation Banque Populaire Grand Ouest</div>
       </div>
       <div class="meta-item">
@@ -293,7 +304,7 @@ nav {
         <div class="meta-value">2024 – 2025</div>
       </div>
       <div class="meta-item">
-        <div class="meta-label">Encadrante</div>
+        <div class="meta-label">Maîtresse de stage</div>
         <div class="meta-value">Mme Véronique Guillet-Borde</div>
       </div>
     </div>
@@ -313,7 +324,7 @@ nav {
     </div>
     <div class="stat">
       <div class="stat-num">100%</div>
-      <div class="stat-label">Approuvé par les utilisateurs</div>
+      <div class="stat-label">Taux d'approbation des utilisateurs</div>
     </div>
     <div class="stat">
       <div class="stat-num">9</div>
@@ -327,190 +338,143 @@ nav {
 
   <!-- CONTEXTE -->
   <p class="sec-label">01 — Contexte</p>
-  <h2 class="sec-title">Pourquoi ce projet ?</h2>
+  <h2 class="sec-title">Un processus à structurer</h2>
   <div class="context-block">
     <p class="context-text">
-      La <strong>Fondation Banque Populaire du Grand Ouest</strong> gérait ses candidatures et communications de façon entièrement manuelle, entraînant des <strong>délais importants, des erreurs de traitement et une surcharge administrative</strong> pour les équipes. Face à la transition numérique du secteur bancaire, ma mission de stage était de proposer des <strong>solutions d'automatisation simples, efficaces et directement utilisables</strong> par une équipe non technique.
+      La <strong>Fondation Banque Populaire Grand Ouest</strong> suivait ses candidatures et une partie de ses communications au moyen de tâches manuelles. Cette organisation pouvait entraîner des <strong>délais de traitement, des risques d'erreur et une charge administrative importante</strong>. Mon stage a consisté à analyser ces pratiques et à concevoir des <strong>outils d'automatisation simples, adaptés aux besoins de l'équipe</strong>.
     </p>
   </div>
 
   <!-- PROBLEMATIQUE -->
-  <p class="sec-label">02 — Problématique</p>
-  <h2 class="sec-title">La question centrale</h2>
+  <p class="sec-label">02 — Objectif</p>
+  <h2 class="sec-title">Automatiser sans complexifier</h2>
   <div class="problem-card">
     <p class="problem-quote">
-      "Comment accompagner la fondation dans sa transition numérique en proposant des solutions d'automatisation simples, efficaces et adaptées à ses besoins opérationnels ?"
+      "Comment fiabiliser et accélérer la gestion des candidatures tout en proposant des outils simples à prendre en main et adaptés aux pratiques de la Fondation ?"
     </p>
   </div>
 
   <!-- MISSIONS -->
   <p class="sec-label">03 — Missions</p>
-  <h2 class="sec-title">Ce que j'ai fait</h2>
+  <h2 class="sec-title">Une démarche de bout en bout</h2>
   <div class="missions-grid">
     <div class="mission-card">
       <div class="mission-icon" style="background:#E8F0FB;">🔍</div>
-      <p class="mission-title">Analyse des processus</p>
-      <p class="mission-desc">Observation de l'équipe, entretiens individuels et traçage des processus existants.</p>
+      <p class="mission-title">Analyser les pratiques</p>
+      <p class="mission-desc">Observation de l'équipe, échanges avec les collaborateurs et cartographie des étapes existantes.</p>
     </div>
     <div class="mission-card">
       <div class="mission-icon" style="background:#E1F5EE;">📊</div>
-      <p class="mission-title">Automatisation Excel</p>
-      <p class="mission-desc">Développement d'un fichier Excel VBA d'aide à la décision pour la gestion des candidatures.</p>
+      <p class="mission-title">Développer l'outil décisionnel</p>
+      <p class="mission-desc">Conception d'un classeur Excel avec macros VBA pour centraliser le suivi et faciliter l'analyse des candidatures.</p>
     </div>
     <div class="mission-card">
       <div class="mission-icon" style="background:#FAEEDA;">📧</div>
-      <p class="mission-title">Automatisation des emails</p>
-      <p class="mission-desc">Intégration d'EmailTech et Microsoft Teams pour la traçabilité et la communication des résultats.</p>
+      <p class="mission-title">Fluidifier la communication</p>
+      <p class="mission-desc">Mise en place de l'envoi des réponses avec EmailTech et d'un suivi opérationnel dans Microsoft Teams.</p>
     </div>
     <div class="mission-card">
       <div class="mission-icon" style="background:#FAECE7;">🎓</div>
-      <p class="mission-title">Formation de l'équipe</p>
-      <p class="mission-desc">Séances de sensibilisation et transfert de compétences aux membres de la Fondation.</p>
+      <p class="mission-title">Accompagner les utilisateurs</p>
+      <p class="mission-desc">Présentation des outils, formation de l'équipe et transmission des consignes d'utilisation.</p>
     </div>
   </div>
 
   <!-- SOLUTIONS -->
   <p class="sec-label">04 — Solutions déployées</p>
-  <h2 class="sec-title">Les livrables principaux</h2>
+  <h2 class="sec-title">Des outils adaptés aux besoins métier</h2>
   <div class="solutions-grid">
     <div class="solution-card blue">
       <div class="sol-num">01</div>
       <div class="sol-icon" style="background:#E8F0FB;">📊</div>
-      <p class="sol-title">Fichier Excel VBA — Aide à la décision</p>
-      <p class="sol-desc">Tableau de bord complet automatisé pour la gestion des candidatures par comité.</p>
+      <p class="sol-title">Classeur Excel VBA — Suivi des candidatures</p>
+      <p class="sol-desc">Un outil d'aide à la décision pour centraliser les dossiers et préparer les comités.</p>
       <ul class="sol-features">
-        <li>Suivi des candidatures par comité de décision</li>
-        <li>Tableaux statistiques pré et post comité</li>
-        <li>Importation automatique des données</li>
-        <li>Création et envoi de fichiers aux membres</li>
-        <li>Préparation automatique des emails types</li>
+        <li>Suivi des dossiers par comité de décision</li>
+        <li>Indicateurs statistiques avant et après les comités</li>
+        <li>Importation automatisée des données</li>
+        <li>Préparation des fichiers destinés aux membres</li>
+        <li>Génération de modèles de courriels</li>
       </ul>
     </div>
     <div class="solution-card green">
       <div class="sol-num">02</div>
       <div class="sol-icon" style="background:#E1F5EE;">📬</div>
-      <p class="sol-title">EmailTech & Traçabilité Teams</p>
-      <p class="sol-desc">Automatisation de la communication des résultats et organisation des pré-comités.</p>
+      <p class="sol-title">EmailTech et Microsoft Teams — Communication et suivi</p>
+      <p class="sol-desc">Un flux de communication structuré, associé au suivi des échanges et à la préparation des pré-comités.</p>
       <ul class="sol-features">
-        <li>Envoi automatique des résultats aux associations</li>
-        <li>Traçabilité complète via Microsoft Teams</li>
-        <li>Organisation hebdomadaire des pré-comités</li>
-        <li>Réduction des délais administratifs</li>
+        <li>Envoi des résultats aux associations candidates</li>
+        <li>Suivi des échanges dans Microsoft Teams</li>
+        <li>Préparation hebdomadaire des pré-comités</li>
+        <li>Historique des actions et des communications</li>
       </ul>
     </div>
   </div>
 
   <!-- SLIDES SHOWCASE -->
-  <p class="sec-label">05 — Aperçu de la présentation</p>
-  <h2 class="sec-title">Extraits du projet</h2>
+  <p class="sec-label">05 — Supports visuels</p>
+  <h2 class="sec-title">Les solutions en images</h2>
+  <p class="context-text">Du diagnostic des processus à l'accompagnement de l'équipe, ces visuels présentent les principaux axes du projet.</p>
   <div class="slides-showcase">
-    <div class="slides-grid">
-
-      <!-- Slide 2 — Titre -->
-      <div class="slide-thumb">
-        <div class="slide-placeholder" style="background: linear-gradient(135deg, #002B7A, #1A56C4);">
-          <div style="color:white; font-size:11px; font-weight:600; text-align:center; line-height:1.4;">
-            Projet de fin d'études<br>ESC Tunis
-          </div>
-          <div style="color:rgba(255,255,255,0.7); font-size:10px; text-align:center;">Amine BENALI</div>
-        </div>
-        <div class="slide-label">Page de titre</div>
-      </div>
-
-      <!-- Slide 8 — Méthodologie -->
-      <div class="slide-thumb">
-        <div class="slide-placeholder">
-          <div class="slide-placeholder-icon">🔍</div>
-          <div class="slide-placeholder-text">Méthodologie & Besoins identifiés</div>
-        </div>
-        <div class="slide-label">Méthodologie</div>
-      </div>
-
-      <!-- Slide 11 — Solution VBA -->
-      <div class="slide-thumb">
-        <div class="slide-placeholder" style="background: linear-gradient(135deg, #E8F0FB, #ddeeff);">
-          <div class="slide-placeholder-icon">⚙️</div>
-          <div class="slide-placeholder-text">Solution VBA & RPA</div>
-        </div>
-        <div class="slide-label">Solution proposée</div>
-      </div>
-
-      <!-- Slide 14 — Excel demo -->
-      <div class="slide-thumb">
-        <div class="slide-placeholder" style="background: linear-gradient(135deg, #E1F5EE, #d0f0e0);">
-          <div class="slide-placeholder-icon">📊</div>
-          <div class="slide-placeholder-text">Démonstration fichier Excel d'aide à la décision</div>
-        </div>
-        <div class="slide-label">Fichier Excel VBA</div>
-      </div>
-
-      <!-- Slide 19 — Impact -->
-      <div class="slide-thumb">
-        <div class="slide-placeholder">
-          <div class="slide-placeholder-icon">📈</div>
-          <div class="slide-placeholder-text">Évaluation d'impact — résultats validés</div>
-        </div>
-        <div class="slide-label">Évaluation d'impact</div>
-      </div>
-
-      <!-- Slide 22 — Synthèse -->
-      <div class="slide-thumb">
-        <div class="slide-placeholder" style="background: linear-gradient(135deg, #FAEEDA, #fff0d0);">
-          <div class="slide-placeholder-icon">✅</div>
-          <div class="slide-placeholder-text">Synthèse des bénéfices obtenus</div>
-        </div>
-        <div class="slide-label">Synthèse des bénéfices</div>
-      </div>
-
-    </div>
-
-    <!-- Zone pour ajouter captures réelles -->
-    <div class="upload-zone" style="margin-top:12px;">
-      <div class="upload-icon">🖼️</div>
-      <div class="upload-title">Ajoute tes captures d'écran réelles ici</div>
-      <div class="upload-hint">Capture ton fichier Excel, tes tableaux de bord, et tes publications pour rendre ce portfolio encore plus percutant</div>
+    <div class="slides-grid real-images-grid">
+      <a class="slide-thumb" href="1.jpeg" target="_blank" rel="noopener noreferrer">
+        <img src="1.jpeg" alt="Illustration de l'analyse et de l'optimisation des processus" loading="lazy">
+        <span class="slide-label">Optimisation des processus</span>
+      </a>
+      <a class="slide-thumb" href="2.jpeg" target="_blank" rel="noopener noreferrer">
+        <img src="2.jpeg" alt="Illustration d'un tableau de bord Excel et d'une solution VBA" loading="lazy">
+        <span class="slide-label">Tableau de bord Excel & VBA</span>
+      </a>
+      <a class="slide-thumb" href="3.jpeg" target="_blank" rel="noopener noreferrer">
+        <img src="3.jpeg" alt="Illustration de l'automatisation des emails et du suivi dans Teams" loading="lazy">
+        <span class="slide-label">Emails automatisés & Teams</span>
+      </a>
+      <a class="slide-thumb" href="4.jpeg" target="_blank" rel="noopener noreferrer">
+        <img src="4.jpeg" alt="Illustration d'une session de formation et de transfert de compétences" loading="lazy">
+        <span class="slide-label">Formation de l'équipe</span>
+      </a>
     </div>
   </div>
 
   <!-- RESULTATS -->
   <p class="sec-label">06 — Résultats</p>
-  <h2 class="sec-title">Impact obtenu</h2>
+  <h2 class="sec-title">Des effets concrets pour l'équipe</h2>
   <div class="results-grid">
     <div class="result-card">
       <div class="result-icon">⚡</div>
-      <p class="result-title">Gain de temps</p>
-      <p class="result-desc">Réduction significative du temps de traitement des candidatures</p>
+      <p class="result-title">Temps de traitement réduit</p>
+      <p class="result-desc">Les tâches répétitives de préparation et de suivi sont automatisées.</p>
     </div>
     <div class="result-card">
       <div class="result-icon">✅</div>
-      <p class="result-title">Moins d'erreurs</p>
-      <p class="result-desc">Processus standardisés et grille de notation unifiée</p>
+      <p class="result-title">Traitement fiabilisé</p>
+      <p class="result-desc">Des étapes standardisées et une grille d'évaluation commune limitent les écarts de traitement.</p>
     </div>
     <div class="result-card">
       <div class="result-icon">🔄</div>
-      <p class="result-title">Processus fluidifiés</p>
-      <p class="result-desc">9 étapes du processus automatisées de bout en bout</p>
+      <p class="result-title">Suivi plus lisible</p>
+      <p class="result-desc">L'avancement des dossiers et les décisions sont plus faciles à suivre par comité.</p>
     </div>
     <div class="result-card">
       <div class="result-icon">👥</div>
-      <p class="result-title">Équipe formée</p>
-      <p class="result-desc">Outils approuvés et adoptés par l'ensemble de l'équipe</p>
+      <p class="result-title">Équipe accompagnée</p>
+      <p class="result-desc">Les utilisateurs ont été formés à la prise en main des outils.</p>
     </div>
     <div class="result-card">
       <div class="result-icon">📬</div>
-      <p class="result-title">Communication optimisée</p>
-      <p class="result-desc">Envoi automatisé des résultats aux associations candidates</p>
+      <p class="result-title">Échanges structurés</p>
+      <p class="result-desc">Les réponses aux associations suivent un processus plus clair et mieux tracé.</p>
     </div>
     <div class="result-card">
       <div class="result-icon">🚀</div>
-      <p class="result-title">Base pour le futur</p>
-      <p class="result-desc">Transfert vers UiPath prévu pour aller encore plus loin</p>
+      <p class="result-title">Piste d'évolution</p>
+      <p class="result-desc">UiPath constitue une option à étudier pour prolonger l'automatisation.</p>
     </div>
   </div>
 
   <!-- OUTILS -->
-  <p class="sec-label">07 — Outils & Technologies</p>
-  <h2 class="sec-title">Stack technique</h2>
+  <p class="sec-label">07 — Environnement technique</p>
+  <h2 class="sec-title">Outils mobilisés</h2>
   <div class="tools-section">
     <div class="tools-list">
       <span class="tool-badge"><span class="tool-dot" style="background:#1D6F42;"></span>Excel VBA</span>
@@ -519,7 +483,7 @@ nav {
       <span class="tool-badge"><span class="tool-dot" style="background:#6264A7;"></span>Microsoft Teams</span>
       <span class="tool-badge"><span class="tool-dot" style="background:#21759B;"></span>WordPress</span>
       <span class="tool-badge"><span class="tool-dot" style="background:#F56040;"></span>Canva</span>
-      <span class="tool-badge"><span class="tool-dot" style="background:#F05A00;"></span>UiPath (perspectives)</span>
+      <span class="tool-badge"><span class="tool-dot" style="background:#F05A00;"></span>UiPath (perspective)</span>
     </div>
   </div>
 
@@ -527,7 +491,7 @@ nav {
 
 <!-- FOOTER -->
 <div class="project-footer">
-  <p class="pf-text">Tu veux en savoir plus sur ce projet ou collaborer ensemble ?</p>
+  <p class="pf-text">Pour échanger au sujet de ce projet ou de mon parcours, contactez-moi.</p>
   <a class="pf-link" href="mailto:aminebenali3@gmail.com">✉ Me contacter</a>
 </div>
 
