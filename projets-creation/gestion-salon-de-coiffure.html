@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>gestion salon de coiffure — Excel VBA Project</title>
+<title>Salon de coiffure | Gestion</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -583,22 +583,22 @@
 <!-- ═══════════════ HERO ═══════════════ -->
 <section class="hero">
   <div class="container">
-    <div class="badge"><span class="badge-dot"></span> Excel VBA · 2026</div>
-    <h1 class="hero-title">Salon <br><em Gestion Salon de coiffure >Pro</em></h1>
+    <div class="badge"><span class="badge-dot"></span> Gestion professionnelle · Excel VBA · 2026</div>
+    <h1 class="hero-title">Salon de coiffure</h1>
     <p class="hero-sub">
-      Un système de gestion financière complet pour salon de beauté — 13 feuilles Excel générées automatiquement, suivi mensuel, synthèse annuelle et catalogue tarifaire intégrés.
+      Un outil Excel VBA pour suivre les recettes, les dépenses et les prestations d'un salon de coiffure professionnel. Il réunit le suivi mensuel, la synthèse annuelle et le catalogue tarifaire dans un même classeur.
     </p>
     <div class="hero-tags">
       <span class="tag green">VBA Macro</span>
       <span class="tag blue">Excel 2016+</span>
       <span class="tag orange">Gestion Financière</span>
-      <span class="tag">DT Currency</span>
+      <span class="tag">Dinar tunisien (DT)</span>
       <span class="tag">Mise en forme cond.</span>
       <span class="tag">Auto-génération</span>
     </div>
     <div class="hero-cta">
-      <a href="#" class="btn btn-primary">⬇ Télécharger .xlsm</a>
-      <a href="#apercu" class="btn btn-ghost">Voir l'aperçu →</a>
+      <a href="#apercu" class="btn btn-primary">Voir le tableau de bord</a>
+      <a href="#prestations" class="btn btn-ghost">Consulter les prestations</a>
     </div>
   </div>
   <div class="scroll-hint">
@@ -608,6 +608,8 @@
 </section>
 
 <div class="divider"></div>
+
+<main>
 
 <!-- ═══════════════ METRICS ═══════════════ -->
 <div class="container">
@@ -626,7 +628,7 @@
     </div>
     <div class="metric">
       <span class="metric-value orange">100%</span>
-      <span class="metric-label">Auto-formulé</span>
+      <span class="metric-label">Généré par macro VBA</span>
     </div>
   </div>
 </div>
@@ -634,44 +636,44 @@
 <div class="divider"></div>
 
 <!-- ═══════════════ FEATURES ═══════════════ -->
-<section class="section">
+<section class="section" id="fonctionnalites" aria-labelledby="fonctionnalites-title">
   <div class="container">
     <div class="reveal">
-      <p class="section-label">Fonctionnalités</p>
-      <h2 class="section-title">Tout ce dont votre salon a besoin</h2>
-      <p class="section-desc">Une macro VBA qui génère en un clic un outil de gestion complet, structuré et visuellement professionnel.</p>
+      <p class="section-label">01 — Fonctionnalités</p>
+      <h2 class="section-title" id="fonctionnalites-title">Les fonctions clés de Salon Pro</h2>
+      <p class="section-desc">Une macro VBA génère un classeur organisé pour le suivi quotidien et la lecture des résultats annuels.</p>
     </div>
 
     <div class="features">
       <div class="feature-card reveal">
         <div class="feature-icon green">📊</div>
-        <h3 class="feature-title">Tableau de Bord Annuel</h3>
-        <p class="feature-desc">Synthèse consolidée de tous les mois avec CA total, charges et bénéfice net. Mise à jour automatique via formules liées.</p>
+        <h3 class="feature-title">Tableau de bord annuel</h3>
+        <p class="feature-desc">Synthèse du chiffre d'affaires, des charges et du bénéfice net, alimentée par les feuilles mensuelles.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon blue">📅</div>
-        <h3 class="feature-title">12 Feuilles Mensuelles</h3>
-        <p class="feature-desc">Une feuille par mois générée automatiquement. Chaque jour de l'année est pré-listé avec sa formule de calcul du reste.</p>
+        <h3 class="feature-title">Suivi mensuel</h3>
+        <p class="feature-desc">Une feuille par mois avec une ligne par jour et un calcul du solde après charges.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon gold">💡</div>
-        <h3 class="feature-title">Dates Intelligentes</h3>
-        <p class="feature-desc">Mise en forme conditionnelle : les dates des jours travaillés passent automatiquement en gras dès qu'un CA est saisi.</p>
+        <h3 class="feature-title">Repérage des jours travaillés</h3>
+        <p class="feature-desc">La mise en forme conditionnelle met en évidence les dates pour lesquelles un chiffre d'affaires est saisi.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon orange">💰</div>
-        <h3 class="feature-title">Loyer Automatique</h3>
-        <p class="feature-desc">Charge fixe de 500 DT pré-remplie au 1er de chaque mois dans la colonne "Charges Fixes".</p>
+        <h3 class="feature-title">Loyer prérempli</h3>
+        <p class="feature-desc">Le loyer de 500 DT est inscrit le premier jour de chaque mois dans les charges fixes.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon pink">🎨</div>
-        <h3 class="feature-title">Code Couleur Pro</h3>
-        <p class="feature-desc">CA en bleu clair, charges en rouge pastel, reste en bleu professionnel. Lecture instantanée de l'état financier.</p>
+        <h3 class="feature-title">Repères visuels</h3>
+        <p class="feature-desc">Des couleurs distinctes facilitent la lecture du chiffre d'affaires, des charges et du solde.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon purple">💎</div>
-        <h3 class="feature-title">Catalogue Tarifaire</h3>
-        <p class="feature-desc">Toutes les prestations avec leurs tarifs intégrés dans la synthèse. Référence rapide accessible en permanence.</p>
+        <h3 class="feature-title">Catalogue tarifaire</h3>
+        <p class="feature-desc">Les prestations et leurs tarifs sont réunis dans une feuille dédiée du classeur.</p>
       </div>
     </div>
   </div>
@@ -680,12 +682,12 @@
 <div class="divider"></div>
 
 <!-- ═══════════════ APERÇU TABLEUR ═══════════════ -->
-<section class="section" id="apercu">
+<section class="section" id="apercu" aria-labelledby="apercu-title">
   <div class="container">
     <div class="reveal">
-      <p class="section-label">Aperçu visuel</p>
-      <h2 class="section-title">Interface Excel générée</h2>
-      <p class="section-desc">Voici à quoi ressemblent les feuilles créées automatiquement par la macro.</p>
+      <p class="section-label">02 — Aperçu du classeur</p>
+      <h2 class="section-title" id="apercu-title">Tableau de bord et feuilles de suivi</h2>
+      <p class="section-desc">Explorez la synthèse annuelle, les feuilles mensuelles et le catalogue tarifaire.</p>
     </div>
 
     <div class="sheet-preview reveal">
@@ -849,11 +851,11 @@
 <div class="divider"></div>
 
 <!-- ═══════════════ CODE SNIPPET ═══════════════ -->
-<section class="section">
+<section class="section" id="macro" aria-labelledby="macro-title">
   <div class="container">
     <div class="reveal">
-      <p class="section-label">Code source</p>
-      <h2 class="section-title">Extrait de la macro VBA</h2>
+      <p class="section-label">03 — Automatisation</p>
+      <h2 class="section-title" id="macro-title">Génération du classeur par VBA</h2>
       <p class="section-desc">Le cœur du projet — génération automatique des feuilles mensuelles avec formules, couleurs et données conditionnelles.</p>
     </div>
 
@@ -897,11 +899,11 @@
 <div class="divider"></div>
 
 <!-- ═══════════════ ARCHITECTURE ═══════════════ -->
-<section class="section">
+<section class="section" id="structure" aria-labelledby="structure-title">
   <div class="container">
     <div class="reveal">
-      <p class="section-label">Architecture</p>
-      <h2 class="section-title">Structure du classeur</h2>
+      <p class="section-label">04 — Organisation du classeur</p>
+      <h2 class="section-title" id="structure-title">Des feuilles organisées par usage</h2>
     </div>
     <div class="arch-grid reveal">
       <div class="arch-card">
@@ -949,12 +951,12 @@
 <div class="divider"></div>
 
 <!-- ═══════════════ CATALOGUE PRESTATIONS ═══════════════ -->
-<section class="section">
+<section class="section" id="prestations" aria-labelledby="prestations-title">
   <div class="container">
     <div class="reveal">
-      <p class="section-label">Catalogue intégré</p>
-      <h2 class="section-title">Prestations & Tarifs</h2>
-      <p class="section-desc">Le catalogue est directement accessible dans la feuille SYNTHÈSE ANNUELLE pour une consultation rapide pendant la saisie.</p>
+      <p class="section-label">05 — Catalogue</p>
+      <h2 class="section-title" id="prestations-title">Prestations et tarifs</h2>
+      <p class="section-desc">Les tarifs présentés sont ceux intégrés à l'exemple de classeur.</p>
     </div>
     <div class="catalogue reveal">
       <div class="cat-item"><span class="cat-name">✨ Maquillage</span><span class="cat-price">80 DT+</span></div>
@@ -971,6 +973,8 @@
 </section>
 
 <div class="divider"></div>
+
+</main>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
