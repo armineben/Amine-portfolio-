@@ -3,7 +3,7 @@ const PORTFOLIO_CONTENU = {
   // 📁 Dossier : projets-applications/
   application: [
     "photo_de_couverture_developpement.png",
-    "pdfvendly",
+    "pdfvendly.pdf",
     "AUTOPILOT.png",
     "Accueil.png",
   ],
