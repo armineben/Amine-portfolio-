@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="wi€h=device-wi€h, initial-scale=1.0">
 <title>Salon de coiffure | Gestion</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -38,7 +38,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect wi€h='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 0;
   }
@@ -52,12 +52,12 @@
     pointer-events: none;
     z-index: 0;
   }
-  .blob-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; left: -200px; }
-  .blob-2 { width: 500px; height: 500px; background: var(--accent2); bottom: -150px; right: -150px; }
-  .blob-3 { width: 300px; height: 300px; background: var(--gold); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .blob-1 { wi€h: 600px; height: 600px; background: var(--accent); top: -200px; left: -200px; }
+  .blob-2 { wi€h: 500px; height: 500px; background: var(--accent2); bottom: -150px; right: -150px; }
+  .blob-3 { wi€h: 300px; height: 300px; background: var(--gold); top: 50%; left: 50%; transform: translate(-50%,-50%); }
 
   /* ─── MAIN WRAPPER ─── */
-  .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .container { position: relative; z-index: 1; max-wi€h: 1100px; margin: 0 auto; padding: 0 2rem; }
 
   /* ─── HERO ─── */
   .hero {
@@ -83,12 +83,12 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 2rem;
-    width: fit-content;
+    wi€h: fit-content;
     animation: fadeSlideUp 0.6s ease both;
   }
 
   .badge-dot {
-    width: 7px; height: 7px;
+    wi€h: 7px; height: 7px;
     background: var(--accent);
     border-radius: 50%;
     animation: pulse 2s infinite;
@@ -117,7 +117,7 @@
   .hero-sub {
     font-size: 1.1rem;
     color: var(--muted);
-    max-width: 580px;
+    max-wi€h: 580px;
     margin-bottom: 3rem;
     font-weight: 300;
     animation: fadeSlideUp 0.6s 0.2s ease both;
@@ -202,7 +202,7 @@
 
   .section-desc {
     color: var(--muted);
-    max-width: 560px;
+    max-wi€h: 560px;
     font-size: 0.95rem;
   }
 
@@ -278,7 +278,7 @@
   }
 
   .feature-icon {
-    width: 44px; height: 44px;
+    wi€h: 44px; height: 44px;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -316,7 +316,7 @@
     gap: 0.6rem;
   }
 
-  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot { wi€h: 12px; height: 12px; border-radius: 50%; }
   .dot.red   { background: #ff5f57; }
   .dot.yellow{ background: #febc2e; }
   .dot.green { background: #28c840; }
@@ -325,7 +325,7 @@
     display: flex;
     gap: 0;
     overflow-x: auto;
-    scrollbar-width: none;
+    scrollbar-wi€h: none;
     background: #0f1318;
     border-bottom: 1px solid var(--border);
     padding: 0 1rem;
@@ -348,7 +348,7 @@
   .sheet-content { padding: 1.5rem; overflow-x: auto; }
 
   table.excel {
-    width: 100%;
+    wi€h: 100%;
     border-collapse: collapse;
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
@@ -463,7 +463,7 @@
     margin-top: 2.5rem;
   }
 
-  @media(max-width: 700px) {
+  @media(max-wi€h: 700px) {
     .arch-grid { grid-template-columns: 1fr; }
     .hero-title { font-size: 2.5rem; }
   }
@@ -557,7 +557,7 @@
   }
 
   .scroll-line {
-    width: 1px;
+    wi€h: 1px;
     height: 40px;
     background: linear-gradient(to bottom, var(--accent), transparent);
     animation: scrollAnim 1.5s ease infinite;
@@ -571,6 +571,51 @@
   /* ─── ACTIVE TABS ─── */
   .tab-content { display: none; }
   .tab-content.active { display: block; }
+
+  @page { size: A4; margin: 14mm; }
+
+  @media print {
+    html, body { background: #fff !important; color: #1b211e !important; overflow: visible !important; }
+    body::before, .blob, .scroll-hint { display: none !important; }
+    .container { max-wi€h: none; padding: 0; }
+    .hero { min-height: 0; padding: 8mm 0; }
+    .badge { color: #17643d; background: #edf5ef; border-color: #b9d8c3; animation: none; }
+    .badge-dot { animation: none; }
+    .hero-title, .section-title, .feature-title, .arch-card-title { color: #1b211e !important; animation: none; }
+    .hero-title { font-size: 30pt; }
+    .hero-title em { color: #8a6200 !important; }
+    .hero-sub, .section-desc, .feature-desc, .metric-label, .arch-list li { color: #444 !important; }
+    .hero-sub, .hero-tags, .hero-cta { animation: none; }
+    .tag, .btn, .metric, .feature-card, .sheet-preview, .arch-card, .cat-item, .code-window {
+      color: #222 !important; background: #fff !important; border: 1px solid #c9cfcb !important;
+      box-shadow: none !important; transform: none !important;
+    }
+    .hero-cta { display: none; }
+    .section { padding: 9mm 0; }
+    .metrics { background: #c9cfcb; border-color: #c9cfcb; margin: 7mm 0; }
+    .metric-value.green { color: #17643d !important; }
+    .metric-value.blue { color: #205b85 !important; }
+    .metric-value.gold { color: #806000 !important; }
+    .metric-value.orange { color: #8a4b10 !important; }
+    .feature-card::before { display: none; }
+    .feature-icon { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .sheet-preview { overflow: visible; }
+    .sheet-tab-bar { display: none; }
+    .sheet-content { padding: 0; overflow: visible; }
+    .tab-content { display: block !important; margin: 5mm 0; break-inside: avoid; }
+    table.excel { font-size: 7pt; color: #222; }
+    table.excel th { color: #1b211e !important; background: #e5e9e6 !important; border: 1px solid #aeb6b0; }
+    table.excel td { color: #333 !important; background: #fff !important; border: 1px solid #d0d4d1; }
+    table.excel .cell-ca { color: #205b85 !important; }
+    table.excel .cell-charge { color: #923e37 !important; }
+    table.excel .cell-reste { color: #17643d !important; }
+    table.excel .cell-price, .cat-price { color: #806000 !important; }
+    .arch-grid { grid-template-columns: 1fr 1fr; }
+    .arch-card, .feature-card, .cat-item { break-inside: avoid; }
+    pre { color: #222; background: #fff; font-size: 7pt; white-space: pre-wrap; overflow: visible; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    footer { color: #444; }
+  }
 </style>
 </head>
 <body>
@@ -592,7 +637,7 @@
       <span class="tag green">VBA Macro</span>
       <span class="tag blue">Excel 2016+</span>
       <span class="tag orange">Gestion Financière</span>
-      <span class="tag">Dinar tunisien (DT)</span>
+      <span class="tag">Dinar tunisien (€)</span>
       <span class="tag">Mise en forme cond.</span>
       <span class="tag">Auto-génération</span>
     </div>
@@ -663,7 +708,7 @@
       <div class="feature-card reveal">
         <div class="feature-icon orange">💰</div>
         <h3 class="feature-title">Loyer prérempli</h3>
-        <p class="feature-desc">Le loyer de 500 DT est inscrit le premier jour de chaque mois dans les charges fixes.</p>
+        <p class="feature-desc">Le loyer de 500 € est inscrit le premier jour de chaque mois dans les charges fixes.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon pink">🎨</div>
@@ -717,11 +762,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td class="cell-date">Janvier</td><td class="cell-ca">3 200,000 DT</td><td class="cell-charge">980,000 DT</td><td class="cell-reste">2 220,000 DT</td></tr>
-              <tr><td class="cell-date">Février</td><td class="cell-ca">2 750,000 DT</td><td class="cell-charge">870,000 DT</td><td class="cell-reste">1 880,000 DT</td></tr>
-              <tr><td class="cell-date">Mars</td><td class="cell-ca">3 600,000 DT</td><td class="cell-charge">1 050,000 DT</td><td class="cell-reste">2 550,000 DT</td></tr>
+              <tr><td class="cell-date">Janvier</td><td class="cell-ca">3 200,000 €</td><td class="cell-charge">980,000 €</td><td class="cell-reste">2 220,000 €</td></tr>
+              <tr><td class="cell-date">Février</td><td class="cell-ca">2 750,000 €</td><td class="cell-charge">870,000 €</td><td class="cell-reste">1 880,000 €</td></tr>
+              <tr><td class="cell-date">Mars</td><td class="cell-ca">3 600,000 €</td><td class="cell-charge">1 050,000 €</td><td class="cell-reste">2 550,000 €</td></tr>
               <tr><td class="cell-date" style="color:var(--muted);font-style:italic;">… × 9 mois</td><td class="cell-ca" style="color:var(--muted);">—</td><td class="cell-charge" style="color:var(--muted);">—</td><td class="cell-reste" style="color:var(--muted);">—</td></tr>
-              <tr><td class="cell-total">TOTAL ANNUEL</td><td class="cell-total cell-ca">38 400,000 DT</td><td class="cell-total cell-charge">11 640,000 DT</td><td class="cell-total cell-reste">26 760,000 DT</td></tr>
+              <tr><td class="cell-total">TOTAL ANNUEL</td><td class="cell-total cell-ca">38 400,000 €</td><td class="cell-total cell-charge">11 640,000 €</td><td class="cell-total cell-reste">26 760,000 €</td></tr>
             </tbody>
           </table>
         </div>
@@ -742,19 +787,19 @@
             <tbody>
               <tr>
                 <td class="cell-date" style="font-weight:700;color:var(--text);">01/01/2026</td>
-                <td class="cell-ca">250,000 DT</td>
-                <td>Produit</td><td class="cell-charge">30,000 DT</td>
+                <td class="cell-ca">250,000 €</td>
+                <td>Produit</td><td class="cell-charge">30,000 €</td>
                 <td>—</td><td class="cell-charge">—</td>
-                <td>Loyer</td><td class="cell-charge">500,000 DT</td>
-                <td class="cell-reste">-280,000 DT</td>
+                <td>Loyer</td><td class="cell-charge">500,000 €</td>
+                <td class="cell-reste">-280,000 €</td>
               </tr>
               <tr>
                 <td class="cell-date" style="font-weight:700;color:var(--text);">02/01/2026</td>
-                <td class="cell-ca">180,000 DT</td>
+                <td class="cell-ca">180,000 €</td>
                 <td>—</td><td class="cell-charge">—</td>
                 <td>—</td><td class="cell-charge">—</td>
                 <td>—</td><td class="cell-charge">—</td>
-                <td class="cell-reste">180,000 DT</td>
+                <td class="cell-reste">180,000 €</td>
               </tr>
               <tr>
                 <td class="cell-date">03/01/2026</td>
@@ -762,7 +807,7 @@
                 <td></td><td class="cell-charge"></td>
                 <td></td><td class="cell-charge"></td>
                 <td></td><td class="cell-charge"></td>
-                <td class="cell-reste">0,000 DT</td>
+                <td class="cell-reste">0,000 €</td>
               </tr>
               <tr>
                 <td class="cell-date" style="color:var(--muted);font-style:italic;">… × 28 jours</td>
@@ -770,9 +815,9 @@
               </tr>
               <tr>
                 <td class="cell-total">TOTAL</td>
-                <td class="cell-total cell-ca">3 200,000 DT</td>
+                <td class="cell-total cell-ca">3 200,000 €</td>
                 <td colspan="6"></td>
-                <td class="cell-total cell-reste">2 220,000 DT</td>
+                <td class="cell-total cell-reste">2 220,000 €</td>
               </tr>
             </tbody>
           </table>
@@ -794,19 +839,19 @@
             <tbody>
               <tr>
                 <td class="cell-date" style="font-weight:700;color:var(--text);">01/02/2026</td>
-                <td class="cell-ca">190,000 DT</td>
+                <td class="cell-ca">190,000 €</td>
                 <td>—</td><td class="cell-charge">—</td>
                 <td>—</td><td class="cell-charge">—</td>
-                <td>Loyer</td><td class="cell-charge">500,000 DT</td>
-                <td class="cell-reste">-310,000 DT</td>
+                <td>Loyer</td><td class="cell-charge">500,000 €</td>
+                <td class="cell-reste">-310,000 €</td>
               </tr>
               <tr>
                 <td class="cell-date" style="font-weight:700;color:var(--text);">02/02/2026</td>
-                <td class="cell-ca">320,000 DT</td>
+                <td class="cell-ca">320,000 €</td>
                 <td>—</td><td class="cell-charge">—</td>
                 <td>—</td><td class="cell-charge">—</td>
                 <td>—</td><td class="cell-charge">—</td>
-                <td class="cell-reste">320,000 DT</td>
+                <td class="cell-reste">320,000 €</td>
               </tr>
               <tr>
                 <td class="cell-date" style="color:var(--muted);font-style:italic;">… × 26 jours</td>
@@ -814,9 +859,9 @@
               </tr>
               <tr>
                 <td class="cell-total">TOTAL</td>
-                <td class="cell-total cell-ca">2 750,000 DT</td>
+                <td class="cell-total cell-ca">2 750,000 €</td>
                 <td colspan="6"></td>
-                <td class="cell-total cell-reste">1 880,000 DT</td>
+                <td class="cell-total cell-reste">1 880,000 €</td>
               </tr>
             </tbody>
           </table>
@@ -830,15 +875,15 @@
               <tr><th>Prestation</th><th>Tarif</th></tr>
             </thead>
             <tbody>
-              <tr><td class="cell-label">Maquillage</td><td class="cell-price">80 DT+</td></tr>
-              <tr><td class="cell-label">Lash lift</td><td class="cell-price">40 DT</td></tr>
-              <tr><td class="cell-label">Brow lift</td><td class="cell-price">50 DT</td></tr>
-              <tr><td class="cell-label">Cils semi soie</td><td class="cell-price">30 DT</td></tr>
-              <tr><td class="cell-label">Cils en soie</td><td class="cell-price">70 DT+</td></tr>
-              <tr><td class="cell-label">Traçage sourcil</td><td class="cell-price">5 DT</td></tr>
-              <tr><td class="cell-label">Épilation sourcil</td><td class="cell-price">7 DT</td></tr>
-              <tr><td class="cell-label">Épilation visage</td><td class="cell-price">15 DT</td></tr>
-              <tr><td class="cell-label">Brushing</td><td class="cell-price">5 DT+</td></tr>
+              <tr><td class="cell-label">Maquillage</td><td class="cell-price">80 €+</td></tr>
+              <tr><td class="cell-label">Lash lift</td><td class="cell-price">40 €</td></tr>
+              <tr><td class="cell-label">Brow lift</td><td class="cell-price">50 €</td></tr>
+              <tr><td class="cell-label">Cils semi soie</td><td class="cell-price">30 €</td></tr>
+              <tr><td class="cell-label">Cils en soie</td><td class="cell-price">70 €+</td></tr>
+              <tr><td class="cell-label">Traçage sourcil</td><td class="cell-price">5 €</td></tr>
+              <tr><td class="cell-label">Épilation sourcil</td><td class="cell-price">7 €</td></tr>
+              <tr><td class="cell-label">Épilation visage</td><td class="cell-price">15 €</td></tr>
+              <tr><td class="cell-label">Brushing</td><td class="cell-price">5 €+</td></tr>
             </tbody>
           </table>
         </div>
@@ -913,7 +958,7 @@
           <li>Formules liées aux 12 feuilles mensuelles</li>
           <li>Catalogue des 9 prestations avec tarifs</li>
           <li>Ligne TOTAL ANNUEL calculée automatiquement</li>
-          <li>Format monétaire DT (#,##0.000 "DT")</li>
+          <li>Format monétaire € (#,##0.000 "€")</li>
         </ul>
       </div>
       <div class="arch-card">
@@ -922,7 +967,7 @@
           <li>Une ligne par jour (28 à 31 selon le mois)</li>
           <li>Colonnes : CA · Charges Var. · Charges Prod. · Charges Fixes · Reste</li>
           <li>Formule Reste = CA − Σ(toutes charges)</li>
-          <li>Loyer 500 DT pré-inséré au 1er du mois</li>
+          <li>Loyer 500 € pré-inséré au 1er du mois</li>
           <li>Mise en forme conditionnelle sur les dates travaillées</li>
         </ul>
       </div>
@@ -959,15 +1004,15 @@
       <p class="section-desc">Les tarifs présentés sont ceux intégrés à l'exemple de classeur.</p>
     </div>
     <div class="catalogue reveal">
-      <div class="cat-item"><span class="cat-name">✨ Maquillage</span><span class="cat-price">80 DT+</span></div>
-      <div class="cat-item"><span class="cat-name">👁 Lash lift</span><span class="cat-price">40 DT</span></div>
-      <div class="cat-item"><span class="cat-name">🖊 Brow lift</span><span class="cat-price">50 DT</span></div>
-      <div class="cat-item"><span class="cat-name">💫 Cils semi soie</span><span class="cat-price">30 DT</span></div>
-      <div class="cat-item"><span class="cat-name">💎 Cils en soie</span><span class="cat-price">70 DT+</span></div>
-      <div class="cat-item"><span class="cat-name">✏️ Traçage sourcil</span><span class="cat-price">5 DT</span></div>
-      <div class="cat-item"><span class="cat-name">🌿 Épilation sourcil</span><span class="cat-price">7 DT</span></div>
-      <div class="cat-item"><span class="cat-name">🌸 Épilation visage</span><span class="cat-price">15 DT</span></div>
-      <div class="cat-item"><span class="cat-name">💆 Brushing</span><span class="cat-price">5 DT+</span></div>
+      <div class="cat-item"><span class="cat-name">✨ Maquillage</span><span class="cat-price">80 €+</span></div>
+      <div class="cat-item"><span class="cat-name">👁 Lash lift</span><span class="cat-price">40 €</span></div>
+      <div class="cat-item"><span class="cat-name">🖊 Brow lift</span><span class="cat-price">50 €</span></div>
+      <div class="cat-item"><span class="cat-name">💫 Cils semi soie</span><span class="cat-price">30 €</span></div>
+      <div class="cat-item"><span class="cat-name">💎 Cils en soie</span><span class="cat-price">70 €+</span></div>
+      <div class="cat-item"><span class="cat-name">✏️ Traçage sourcil</span><span class="cat-price">5 €</span></div>
+      <div class="cat-item"><span class="cat-name">🌿 Épilation sourcil</span><span class="cat-price">7 €</span></div>
+      <div class="cat-item"><span class="cat-name">🌸 Épilation visage</span><span class="cat-price">15 €</span></div>
+      <div class="cat-item"><span class="cat-name">💆 Brushing</span><span class="cat-price">5 €+</span></div>
     </div>
   </div>
 </section>
