@@ -4,8 +4,7 @@ const PORTFOLIO_CONTENU = {
   application: [
     "photo_de_couverture_developpement.png",
     "pdfvendly.pdf",
-    "AUTOPILOT.png",
-    "Accueil.png",
+    "Secret's_Store.pdf",
   ],
 
   // 📁 Dossier : projets-creation/
@@ -77,6 +76,7 @@ const PORTFOLIO_CONTENU = {
   // 📁 Dossier : projets-actualites/
   actualites: [
     "Vendly_application.png",
+    "Secret's_application.png",
      ],
   
 
