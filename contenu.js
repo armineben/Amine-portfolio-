@@ -5,6 +5,8 @@ const PORTFOLIO_CONTENU = {
     "photo_de_couverture_developpement.png",
     "Vendly_App.pdf",
     "Secret's_Store.pdf",
+    "Bankly_Case_Study.pdf",
+
   ],
 
   // 📁 Dossier : projets-creation/
