@@ -77,8 +77,10 @@ const PORTFOLIO_CONTENU = {
 
   // 📁 Dossier : projets-actualites/
   actualites: [
+    "01_cover_temporary.png",
     "Vendly_application.png",
     "Secret's_application.png",
+    "hello_docteur.png",
      ],
   
 
