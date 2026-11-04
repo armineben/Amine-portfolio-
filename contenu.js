@@ -64,7 +64,7 @@ const PORTFOLIO_CONTENU = {
 
   // 📁 Dossier : projets-publications/
   publications: [
-    "photo_de_couverture_publications.png",
+    "couverture_contenus_sociaux.png",
     "Publication-gym.png",
     "Publication-gym2.png",
     "Publication-salle-de-sport.png",
