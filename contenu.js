@@ -11,7 +11,7 @@ const PORTFOLIO_CONTENU = {
 
   // 📁 Dossier : projets-creation/
   projets: [
-    "photo_de_couverture_projets.png",
+    "Couvertures_projets.png",
     "Projet_Smart_Parking.html",
     "projet-bpgo.html",
     "projet-fondation.html",
