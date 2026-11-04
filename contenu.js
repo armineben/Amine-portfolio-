@@ -23,7 +23,7 @@ const PORTFOLIO_CONTENU = {
 
   // 📁 Dossier : projets-excel/
   excel: [
-    "photo_de_couverture_excel.png",
+    "Couvertures_Excel.png",
     "Base_Clients.png",
     "Bouton-création-stat-et-graphiques.png",
     "Bouton-envoi-mail.png",
