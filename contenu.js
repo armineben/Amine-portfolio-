@@ -50,7 +50,7 @@ const PORTFOLIO_CONTENU = {
 
   // 📁 Dossier : projets-affiches/
   affiches: [
-    "couverture_affiche.png",
+    "Couverture_Affiche.png",
     "Affiche-evenement-fondation.jpeg",
     "Affiche-evenement-fondation2.jpeg",
     "Affiche-evenement-master2.png",
