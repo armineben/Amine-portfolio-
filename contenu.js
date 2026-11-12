@@ -41,7 +41,7 @@ const PORTFOLIO_CONTENU = {
 
   // 📁 Dossier : projets-logos/
   logos: [
-    "Couverture_Logos.png",
+    "Couverture_logos.png",
     "Logo-marque-sans-gluten.png",
     "Logo-santé-conectée.png",
     "logo-patisserie.jpg",
@@ -50,7 +50,7 @@ const PORTFOLIO_CONTENU = {
 
   // 📁 Dossier : projets-affiches/
   affiches: [
-    "Couverture_Affiche.png",
+    "Couverture_Afiche.png",
     "Affiche-evenement-fondation.jpeg",
     "Affiche-evenement-fondation2.jpeg",
     "Affiche-evenement-master2.png",
