@@ -6,6 +6,12 @@ const PORTFOLIO_CONTENU = {
     "Vendly_App.pdf",
     "Secret's_Store.pdf",
     "Bankly_Case_Study.pdf",
+    "Hello-Docteur-Brochure.pdf",
+    "AUTO-PILOT_ERP.pdf",
+    "IronGym-App.pdf",
+    "Mizan-APP.pdf",
+
+
 
   ],
 
